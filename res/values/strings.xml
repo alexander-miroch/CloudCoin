@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Cloud  Coin  Consortium</string>
+	<string name="tadd">Add Coins</string>
+	<string name="tbank">Bank</string>
+	<string name="tbankinventory">Bank Inventory</string>
+	<string name="tspend">Spend Coins</string>
+	<string name="loading">Loading</string>
+	<string name="importtag">Import Tag</string>
+	<string name="exporttag">Export Tag</string>
+
+
+	<string name="total">Total</string>
+	<string name="sbank">Bank</string>
+	<string name="scounterfeit">Counterfeit</string>
+	<string name="sfractured">Fractured</string>
+
+
+</resources>

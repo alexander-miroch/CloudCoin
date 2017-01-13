@@ -1,0 +1,6 @@
+
+all:
+	ant debug
+
+%:
+	ant $@

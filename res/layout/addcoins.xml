@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:ads="http://schemas.android.com/apk/res-auto"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:gravity="center"
+	android:layout_gravity="center"
+>
+
+
+	<TextView
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:id="@+id/title"
+                android:text="@string/tadd"
+                android:textColor="#000000"
+                android:textSize="22dp"
+		android:padding="1dp"
+        />
+
+	<LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/blayoutmain"
+                android:background="@android:color/transparent"
+        >
+	<EditText
+		android:layout_width="180dp"
+		android:layout_height="42dp"
+		android:hint="@string/importtag"
+                android:background="#eeeeee"
+		android:id="@+id/importtag"
+		android:singleLine="true"
+		android:padding="8dp"
+		android:maxLength="16"
+		android:inputType="textCapWords"
+                android:textSize="18dp"
+	/>
+
+	<TextView
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:id="@+id/text"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:padding="4dp"
+        />
+
+	<Button
+		android:layout_width="128dp"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="20dp"
+		android:text="OK"
+                android:id="@+id/button"
+	/>
+
+
+
+	</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>
+
+
