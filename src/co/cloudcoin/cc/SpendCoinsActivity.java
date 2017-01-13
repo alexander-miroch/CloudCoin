@@ -193,7 +193,7 @@ public class SpendCoinsActivity extends Activity implements NumberPicker.OnValue
 				totalFailed += failed[i];
 			}
 			if (totalFailed == 0) {
-				msg = "Coins have been exported successfully";
+				msg = "Coins have been exported successfully\nYou can find them on your SD card at:\n" + bank.getRelativeExportDirPath();
 			} else {
 				msg = "Failed to export " + totalFailed + " coins";
 			}

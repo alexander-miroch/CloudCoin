@@ -94,6 +94,10 @@ public class Bank {
 		return this.importDirPath;
 	}
 
+	public String getRelativeExportDirPath() {
+		return DIR_BASE + "/" + EXPORT_DIR_NAME;
+
+	}
 	public String getRelativeImportDirPath() {
 		return DIR_BASE + "/" + IMPORT_DIR_NAME;
 	}
