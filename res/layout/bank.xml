@@ -65,7 +65,7 @@ xmlns:ads="http://schemas.android.com/apk/res-auto"
                         <TextView android:id="@+id/bstall" android:text="@string/total" style="@style/InvText1" />
                 </LinearLayout>
 	</LinearLayout>
-
+<!--
 
 	<TextView style="@style/TitleText" android:id="@+id/text0" android:text="@string/scounterfeit"/>
         <LinearLayout     style="@style/LayoutWrapper" android:id="@+id/blayoutmain"   >
@@ -125,7 +125,7 @@ xmlns:ads="http://schemas.android.com/apk/res-auto"
                         <TextView android:id="@+id/fstall" android:text="@string/total" style="@style/InvText1" />
                 </LinearLayout>
         </LinearLayout>
-
+-->
 
 
 

@@ -101,6 +101,7 @@ class CloudCoin {
 		return result;
 	}
 
+
 	public CloudCoin(IncomeFile file) throws Exception {
 		raidaCnt = RAIDA.TOTAL_RAIDA_COUNT;
 		int cnt;
@@ -167,14 +168,17 @@ class CloudCoin {
 				String ed     = childJSONObject.getString("ed");
 				String aoid = childJSONObject.getString("aoid");
 
+				aoid = aoid.replace("[", "");
+				aoid = aoid.replace("]", "");
+
 				this.nn = nn;	
 				this.sn = sn;
 				this.ans = toStringArray(an);
 				this.ed = ed;
 				this.aoid = aoid;
 			} catch (JSONException e) {
-				Log.e(TAG, "Stack file " + file.fileName + " is corrupted");
-				throw new Exception();
+				Log.e(TAG, "Stack file " + file.fileName + " is corrupted: " + e.getMessage());
+				throw new Exception("Stack file " + file.fileName + " is corrupted: " + e.getMessage());
 			}
 
 
@@ -266,6 +270,9 @@ class CloudCoin {
 				json += "\",\"";
 			}
 		}
+		
+		if (!aoid.startsWith("\""))
+			aoid = "\"" + aoid + "\"";
 
 		json += "\"]," + sep;
 		json += "\t\t\"ed\":\"" + expDate + "\"," + sep;
@@ -369,9 +376,9 @@ class CloudCoin {
 		setJSON();
 
 		File f = new File(newFileName);
-		if (f.exists() && !f.isDirectory()) {
+		if (f.exists()) {
 			Log.e(TAG, "File " + newFileName + " already exists");
-			throw new Exception();
+			throw new Exception("File " + newFileName + " already exists");
 		}
 
 		BufferedWriter writer = null;
@@ -380,14 +387,14 @@ class CloudCoin {
 			writer.write(this.json);
 		} catch (IOException e){ 
 			Log.e(TAG, "Failed to save file " + newFileName);
-			throw new Exception();
+			throw new Exception("Failed to save file: " + e.getMessage());
 		} finally {    
 			try{
 				if (writer != null)
 					writer.close();
 			} catch (IOException e){
 				Log.e(TAG, "Failed to close BufferedWriter");
-				throw new Exception();
+				throw new Exception("Failed to close BufferedWriter");
 			}
 		}
 	}
@@ -479,7 +486,9 @@ class CloudCoin {
 
 
 	private String rateToString(int count) {
-		double pct = count / raidaCnt;
+		double pct = (double) count / (double) raidaCnt;
+
+		Log.v(TAG, "count " + count + " r " + raidaCnt + " pct " +pct);
 
 		if (pct == 1)
 			return "100%";
@@ -543,5 +552,6 @@ class CloudCoin {
 		}
 		return data;
 	}
+
 
 }

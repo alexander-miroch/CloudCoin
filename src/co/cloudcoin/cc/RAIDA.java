@@ -234,7 +234,7 @@ public class RAIDA {
 				Log.v(TAG, "Error executing the task");
 				e.printStackTrace();
 			} catch (TimeoutException e) {
-				Log.v(TAG, "Timeout connection to the server");
+				Log.v(TAG, "Timeout during connection to the server");
 			} catch (InterruptedException e) {
 				Log.v(TAG, "Task interrupted");
 			}

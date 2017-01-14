@@ -105,7 +105,7 @@ public class BankActivity extends Activity  {
 		bank = new Bank();
 
 		stats[IDX_BANK] = bank.countCoins("bank");
-		stats[IDX_COUNTERFEIT] = bank.countCoins("counterfeit");
+		//stats[IDX_COUNTERFEIT] = bank.countCoins("counterfeit");
 		stats[IDX_FRACTURED] = bank.countCoins("fracked");
 
 		int j;
@@ -115,9 +115,12 @@ public class BankActivity extends Activity  {
 			else 
 				j = i - 1;
 
-			ids[IDX_BANK][j].setText("" + stats[IDX_BANK][i]);
-			ids[IDX_COUNTERFEIT][j].setText("" + stats[IDX_COUNTERFEIT][i]);
-			ids[IDX_FRACTURED][j].setText("" + stats[IDX_FRACTURED][i]);
+			int authCount = stats[IDX_BANK][i] + stats[IDX_FRACTURED][i];
+
+			ids[IDX_BANK][j].setText("" + authCount);
+			//ids[IDX_BANK][j].setText("" + stats[IDX_BANK][i]);
+			//ids[IDX_COUNTERFEIT][j].setText("" + stats[IDX_COUNTERFEIT][i]);
+			//ids[IDX_FRACTURED][j].setText("" + stats[IDX_FRACTURED][i]);
 		}
 
 	}

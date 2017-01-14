@@ -34,6 +34,7 @@
                 android:id="@+id/blayoutmain"
                 android:background="@android:color/transparent"
         >
+	<!--
 	<EditText
 		android:layout_width="180dp"
 		android:layout_height="42dp"
@@ -46,6 +47,7 @@
 		android:inputType="textCapWords"
                 android:textSize="18dp"
 	/>
+	-->
 
 	<TextView
                 android:orientation="vertical"

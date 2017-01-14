@@ -73,12 +73,11 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 	Typeface tf;
 	TextView tvt, mainText;
 	Button button;
-	EditText et;
+	//EditText et;
 
 	Bank bank;
 
 	int count = 0;
-//	TextView t0, t1, t2;
 
 
 	@Override
@@ -93,7 +92,7 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 
 		tf = Typeface.createFromAsset(getAssets(), "fonts/font.ttf");
 
-		et = (EditText) findViewById(R.id.importtag);
+		//et = (EditText) findViewById(R.id.importtag);
 		tvt = (TextView) findViewById(R.id.title);
 
 		mainText = (TextView) findViewById(R.id.text);
@@ -115,9 +114,6 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 		state = STATE_INIT;
 
 		hideControls();
-//		t0.setVisibility(View.GONE);
-//		t1.setVisibility(View.GONE);
-//		t2.setVisibility(View.GONE);
 
 		bank = new Bank();
 
@@ -134,11 +130,11 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 
 		totalIncomeLength = bank.getLoadedIncomeLength();
 		if (totalIncomeLength == 0) {
-			mainText.setText("There were no CloudCoins found in your income folder. Please put your CloudCoins (.jpg or .stack) files in your income folder and try again. Your Income folder can be found on your SD card at:\n\n" + importDir); 
+			mainText.setText("There were no CloudCoins found in your income folder. Please put your CloudCoins (.jpg or .stack) files in your income folder and try again. Your Income folder can be found on your primary storage at:\n\n" + importDir); 
 			return;
 		}
 
-		mainText.setText("Import will import all CloudCoin files from your Import folder. Please put all your CloudCoin files (.jpg and .stack) into the Import folder located on your SD card at:\n\n" + importDir + "\n\nWe are going to import " + Integer.toString(totalIncomeLength) + " files. Tap OK to continue");
+		mainText.setText("Import will import all CloudCoin files from your Import folder. Please put all your CloudCoin files (.jpg and .stack) into the Import folder located on your primary storage at:\n\n" + importDir + "\n\nWe are going to import " + Integer.toString(totalIncomeLength) + " files. Tap OK to continue");
 
 		showControls();
 
@@ -157,14 +153,18 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 		sb.append("Authentic and moved to bank: ");
 		sb.append(bank.getImportStats(Bank.STAT_AUTHENTIC));
 		
-		sb.append("\nCounterfeit and moved to trash: ");
-		sb.append(bank.getImportStats(Bank.STAT_COUNTERFEIT));
-
-		sb.append("\nFractured and will be repaired: ");
-		sb.append(bank.getImportStats(Bank.STAT_FRACTURED));
-
-		sb.append("\nFailed and left untouched: ");
+		sb.append("\nCounterfeit or failed and moved to Trash: ");
+		//sb.append(bank.getImportStats(Bank.STAT_COUNTERFEIT));
 		sb.append(bank.getImportStats(Bank.STAT_FAILED));
+
+		if (bank.getImportStats(Bank.STAT_FAILED) != 0)
+			sb.append("\n\nPlease check your CloudCoin Trash\nof a note about what happened");
+
+		//sb.append("\nFractured and will be repaired: ");
+		//sb.append(bank.getImportStats(Bank.STAT_FRACTURED));
+
+		//sb.append("\nFailed and left untouched: ");
+		//sb.append(bank.getImportStats(Bank.STAT_FAILED));
 		
 	
 		return sb.toString();
@@ -186,19 +186,17 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
                 toast.show();
 	}
 
-	private void doImport(String importTag) {
+	private void doImport() {
 		
-		new ImportTask().execute(importTag);
+		new ImportTask().execute();
 	}
 
 	private void hideControls() {
 		button.setVisibility(View.GONE);
-		et.setVisibility(View.GONE);
 	}
 
 	private void showControls() {
 		button.setVisibility(View.VISIBLE);
-		et.setVisibility(View.VISIBLE);
 	}
 
 	public void onClick(View v) {
@@ -213,16 +211,9 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 					return;
 				}
 
-				importTag = et.getText().toString();
-
-				if (importTag.length() > 16) {
-					showError("Import Tag length should not be longer than 32 chars");
-					return;
-				}
-
 				hideControls();
 
-				doImport(importTag);
+				doImport();
 				break;	
 		}
 	}
@@ -230,7 +221,7 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 	class ImportTask extends AsyncTask<String, Integer, String> {
 		protected String doInBackground(String... params) {
 			for (int i = 0; i < bank.getLoadedIncomeLength(); i++) {
-				bank.importLoadedItem(i, params[0]);	
+				bank.importLoadedItem(i);	
 				publishProgress(i);
 			}
 

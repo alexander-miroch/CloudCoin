@@ -41,6 +41,7 @@ public class Bank {
 	static String IMPORT_DIR_NAME = "Import";
 	static String EXPORT_DIR_NAME = "Export";
 	static String IMPORTED_DIR_NAME = "Imported";
+	static String TRASH_DIR_NAME = "Trash";
 	static String BANK_DIR_NAME = "Bank";
 	static String TAG = "CLOUDCOIN";
 	static int CONNECTION_TIMEOUT = 5000; // ms
@@ -55,6 +56,7 @@ public class Bank {
 	private String importDirPath;
 	private String exportDirPath;
 	private String importedDirPath;
+	private String trashDirPath;
 	private String bankDirPath;
 
 	private Context ctx;
@@ -140,6 +142,7 @@ public class Bank {
 		bankDirPath = createDirectory(path, BANK_DIR_NAME);
 
 		importedDirPath = createDirectory(path, IMPORT_DIR_NAME + "/" + IMPORTED_DIR_NAME);
+		trashDirPath = createDirectory(path, IMPORT_DIR_NAME + "/" + TRASH_DIR_NAME);
 	}
 
 
@@ -178,7 +181,8 @@ public class Bank {
 			}
 		} catch (Exception e) {
 			Log.e(TAG, "Failed to read directory: " + path);
-			return fileArray;
+			e.printStackTrace();
+			return null;
 		}
 
 		return fileArray;
@@ -215,19 +219,32 @@ public class Bank {
 		return true;
 	}
 
-	public void importLoadedItem(int idx, String importTag) {
+	private void importError(IncomeFile iFile, String error) {
+		String fileName = "?";
+
+		importStats[STAT_FAILED]++;
+
+		if (iFile != null)
+			fileName = iFile.fileName;
+
+		Log.e(TAG, "Error importing file: " + fileName + ": " + error);
+
+		if (iFile != null)
+			moveFileToTrash(fileName, error);
+	}
+
+	public void importLoadedItem(int idx) {
 		IncomeFile incomeFile;
 		CloudCoin cc;
 		String incomeJson;
 
 		if (idx >= loadedIncome.size()) {
-			Log.e(TAG, "Failed to import coin due to internal error");
-			importStats[STAT_FAILED]++;
+			importError(null, "Internal error");
 			return;
 		}	
 
 		incomeFile = loadedIncome.get(idx);
-		incomeFile.fileTag = importTag;
+		incomeFile.fileTag = "";
 		try {
 			if (incomeFile.fileType == IncomeFile.TYPE_JPEG) {
 				cc = new CloudCoin(incomeFile);
@@ -235,7 +252,7 @@ public class Bank {
 			} else if (incomeFile.fileType == IncomeFile.TYPE_STACK) {
 				incomeJson = CloudCoin.loadJSON(incomeFile.fileName);
 				if (incomeJson == null) {
-					importStats[STAT_FAILED]++;
+					importError(incomeFile, "Failed to load JSON file");
 					return;
 				}
 			
@@ -250,22 +267,23 @@ public class Bank {
 						JSONArray an = childJSONObject.getJSONArray("an");
 						String ed     = childJSONObject.getString("ed");
 						String aoid = childJSONObject.getString("aoid");
+
+						aoid = aoid.replace("[", "");
+						aoid = aoid.replace("]", "");
 					
-						cc = new CloudCoin(nn, sn, CloudCoin.toStringArray(an), ed, aoid, importTag);
+						cc = new CloudCoin(nn, sn, CloudCoin.toStringArray(an), ed, aoid, "");
 						cc.saveCoin(bankDirPath, "suspect");
 					}
 				} catch (JSONException e) {
-					Log.e(TAG, "Stack file " + incomeFile.fileName + " is corrupted");
-					importStats[STAT_FAILED]++;
+					importError(incomeFile, "Failed to parse JSON file. It is corrupted: " + e.getMessage());
+					e.printStackTrace();
 					return;
 				}
 			}
 
-			moveFileToImported(incomeFile.fileName);
-			detectAuthenticity();
+			detectAuthenticity(incomeFile.fileName);
 		} catch (Exception e) {
-			Log.e(TAG, "Failed to import coin " + incomeFile.fileName + ". Please check it");
-			importStats[STAT_FAILED]++;
+			importError(incomeFile, "Coin is not imported. " + e.getMessage());
 			e.printStackTrace();
 			return;
 		}
@@ -289,24 +307,57 @@ public class Bank {
 		}
 	}
 
+	public void moveFileToTrash(String fileName, String error) {
+		File fsource, ftarget;
+		String target, etarget;
+		BufferedWriter writer = null;
+
+		try {
+			fsource = new File(fileName);
+			target = trashDirPath + "/" + System.currentTimeMillis() + "-" + fsource.getName();
+			etarget = target + ".txt";
+
+			ftarget = new File(target);
+			fsource.renameTo(ftarget);
+
+                        writer = new BufferedWriter(new FileWriter(etarget));
+                        writer.write(error + "\n");
+ 			writer.close();
+
+		} catch (IOException e) {
+			Log.e(TAG, "Failed to move to Trash " + fileName + ": " + e.getMessage());
+			e.printStackTrace();
+			return;
+		} catch (Exception e) {
+			// Non critical, dont throw and anything and interrupt the process.
+			Log.e(TAG, "Failed to move to Trash " + fileName);
+			e.printStackTrace();
+			return;
+		}
+
+		return;
+	}
+
 	public void moveFileToImported(String fileName) {
 		File fsource, ftarget;
 		String target;
 	
 		try {
 			fsource = new File(fileName);
-			target = importedDirPath + "/" + fsource.getName() + ".imported";
+			target = importedDirPath + "/" + System.currentTimeMillis() + "-" + fsource.getName() + ".imported";
 
 			ftarget = new File(target);
 			fsource.renameTo(ftarget);
 		} catch (Exception e) {
-			Log.e(TAG, "Failed to move to imported " + fileName);
+			// Non critical, dont throw and anything and interrupt the process.
+			Log.e(TAG, "Failed to move to Imported " + fileName);
+			e.printStackTrace();
 			return;
 		}
 
 	}
 
-	public void deleteCoin(String path) {
+	public void deleteCoin(String path) throws Exception {
 		boolean deleted = false;
 
 		File f  = new File(path);
@@ -315,6 +366,7 @@ public class Bank {
 		} catch (Exception e) {
 			Log.e(TAG, "Failed to delete coin " + path);
 			e.printStackTrace();
+			throw new Exception("Failed to delete coin " + path + " " + e.getMessage());
 		}
 	}
 
@@ -436,7 +488,11 @@ public class Bank {
                 }
 		
 		for (String ctd : coinsToDelete) {
-			deleteCoin(ctd);
+			try {
+				deleteCoin(ctd);
+			} catch (Exception e) {
+				Log.e(TAG, "Failed to delete coin: " + ctd + " " + e.getMessage());
+			}
 		}
 
 		return failed;
@@ -496,31 +552,46 @@ public class Bank {
 		return failed;
 	}
 
-	public void detectAuthenticity() throws Exception {
+	public void detectAuthenticity(String importedfileName) throws Exception {
 		CloudCoin cc;
 		ArrayList<IncomeFile> incomeFiles = selectAllFileNamesFolder(bankDirPath, "suspect");
+
+		if (incomeFiles == null) {
+			throw new Exception("Failed to read directory " + bankDirPath);
+		}
 
 		for (int i = 0; i < incomeFiles.size(); i++) {
 			try {
 				cc = new CloudCoin(incomeFiles.get(i));	
 				raida.detectCoin(cc);
 
-				cc.saveCoin(bankDirPath, cc.extension);
-				deleteCoin(incomeFiles.get(i).fileName);
-
 				if (cc.extension.equals("bank")) {
+					cc.saveCoin(bankDirPath, cc.extension);
+
 					importStats[STAT_AUTHENTIC]++;
 					importStats[STAT_VALUE_MOVED_TO_BANK] += cc.getDenomination();
+					moveFileToImported(importedfileName);
 				} else if (cc.extension.equals("fracked")) {
-					importStats[STAT_FRACTURED]++;
+					cc.saveCoin(bankDirPath, cc.extension);
+
+					//importStats[STAT_FRACTURED]++;
+					importStats[STAT_AUTHENTIC]++;
+					importStats[STAT_VALUE_MOVED_TO_BANK] += cc.getDenomination();
+					moveFileToImported(importedfileName);
 				} else if (cc.extension.equals("counterfeit")) {
-					importStats[STAT_COUNTERFEIT]++;
+					//importStats[STAT_COUNTERFEIT]++;
+					importStats[STAT_FAILED]++;
+					moveFileToTrash(importedfileName, "The coin is counterfeit. Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
 				} else {
 					importStats[STAT_FAILED]++;
+					moveFileToTrash(importedfileName, "RAIDA failed to detect the coin: Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
 				}
+
+				deleteCoin(incomeFiles.get(i).fileName);
 			} catch (Exception e) {
-				Log.e(TAG, "Failed to detect coin");
-				throw new Exception();
+				Log.e(TAG, "Failed to detect coin: " + e.getMessage());
+				e.printStackTrace();
+				throw new Exception("Failed to Detect Coin: " + e.getMessage());
 			}
 		}
 
@@ -550,17 +621,6 @@ public class Bank {
 	public int getLoadedIncomeLength() {
 		return this.loadedIncome.size();
 	}
-
-	/*
-	public int countCoins(CloudCoin[] coins, int denomination ){
-		int totalCount =  0;
-		for (int i = 0 ; i < coins.length; i++) {
-			if (coins[i].getDenomination() == denomination) {
-				totalCount++;
-			}
-		}
-		return totalCount;
-	}*/
 
 	private int getDenomination(IncomeFile incomeFile) {
 		int denomination;
