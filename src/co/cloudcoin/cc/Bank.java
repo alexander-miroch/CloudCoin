@@ -69,19 +69,15 @@ public class Bank {
 
 	private int[] importStats;
 
-	public Bank() {
+	public Bank(Context ctx) {
 
 		this.importDirPath = null;
 		this.loadedIncome = new ArrayList<IncomeFile>();
 
-		this.raida = new RAIDA();
+		this.raida = new RAIDA(ctx);
 		this.resetImportStats();
 //		this.findImportDir();
 		this.createDirectories();
-	}
-
-
-	public void setContext(Context ctx) {
 		this.ctx = ctx;
 	}
 
@@ -127,7 +123,7 @@ public class Bank {
 
 		String state = Environment.getExternalStorageState();
 		if (!Environment.MEDIA_MOUNTED.equals(state)) {
-			Log.e(TAG, "SD card is not mounted");
+			Log.e(TAG, "Primary storage is not mounted");
 			return;
 		}
 
@@ -295,14 +291,26 @@ public class Bank {
 
 		coins = loadCoinArray("fracked");
 		for (int i = 0; i < coins.length; i++) {
-			raida.fixCoin(coins[i]);
+			CloudCoin cc = coins[i];
+
+			Log.v(TAG, "Fixing Fracked coin: " +  coins[i].fullFileName);
+
+			raida.fixCoin(cc);
 
 			try {
-				coins[i].saveCoin(bankDirPath, coins[i].extension);
-				deleteCoin(coins[i].fullFileName);
+				if (cc.extension.equals("bank")) {
+					cc.saveCoin(bankDirPath, cc.extension);
+					deleteCoin(cc.fullFileName);
+                                } else if (cc.extension.equals("fracked")) {
+					// do nothing
+				} else if (cc.extension.equals("counterfeit")) {
+                                        moveFileToTrash(cc.fullFileName, "The coin is counterfeit (after fracked). Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
+                                } else {
+                                        moveFileToTrash(cc.fullFileName, "The coin is failed (after fracked). Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
+                                }
 			} catch (Exception e) {
 				e.printStackTrace();
-				Log.e(TAG, "Failed to save coin: " + coins[i].fullFileName);
+				Log.e(TAG, "Failed to save coin: " + cc.fullFileName);
 			}
 		}
 	}

@@ -57,6 +57,7 @@ class CloudCoin {
 	static int PAST_STATUS_ERROR = 3;
 	static int PAST_STATUS_UNDETECTED = 4;
 
+	public static String JPEGAOID = "204f42455920474f4420262044454645415420545952414e54532000";
 	
 	
 	int raidaCnt;
@@ -152,11 +153,9 @@ class CloudCoin {
 			jsonData = loadJSON(file.fileName);
 			if (jsonData == null) {
 				Log.e(TAG, "Failed to parse json: " + file.fileName);
-				throw new Exception();
+				throw new Exception("Failed to parse json");
 			}
 
-			//jsonData = "{" + jsonData + "}";
-		
 			try {
 				JSONObject o = new JSONObject(jsonData);
 				JSONArray incomeJsonArray = o.getJSONArray("cloudcoin");
@@ -181,13 +180,15 @@ class CloudCoin {
 				throw new Exception("Stack file " + file.fileName + " is corrupted: " + e.getMessage());
 			}
 
+			Log.v(TAG, "AOID " + this.aoid);
 
-			int indexStartOfStatus = ordinalIndexOf(this.aoid, ">", 3);
-			int indexEndOfStatus = ordinalIndexOf(this.aoid, "<", 2);
+			int indexStartOfStatus = this.aoid.indexOf(">");
+			int indexEndOfStatus = this.aoid.indexOf("<");
 
 			if (indexStartOfStatus != -1 && indexEndOfStatus != -1) {
-				String rawStatus = aoid.substring(indexStartOfStatus, indexEndOfStatus );
-				for (int i = 0; i < raidaCnt; i++){
+				String rawStatus = aoid.substring(indexStartOfStatus + 1, indexEndOfStatus);
+				Log.v(TAG, "Raw status: " + rawStatus);
+				for (int i = 0; i < raidaCnt; i++) {
 					if (rawStatus.charAt(i) == 'p') {
 						this.pastStatus[i] = PAST_STATUS_PASS;
 					} else if (rawStatus.charAt(i) == 'f'){
@@ -315,9 +316,9 @@ class CloudCoin {
 			cloudCoinStr += this.ans[i];
 		}
 
-		cloudCoinStr +="204f42455920474f4420262044454645415420545952414e54532000"; 
-		cloudCoinStr +="00";//LHC = 100%
-		cloudCoinStr +="97E2";//0x97E2;//Expiration date Sep. 2018
+		cloudCoinStr += JPEGAOID; 
+		cloudCoinStr += "00";//LHC = 100%
+		cloudCoinStr += "97E2";//0x97E2;//Expiration date Sep. 2018
 		cloudCoinStr += "01";// cc.nn;//network number
 		String hexSN = Integer.toHexString(this.sn);
 		String fullHexSN = "";
@@ -456,7 +457,7 @@ class CloudCoin {
 	public void setAnsToPansIfPassed() {
 		for (int i = 0; i < raidaCnt; i++) {
 			if (pastStatus[i] == PAST_STATUS_PASS) {
-				pans[i] = ans[i];
+				ans[i] = pans[i];
 			}
 		}
 	}
@@ -517,15 +518,23 @@ class CloudCoin {
 		String failedDesc = "";
 		String otherDesc = "";
 
+		String internalAoid = ">";
+
 		for (int i = 0; i < raidaCnt; i++) {
 			if (pastStatus[i] == PAST_STATUS_PASS) {
 				passed++;
+				internalAoid += "p";
 			} else if (pastStatus[i] == PAST_STATUS_FAIL) {
+				internalAoid += "f";
 				failed++;
 			} else {
+				internalAoid += "u";
 				other++;
 			}
 		}
+
+		internalAoid += "<";
+		this.aoid = internalAoid;
 
 		gradeStatus[0] = rateToString(passed);
 		gradeStatus[1] = rateToString(failed);
@@ -541,7 +550,7 @@ class CloudCoin {
 			extension = "bank";
 		}
 
-		Log.v(TAG, "Got extension " + extension + " failed = " +failed + " other = " +other);
+		Log.v(TAG, "Got extension " + extension + "; passed = " +passed + " failed = " +failed + " other = " +other);
 	}
 
 	public byte[] hexStringToByteArray(String s) {

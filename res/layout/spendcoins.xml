@@ -114,7 +114,7 @@
 			<NumberPicker android:id="@+id/npdummy"
 				style="@style/np"
 				android:visibility="invisible"/>
-                        <TextView style="@style/InvText1" android:id="@+id/bsdummy"  android:text="Bank"/>
+                        <TextView style="@style/InvText1" android:id="@+id/bsdummy"  android:text="@string/bank"/>
                         <TextView android:id="@+id/bstdummy" style="@style/InvText1"  android:text=""/>
                 </LinearLayout>
 		<LinearLayout android:id="@+id/blayoutmain" style="@style/InvExt">
@@ -177,7 +177,7 @@
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="OK"
+                android:text="@string/ok"
                 android:id="@+id/button"
         />
 

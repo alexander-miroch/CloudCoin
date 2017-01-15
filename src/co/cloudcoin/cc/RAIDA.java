@@ -16,7 +16,8 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.io.FileNotFoundException;
-
+import android.os.Handler;
+import android.os.Looper;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,6 +32,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
 
+import android.app.Activity;
+import android.os.Bundle;
+
+import android.widget.TextView;
+import 	android.content.Context;
 
 public class RAIDA {
 
@@ -45,11 +51,15 @@ public class RAIDA {
 	ExecutorService service;
 	public DetectionAgent[] agents;	
 
-	public RAIDA() {
+	Context ctx;
+
+	public RAIDA(Context ctx) {
 		agents = new DetectionAgent[TOTAL_RAIDA_COUNT];
 		for (int i = 0; i < TOTAL_RAIDA_COUNT; i++) {
 			agents[i] = new DetectionAgent(i, CONNECTION_TIMEOUT);
 		}
+
+		this.ctx = ctx;
 	}
 
 	public static void updateRAIDAList(Context context) {
@@ -174,7 +184,7 @@ public class RAIDA {
 
 		for (int guid_id = 0; guid_id < TOTAL_RAIDA_COUNT; guid_id++) { 
 			if (brokeCoin.pastStatus[guid_id] == CloudCoin.PAST_STATUS_FAIL) { 
-				FixitHelper fixer = new FixitHelper( guid_id );
+				FixitHelper fixer = new FixitHelper(guid_id);
 				int corner = 1;
 
 				String[] trustedServerAns = new String[] {
@@ -204,6 +214,7 @@ public class RAIDA {
 			}
 		}
 
+		brokeCoin.setAnsToPansIfPassed();
 		brokeCoin.calculateHP();
         	brokeCoin.calcExpirationDate();
 	        brokeCoin.gradeStatus();
@@ -216,12 +227,31 @@ public class RAIDA {
 
 		final CloudCoin cc = ccIn;
 		final int[] pastStatuses = new int[TOTAL_RAIDA_COUNT];
+		int serversDone = 0;
 
+		final Context ctx = this.ctx;
+
+		final int serversDoneFinal = serversDone;
 		for (int i = 0; i < TOTAL_RAIDA_COUNT; i++) {
 			final int iFinal = i;
 			Future f = service.submit(new Runnable() {
 				public void run() {
 					pastStatuses[iFinal] = agents[iFinal].detect(cc.nn, cc.sn, cc.ans[iFinal], cc.pans[iFinal], cc.getDenomination());
+
+					Handler h = ((AddCoinsActivity) ctx).getHandler();
+
+					Log.v(TAG, "Send");
+					h.sendEmptyMessage(0);
+					/*
+					new Handler(Looper.getMainLooper()).post(new Runnable() {
+						public void run() {
+							Log.v(TAG, "I am the UI thread: ");
+							TextView tv = (TextView) ctx.findViewById(R.id.text);
+							tv.setText("x"+iFinal);
+						}
+					});
+					*/
+					
 				}
 			});
 			futures.add(f);

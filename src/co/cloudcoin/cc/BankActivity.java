@@ -102,7 +102,7 @@ public class BankActivity extends Activity  {
 
 		super.onResume();
 
-		bank = new Bank();
+		bank = new Bank(this);
 
 		stats[IDX_BANK] = bank.countCoins("bank");
 		//stats[IDX_COUNTERFEIT] = bank.countCoins("counterfeit");

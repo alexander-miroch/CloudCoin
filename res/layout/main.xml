@@ -17,6 +17,7 @@
 	android:gravity="top"
 	android:layout_gravity="center"
 >
+<!--
 	<LinearLayout
                 android:orientation="vertical"
                 android:layout_height="wrap_content"
@@ -36,7 +37,7 @@
 			android:layout_height="32dp"
                 />
 	</LinearLayout>
-
+-->
 
 
 
@@ -60,10 +61,33 @@
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:id="@+id/title"
+                android:text="@string/app_name0"
+                android:textColor="#000000"
+                android:textSize="26dp"
+        />
+	<TextView
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:id="@+id/title1"
+                android:text="@string/app_name1"
+                android:textColor="#000000"
+                android:textSize="20dp"
+        />
+        <TextView
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:id="@+id/title2"
                 android:text="@string/app_name"
                 android:textColor="#000000"
                 android:textSize="26dp"
         />
+
 	</LinearLayout>
 
 
@@ -89,6 +113,7 @@
                 android:gravity="center"
                 android:id="@+id/blayouttop"
                 android:background="@android:color/transparent"
+		android:layout_weight="0"
         >
 		<ImageButton 
 			android:layout_gravity="center"
@@ -121,6 +146,7 @@
 		android:layout_gravity="center"
 		android:gravity="center"	
 		android:orientation="vertical"
+		android:layout_weight="0"
 	>
 		<ImageButton 
 			android:layout_gravity="center"
@@ -154,6 +180,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"        
                 android:orientation="vertical"
+		android:layout_weight="0"
         >
                 <ImageButton 
                         android:layout_gravity="center"
@@ -180,14 +207,6 @@
 
 
 
-</LinearLayout>
-
-
-
-
-
-
-
 
 
 
@@ -197,6 +216,39 @@
 
 
 </LinearLayout>
+
+
+
+</LinearLayout>
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+	android:layout_marginTop="0dp"
+	android:padding="2dp"
+	android:layout_gravity="bottom"
+        android:gravity="center|bottom">
+
+	<TextView
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center|bottom"
+		android:layout_marginTop="0dp"
+		android:padding="4dp"
+                android:layout_gravity="bottom"
+                android:id="@+id/tspend"
+                android:text="@string/url"
+                android:textColor="#000000"
+                android:textSize="16dp"
+        />
+</LinearLayout>
+
+
+
+
+
+
 
 
 </FrameLayout>

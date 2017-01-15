@@ -70,7 +70,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	boolean asyncFinished;
 
-	ImageButton bt0, bt1, bt2, bt3;
+	ImageButton bt0, bt1, bt2;
 
 
 
@@ -126,10 +126,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		bt2.setBackgroundResource(R.drawable.spend);
 		bt2.setOnClickListener(this);
 
-		bt3 = (ImageButton) findViewById(R.id.iemail);
-		bt3.setBackgroundResource(R.drawable.email);
-		bt3.setOnClickListener(this);
-
 		mSettings = PreferenceManager.getDefaultSharedPreferences(this);
 	}
 
@@ -179,9 +175,6 @@ public class MainActivity extends Activity implements OnClickListener {
 				intent = new Intent(this, SpendCoinsActivity.class);
 				startActivity(intent);
 				break;
-			case R.id.iemail:
-				break;
-			
 			default:
 				break;
 				

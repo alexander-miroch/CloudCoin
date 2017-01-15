@@ -1,6 +1,6 @@
 package co.cloudcoin.cc;
 
-
+import android.content.res.Resources;
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -112,7 +112,7 @@ public class SpendCoinsActivity extends Activity implements NumberPicker.OnValue
 
 		lastScreen = false;
 
-		bank = new Bank();
+		bank = new Bank(this);
 		bankCoins = bank.countCoins("bank");
 		frackedCoins = bank.countCoins("fracked");
 
@@ -149,7 +149,7 @@ public class SpendCoinsActivity extends Activity implements NumberPicker.OnValue
 
 		int total = getTotal();
 
-		totalStr = "Total to export: " + total + " CloudCoins";
+		totalStr = String.format(getResources().getString(R.string.totaltoexport), total);
 		mtv.setText(totalStr);
 	}
 
@@ -163,12 +163,11 @@ public class SpendCoinsActivity extends Activity implements NumberPicker.OnValue
         }
 
 	public void doExport(String tag) {
+		Resources res = getResources();
 		int selectedId = rg.getCheckedRadioButtonId();
 		int[] values;
 		int[] failed;
 		int totalFailed = 0;
-
-		bank.setContext(this);
 
 		values = new int[size];
 		for (int i = 0; i < size; i++)
@@ -187,15 +186,15 @@ public class SpendCoinsActivity extends Activity implements NumberPicker.OnValue
 		String msg;
 
 		if (failed[0] == -1) {
-			msg = "Global error. Coins have not been exported";
+			msg = res.getString(R.string.globalexporterror); 
 		} else {
 			for (int i = 0; i < size; i++) {
 				totalFailed += failed[i];
 			}
 			if (totalFailed == 0) {
-				msg = "Coins have been exported successfully\nYou can find them on your primary storage  at:\n" + bank.getRelativeExportDirPath();
+				msg = String.format(res.getString(R.string.exportok), bank.getRelativeExportDirPath()); 
 			} else {
-				msg = "Failed to export " + totalFailed + " coins";
+				msg = String.format(res.getString(R.string.exportfailed), totalFailed);
 			}
 		}
 
