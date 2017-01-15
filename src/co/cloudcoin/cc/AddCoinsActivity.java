@@ -70,7 +70,9 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 	static String TAG = "CLOUDCOIN";
 
 	static int STATE_INIT = 1;
-	static int STATE_DONE = 2;
+	static int STATE_IMPORT = 2;
+	static int STATE_FIX = 3;
+	static int STATE_DONE = 4;
 
 	int state;
 
@@ -210,6 +212,18 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 		return sb.toString();
 	
 	}
+
+	private String getFrackedStatusString(int progressCoins) {
+		String statusString;
+
+		int totalFrackedLength = bank.getFrackedCoinsLength();
+		int processedFrackedLength = progressCoins + 1;
+		
+		statusString = String.format(getResources().getString(R.string.authfrackedstring), processedFrackedLength, totalFrackedLength);
+
+		return statusString;
+	}
+
 	private String getStatusString(int progressCoins) {
 		String statusString;
 
@@ -260,14 +274,24 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 
 	class ImportTask extends AsyncTask<String, Integer, String> {
 		protected String doInBackground(String... params) {
+
+			state = STATE_IMPORT;
+
 			for (int i = 0; i < bank.getLoadedIncomeLength(); i++) {
 				publishProgress(i);
 				bank.importLoadedItem(i);	
 				
 			}
 
-			publishProgress(Integer.MAX_VALUE);
-			bank.fixFracked();
+			state = STATE_FIX;
+
+			bank.loadFracked();
+
+			for (int i = 0; i < bank.getFrackedCoinsLength(); i++) {
+				publishProgress(i);
+				bank.fixFracked(i);
+			}
+
 			return "OK";
 		}
 
@@ -283,9 +307,9 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 			mainText.setText(getStatusString(0));
 		}
 		protected void onProgressUpdate(Integer... values) {
-			if (values[0] == Integer.MAX_VALUE)
-				mainText.setText(R.string.fixfracked);
-			else
+			if (state == STATE_FIX)
+				mainText.setText(getFrackedStatusString(values[0]));
+			else if (state == STATE_IMPORT)
 				mainText.setText(getStatusString(values[0]));
 
 			raidaStatus = 0;

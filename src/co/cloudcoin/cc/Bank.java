@@ -62,6 +62,7 @@ public class Bank {
 	private Context ctx;
 
 	private ArrayList<IncomeFile> loadedIncome; 
+	private CloudCoin[] frackedCoins;
 
 	static int[] denominations = {1, 5, 25, 100, 250};
 
@@ -286,32 +287,38 @@ public class Bank {
 	}
 
 
-	public void fixFracked() {
-		CloudCoin[] coins;
+	public void loadFracked() {
+		this.frackedCoins = loadCoinArray("fracked");
+	}
 
-		coins = loadCoinArray("fracked");
-		for (int i = 0; i < coins.length; i++) {
-			CloudCoin cc = coins[i];
 
-			Log.v(TAG, "Fixing Fracked coin: " +  coins[i].fullFileName);
+	public void fixFracked(int idx) {
+		CloudCoin cc;
 
-			raida.fixCoin(cc);
+		if (idx >= getFrackedCoinsLength()) {
+			Log.e(TAG, "Internal error while fixing fracked: " + idx + " length: " + getFrackedCoinsLength());
+			return;
+		}
 
-			try {
-				if (cc.extension.equals("bank")) {
-					cc.saveCoin(bankDirPath, cc.extension);
-					deleteCoin(cc.fullFileName);
-                                } else if (cc.extension.equals("fracked")) {
-					// do nothing
-				} else if (cc.extension.equals("counterfeit")) {
-                                        moveFileToTrash(cc.fullFileName, "The coin is counterfeit (after fracked). Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
-                                } else {
-                                        moveFileToTrash(cc.fullFileName, "The coin is failed (after fracked). Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
+		cc = frackedCoins[idx];
+
+		Log.v(TAG, "Fixing Fracked coin: " +  cc.fullFileName);
+		raida.fixCoin(cc);
+
+		try {
+			if (cc.extension.equals("bank")) {
+				cc.saveCoin(bankDirPath, cc.extension);
+				deleteCoin(cc.fullFileName);
+			} else if (cc.extension.equals("fracked")) {
+				// do nothing
+			} else if (cc.extension.equals("counterfeit")) {
+				moveFileToTrash(cc.fullFileName, "The coin is counterfeit (after fracked). Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
+			} else {
+				moveFileToTrash(cc.fullFileName, "The coin is failed (after fracked). Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
                                 }
-			} catch (Exception e) {
-				e.printStackTrace();
-				Log.e(TAG, "Failed to save coin: " + cc.fullFileName);
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			Log.e(TAG, "Failed to save coin: " + cc.fullFileName);
 		}
 	}
 
@@ -624,6 +631,13 @@ public class Bank {
 			return 0;
 
 		return importStats[type];
+	}
+	
+	public int getFrackedCoinsLength() {
+		if (this.frackedCoins == null)
+			return 0;
+
+		return this.frackedCoins.length;
 	}
 
 	public int getLoadedIncomeLength() {

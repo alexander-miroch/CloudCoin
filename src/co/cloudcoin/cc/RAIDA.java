@@ -188,9 +188,9 @@ public class RAIDA {
 				int corner = 1;
 
 				String[] trustedServerAns = new String[] {
-						brokeCoin.ans[fixer.currentTriad[0]],
-						brokeCoin.ans[fixer.currentTriad[1]],
-						brokeCoin.ans[fixer.currentTriad[2]]
+					brokeCoin.ans[fixer.currentTriad[0]],
+					brokeCoin.ans[fixer.currentTriad[1]],
+					brokeCoin.ans[fixer.currentTriad[2]]
 				};
 
 				while (!fixer.finnished) {
@@ -210,8 +210,13 @@ public class RAIDA {
 							fixer.setCornerToCheck(corner);
 						}
 		                        }
+
 				}
+
+				Handler h = ((AddCoinsActivity) ctx).getHandler();
+				h.sendEmptyMessage(0);
 			}
+
 		}
 
 		brokeCoin.setAnsToPansIfPassed();
@@ -239,8 +244,6 @@ public class RAIDA {
 					pastStatuses[iFinal] = agents[iFinal].detect(cc.nn, cc.sn, cc.ans[iFinal], cc.pans[iFinal], cc.getDenomination());
 
 					Handler h = ((AddCoinsActivity) ctx).getHandler();
-
-					Log.v(TAG, "Send");
 					h.sendEmptyMessage(0);
 					/*
 					new Handler(Looper.getMainLooper()).post(new Runnable() {
