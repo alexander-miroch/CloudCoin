@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Oblak kovanec konzorcij</string>
+  <string name="app_name0">Žep banke</string>
+  <string name="app_name1">Z RAIDA pristnosti odkrivanje</string>
+  <string name="tadd">Dodaj kovancev</string>
+  <string name="tbank">Banka</string>
+  <string name="tbankinventory">Banka zaloge</string>
+  <string name="tspend">Preživeli kovancev</string>
+  <string name="loading">Nalaganje</string>
+  <string name="importtag">Uvoz trakec</string>
+  <string name="exporttag">Izvoz Tag</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Banka</string>
+  <string name="ok">v redu</string>
+  <string name="total">Skupaj</string>
+  <string name="sbank">Banka</string>
+  <string name="scounterfeit">Ponaredkov</string>
+  <string name="sfractured">Zlomljeni</string>
+  <string name="errmnt">Uvoz imenika ne more najti. Poskrbite, da vaš primarni shranjevanje pravilno nameščen v napravo</string>
+  <string name="errimport">Tem iskanje v imeniku uvoza je prišlo do napake</string>
+  <string name="erremptyimport">Ni bilo ne CloudCoins v mapi dohodka. Prosim dal vaš CloudCoins (.jpg ali .stack) pila v vaš dohodek mapo in poskusite znova. Vaš dohodek mapo najdete na vašem primarni shranjevanje at:\n\n%1$s</string>
+  <string name="importwarn">Uvoz bo uvozil vse CloudCoin datoteke iz mape za uvoz. Prosimo, da se bo vse CloudCoin datoteke (.jpg in .stack) v uvoz mapi na vašem primarni shranjevanje at:\n\n%1$s\n\nWe uvoziti %2$d datoteke. Tapnite OK za nadaljevanje</string>
+  <string name="movedtobank">Skupaj preselila v banki: %1$d kovancev</string>
+  <string name="importresults">Rezultati uvoza:</string>
+  <string name="importresultsauth">Verodostojno in se preselil v banki: </string>
+  <string name="importresultstrash">Ponarejeno ali ni uspela in se preselil v smeti: </string>
+  <string name="trashnote">Prosimo, preverite vaše CloudCoin Trash\nof obvestilo o tem, kaj se je zgodilo</string>
+  <string name="authstring">Preverjanje pristnosti %1$d %2$d CloudCoin datotek</string>
+  <string name="authfrackedstring">O določitvi $d %1 %2$d Fracked kovancev</string>
+  <string name="totaltoexport">Skupni izvoz: %1$d CloudCoins</string>
+  <string name="globalexporterror">Globalno napake. Kovanci niso bile izvožene</string>
+  <string name="exportok">Kovanci so bili izvoženi successfully\nYou najdete na vašem primarni shranjevanje at:\n%1$s</string>
+  <string name="exportfailed">Ni bilo mogoče izvoziti %1$d kovancev</string>
+  <string name="fixfracked">Pritrjevanje fracked kovancev</string>
+</resources>

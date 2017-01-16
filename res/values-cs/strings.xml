@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Cloud mince konsorcium</string>
+  <string name="app_name0">Kapesní banka</string>
+  <string name="app_name1">S detekcí pravosti RAIDA</string>
+  <string name="tadd">Přidat mince</string>
+  <string name="tbank">Banka</string>
+  <string name="tbankinventory">Bankovní zásoby</string>
+  <string name="tspend">Strávit mincí</string>
+  <string name="loading">Načítání</string>
+  <string name="importtag">Importní značka</string>
+  <string name="exporttag">Exportovat Tag</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Banka</string>
+  <string name="ok">Ok</string>
+  <string name="total">Celkem</string>
+  <string name="sbank">Banka</string>
+  <string name="scounterfeit">Padělek</string>
+  <string name="sfractured">Zlomení</string>
+  <string name="errmnt">Nelze najít adresář importu. Ujistěte se, že primární úložiště správně nainstalována do zařízení</string>
+  <string name="errimport">Došlo k chybě při vyhledávání v adresáři Import</string>
+  <string name="erremptyimport">Nebyly žádné CloudCoins nalezeny ve složce příjmu. Prosím vložte soubory CloudCoins (.jpg nebo .stack) do složky příjmů a akci opakujte. Vaše složka příjmu lze nalézt na at:\n\n%1$s primární úložiště</string>
+  <string name="importwarn">Import bude importovat všechny CloudCoin soubory ze složky importovat. Prosím, vložte všechny CloudCoin soubory (.jpg a .stack) do importu složky umístěné na primární úložiště at:\n\n%1$s\n\nWe se bude dovážet %2$d soubory. Klepněte na tlačítko OK Chcete-li pokračovat</string>
+  <string name="movedtobank">Celkem přestěhoval do banky: %1$d mincí</string>
+  <string name="importresults">Výsledky importu:</string>
+  <string name="importresultsauth">Autentické a přesunutý do banky: </string>
+  <string name="importresultstrash">Padělání nebo selhal a přesunut do koše: </string>
+  <string name="trashnote">Zkontrolujte, zda váš CloudCoin Trash\nof poznámku o tom co se stalo</string>
+  <string name="authstring">Ověřování %1$d %2$d CloudCoin soubory</string>
+  <string name="authfrackedstring">Oprava %1$d %2$d katastrofální mincí</string>
+  <string name="totaltoexport">Celkový export: %1$d CloudCoins</string>
+  <string name="globalexporterror">Globální zpracování chyb. Mince nebyla exportována</string>
+  <string name="exportok">Mince byly vyvezeny successfully\nYou lze najít na at:\n%1$s primární úložiště</string>
+  <string name="exportfailed">Nepodařilo se exportovat %1$d mince</string>
+  <string name="fixfracked">Oprava katastrofální mince</string>
+</resources>

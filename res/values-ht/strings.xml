@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Nwaj monnen komite dirijan ki</string>
+  <string name="app_name0">Pòch Bank</string>
+  <string name="app_name1">Ak RAIDA jistifikasyon deteksyon</string>
+  <string name="tadd">Ajoute monnen</string>
+  <string name="tbank">Labank</string>
+  <string name="tbankinventory">Envantè labank</string>
+  <string name="tspend">Depanse monnen</string>
+  <string name="loading">Chaje</string>
+  <string name="importtag">Apwè ke etikèt</string>
+  <string name="exporttag">Ekspòtasyon etikèt</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Labank</string>
+  <string name="ok">Oke</string>
+  <string name="total">Total</string>
+  <string name="sbank">Labank</string>
+  <string name="scounterfeit">Faux</string>
+  <string name="sfractured">Kasé</string>
+  <string name="errmnt">Ka pa jwenn anyè apwè ke ou. Asire w ke ou posede nan depo byen ki enstale nan sistèm</string>
+  <string name="errimport">Erè ki te fèt pandan ke li ap fè rechèch nan anyè apwè ke ou</string>
+  <string name="erremptyimport">Te gen CloudCoins pa te twouve nan Katab revni ou. Tanpri mete ou CloudCoins (.jpg oswa .stack) ki sispann nan Katab revni ou ak eseye ankò. Katab revni ou ka jwenn sou ou at:\n\n%1$s prensipal depo</string>
+  <string name="importwarn">Apwè ke ap enpòte tout CloudCoin fichiers de Katab apwè ke ou. Tanpri mete tout ou CloudCoin fichiers (.jpg ak .stack) nan apwè ke Katab sitiye nan at:\n\n%1$s\n\nWe nan depo pwensipal ou pwal pou yo te enpòte %2$ è). Piki pa pi mal pou kontinye</string>
+  <string name="movedtobank">Total deplase pou Bank: %1$d monnen</string>
+  <string name="importresults">Rezilta apwè ke:</string>
+  <string name="importresultsauth">Natif natal yo ak tranble bank: </string>
+  <string name="importresultstrash">Faux oswa te tonbe ak pou fatra: </string>
+  <string name="trashnote">Tanpri, tchyeke CloudCoin ou Trash\nof yon nòt sou sa k te pase</string>
+  <string name="authstring">S' %1$d %2$d CloudCoin Fichiers</string>
+  <string name="authfrackedstring">Ap fikse fontyè %1$d %2$d monnen Fracked</string>
+  <string name="totaltoexport">Total de lwa nan: %1$d CloudCoins</string>
+  <string name="globalexporterror">Sou chemen. Monnen menm pa te ekspòte pwodwi pou</string>
+  <string name="exportok">Monnen ki te exporté successfully\nYou ka jwenn yo sou ou at:\n%1$s prensipal depo</string>
+  <string name="exportfailed">Te tonbe pou transpòte %1$ è monnen</string>
+  <string name="fixfracked">Ap fikse fontyè fracked monnen</string>
+</resources>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Sky mynt Consortium</string>
+  <string name="app_name0">Pocket Bank</string>
+  <string name="app_name1">Med RAIDA autentisitet deteksjon</string>
+  <string name="tadd">Legge mynter</string>
+  <string name="tbank">Bank</string>
+  <string name="tbankinventory">Bank lager</string>
+  <string name="tspend">Bruke mynter</string>
+  <string name="loading">Lasting</string>
+  <string name="importtag">Import Tag</string>
+  <string name="exporttag">Eksportere kode</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Bank</string>
+  <string name="ok">ok</string>
+  <string name="total">Totalt</string>
+  <string name="sbank">Bank</string>
+  <string name="scounterfeit">Falske</string>
+  <string name="sfractured">Brukket</string>
+  <string name="errmnt">Finner ikke mappen Import. Kontroller at primære lagringen er riktig installert i enheten</string>
+  <string name="errimport">Det oppstod feil under gjøre søk i Import-mappen</string>
+  <string name="erremptyimport">Det var ingen CloudCoins funnet i mappen inntekt. Vennligst sette CloudCoins (.jpg eller .stack) filene i mappen inntekt og prøv på nytt. Mappen inntekt kan bli funnet på den primære lagring at:\n\n%1$s</string>
+  <string name="importwarn">Importer vil importere alle CloudCoin filer fra mappen Import. Vennligst legg alle dine CloudCoin filer (jpg og .stack) i Import-mappen på din primære lagringen at:\n\n%1$s\n\nWe skal importere %2$d filen(e). Trykk OK for å fortsette</string>
+  <string name="movedtobank">Totalt flyttet til Bank: %1$d mynter</string>
+  <string name="importresults">Resultatene for import:</string>
+  <string name="importresultsauth">Autentisk og flyttet til banken: </string>
+  <string name="importresultstrash">Falske eller mislyktes og flyttet til papirkurven: </string>
+  <string name="trashnote">Sjekk din CloudCoin Trash\nof et notat om hva som skjedde</string>
+  <string name="authstring">Godkjenne %1$d %2$d filer CloudCoin</string>
+  <string name="authfrackedstring">Fikse %1$d %2$d Fracked mynter</string>
+  <string name="totaltoexport">Totalt eksportere: %1$d CloudCoins</string>
+  <string name="globalexporterror">Globale feil. Mynter er ikke eksportert</string>
+  <string name="exportok">Mynter er eksportert successfully\nYou finner dem på din primære lagring at:\n%1$s</string>
+  <string name="exportfailed">Kan ikke eksportere %1$d mynter</string>
+  <string name="fixfracked">Fikse fracked mynter</string>
+</resources>

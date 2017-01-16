@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Núvol moneda Consorci</string>
+  <string name="app_name0">Banc de butxaca</string>
+  <string name="app_name1">Amb RAIDA autenticitat detecció</string>
+  <string name="tadd">Afegir les monedes</string>
+  <string name="tbank">Banc</string>
+  <string name="tbankinventory">Inventari Banc</string>
+  <string name="tspend">Passar les monedes</string>
+  <string name="loading">Càrrega</string>
+  <string name="importtag">Etiqueta d'importació</string>
+  <string name="exporttag">Exportació etiqueta</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Banc</string>
+  <string name="ok">Correcte</string>
+  <string name="total">Total</string>
+  <string name="sbank">Banc</string>
+  <string name="scounterfeit">Bitllets falsos</string>
+  <string name="sfractured">Fractura</string>
+  <string name="errmnt">No pot localitzar el seu directori d'importació. Assegureu-vos que el seu principal d'emmagatzemament s'instal·li pròpiament en el dispositiu</string>
+  <string name="errimport">Error ocorria mentre fent recerca en el seu directori d'importació</string>
+  <string name="erremptyimport">No hi ha cap CloudCoins es troba a la seva carpeta d'ingressos. Posar el seu CloudCoins (. jpg o .stack) arxius a la carpeta d'ingressos i torneu-ho a provar. La carpeta d'ingressos es poden trobar al seu principal d'emmagatzemament at:\n\n%1$s</string>
+  <string name="importwarn">Importació importarà totes CloudCoin arxius de la carpeta d'importació. Si us plau posi tots els seus CloudCoin arxius (. jpg i .stack) a la carpeta d'importació situat al seu at:\n\n%1$s\n\nWe principal d'emmagatzemament es van importar %2$d fitxers. Premeu d'acord per continuar</string>
+  <string name="movedtobank">Total es va traslladar al Banc: %1$d'or, monedes</string>
+  <string name="importresults">Resultats d'importació:</string>
+  <string name="importresultsauth">Autèntic i es va traslladar a Banc: </string>
+  <string name="importresultstrash">Bitllets falsos o fracassat i es va traslladar a la paperera: </string>
+  <string name="trashnote">Si us plau revisi el seu CloudCoin Trash\nof una nota sobre el que va passar</string>
+  <string name="authstring">Legalització de %1$d de %2$d'arxius CloudCoin</string>
+  <string name="authfrackedstring">Fixació %1$d de %2$d Fracked monedes</string>
+  <string name="totaltoexport">Total d'exportació: %1$d CloudCoins</string>
+  <string name="globalexporterror">Global error. Les monedes no s'han exportat</string>
+  <string name="exportok">S'han exportat monedes successfully\nYou pot trobar en el seu at:\n%1$s principal d'emmagatzemament</string>
+  <string name="exportfailed">No ha pogut exportar %1$d monedes</string>
+  <string name="fixfracked">Fixació fracked monedes</string>
+</resources>

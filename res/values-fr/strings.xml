@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Consortium de pièce de monnaie de nuage</string>
+  <string name="app_name0">Banque de poche</string>
+  <string name="app_name1">Avec la détection d’authenticité RAIDA</string>
+  <string name="tadd">Ajouter des pièces</string>
+  <string name="tbank">Banque</string>
+  <string name="tbankinventory">Inventaire de la Banque</string>
+  <string name="tspend">Passer des pièces de monnaie</string>
+  <string name="loading">Chargement</string>
+  <string name="importtag">Balise d’importation</string>
+  <string name="exporttag">Balise d’exportation</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Banque</string>
+  <string name="ok">Bien</string>
+  <string name="total">Total</string>
+  <string name="sbank">Banque</string>
+  <string name="scounterfeit">Contrefaçon</string>
+  <string name="sfractured">Fracturée</string>
+  <string name="errmnt">Pouvez pas localiser votre répertoire d’importation. Assurez-vous que votre espace de stockage primaire est correctement installé dans l’appareil</string>
+  <string name="errimport">Erreur s’est produite tout en faisant des recherche dans votre répertoire d’importation</string>
+  <string name="erremptyimport">Il n’y a aucune CloudCoins dans votre dossier de revenu. S’il vous plaît mettre vos fichiers (.jpg ou .stack) de CloudCoins dans votre dossier de revenu et réessayez. Votre dossier de revenu se trouve sur votre stockage principal at:\n\n%1$s</string>
+  <string name="importwarn">Importation va importer tous les fichiers de CloudCoin de votre dossier d’importation. S’il vous plaît mettez tous vos fichiers CloudCoin (.jpg et .stack) dans le dossier d’importation situé sur votre at:\n\n%1$s\n\nWe stockage principal vont importer de %2$d fichier (s). Robinet OK pour continuer</string>
+  <string name="movedtobank">Total s’installe à Banque : %1$d pièces</string>
+  <string name="importresults">Résultats de l’importation :</string>
+  <string name="importresultsauth">Authentique et a déménagé à la Banque : </string>
+  <string name="importresultstrash">Faux ou omis et déplacé dans la corbeille : </string>
+  <string name="trashnote">S’il vous plaît vérifier vos CloudCoin Trash\nof une note sur ce qui s’est passé</string>
+  <string name="authstring">Authentification %1$d de %2$d CloudCoin Files</string>
+  <string name="authfrackedstring">Fixation de %1$d de %2$d Fracked pièces</string>
+  <string name="totaltoexport">Total pour l’exportation : %1$d CloudCoins</string>
+  <string name="globalexporterror">Erreur globale. Pièces de monnaie n’ont pas été exportées</string>
+  <string name="exportok">Pièces de monnaie ont été exportés successfully\nYou pouvez les trouver sur votre stockage principal at:\n%1$s</string>
+  <string name="exportfailed">Impossible d’exporter %1$d pièces</string>
+  <string name="fixfracked">Fracked pièces de fixation</string>
+</resources>

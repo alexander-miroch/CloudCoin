@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Awan koin konsorsium</string>
+  <string name="app_name0">Saku Bank</string>
+  <string name="app_name1">Dengan deteksi keaslian RAIDA</string>
+  <string name="tadd">Tambahkan koin</string>
+  <string name="tbank">Bank</string>
+  <string name="tbankinventory">Bank persediaan</string>
+  <string name="tspend">Menghabiskan koin</string>
+  <string name="loading">Pemuatan</string>
+  <string name="importtag">Tag impor</string>
+  <string name="exporttag">Ekspor Tag</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Bank</string>
+  <string name="ok">Oke</string>
+  <string name="total">Total</string>
+  <string name="sbank">Bank</string>
+  <string name="scounterfeit">Palsu</string>
+  <string name="sfractured">Retak</string>
+  <string name="errmnt">Tidak dapat menemukan direktori impor. Pastikan bahwa penyimpanan utama Anda terpasang dengan benar ke dalam perangkat</string>
+  <string name="errimport">Terjadi error ketika melakukan pencarian di direktori impor</string>
+  <string name="erremptyimport">Ada CloudCoins tidak ditemukan di folder pendapatan Anda. Silakan meletakkan CloudCoins (.jpg atau .stack) file dalam folder pendapatan Anda dan coba lagi. Folder pendapatan Anda dapat ditemukan di at:\n\n%1$s penyimpanan utama Anda</string>
+  <string name="importwarn">Impor akan mengimpor semua CloudCoin file dari folder impor. Silakan memasukkan semua CloudCoin file (.jpg dan .stack) ke folder impor yang terletak pada at:\n\n%1$s\n\nWe utama penyimpanan Anda akan mengimpor %2$d file. Tekan OK untuk melanjutkan</string>
+  <string name="movedtobank">Total pindah ke Bank: %1$d koin</string>
+  <string name="importresults">Hasil impor:</string>
+  <string name="importresultsauth">Otentik dan pindah ke bank: </string>
+  <string name="importresultstrash">Palsu atau gagal dan pindah ke tempat sampah: </string>
+  <string name="trashnote">Silakan periksa CloudCoin Trash\nof catatan tentang apa yang terjadi</string>
+  <string name="authstring">Otentikasi %1$d %2$d CloudCoin file</string>
+  <string name="authfrackedstring">Memperbaiki %1$d %2$d Fracked koin</string>
+  <string name="totaltoexport">Total ekspor: %1$d CloudCoins</string>
+  <string name="globalexporterror">Global kesalahan. Koin tidak diekspor</string>
+  <string name="exportok">Koin telah diekspor successfully\nYou dapat menemukan mereka di at:\n%1$s penyimpanan utama Anda</string>
+  <string name="exportfailed">Gagal untuk mengekspor %1$d koin</string>
+  <string name="fixfracked">Memperbaiki fracked koin</string>
+</resources>

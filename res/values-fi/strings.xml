@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Pilvi kolikon konsortion</string>
+  <string name="app_name0">Pocket pankki</string>
+  <string name="app_name1">RAIDA aitouden tunnistus</string>
+  <string name="tadd">Lisää kolikkoja</string>
+  <string name="tbank">Pankki</string>
+  <string name="tbankinventory">Pankin varaston</string>
+  <string name="tspend">Käyttää kolikoita</string>
+  <string name="loading">Lastaus</string>
+  <string name="importtag">Tuoda Tag</string>
+  <string name="exporttag">Vienti Tag</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Pankki</string>
+  <string name="ok">Okei</string>
+  <string name="total">Yhteensä</string>
+  <string name="sbank">Pankki</string>
+  <string name="scounterfeit">Väärennös</string>
+  <string name="sfractured">Murtunut</string>
+  <string name="errmnt">Löydä tuonti-hakemistoon. Varmista, että ensisijainen varastointi on oikein asennettu laitteeseen</string>
+  <string name="errimport">Virhe haku tuo hakemistoon</string>
+  <string name="erremptyimport">Ei ole CloudCoins tulot-kansiossa. Tiedostojasi CloudCoins (.jpg tai .stack) tulo-kansio ja yritä uudelleen. Tulo-kansio löytyy varastodimensioiksi-at:\n\n%1$s</string>
+  <string name="importwarn">Import tuo kaikki CloudCoin tiedostot tuonnin kansioon. Laita kaikki CloudCoin tiedostot (.jpg ja .stack) tuonti-kansio sijaitsee varastodimensioiksi at:\n\n%1$s\n\nWe aikovat tuoda %2$d tiedostot. Paina OK jatkaaksesi</string>
+  <string name="movedtobank">Yhteensä siirtyi pankki: %1$d kolikot</string>
+  <string name="importresults">Tuonnin tulokset:</string>
+  <string name="importresultsauth">Aito ja muutti pankki: </string>
+  <string name="importresultstrash">Väärennettyjä tai ei ja siirretty roskakoriin: </string>
+  <string name="trashnote">Tarkista CloudCoin Trash\nof huomautus siitä, mitä tapahtui</string>
+  <string name="authstring">Toimialueen %1$d %2$d CloudCoin tiedostot</string>
+  <string name="authfrackedstring">Vahvistamisesta %1$d %2$d Fracked kolikot</string>
+  <string name="totaltoexport">Yhteensä viedä: %1$d CloudCoins</string>
+  <string name="globalexporterror">Yleinen virhe. Kolikoita ei ole viety</string>
+  <string name="exportok">Kolikot on viety successfully\nYou löydät ne varastodimensioiksi-at:\n%1$s</string>
+  <string name="exportfailed">Ei voitu viedä %1$d kolikot</string>
+  <string name="fixfracked">Vahvistamisesta fracked kolikot</string>
+</resources>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Wolk munt Consortium</string>
+  <string name="app_name0">Zak Bank</string>
+  <string name="app_name1">Met RAIDA authenticiteit detectie</string>
+  <string name="tadd">Toevoegen van munten</string>
+  <string name="tbank">Bank</string>
+  <string name="tbankinventory">Inventaris van de Bank</string>
+  <string name="tspend">Uitgeven van munten</string>
+  <string name="loading">Laden</string>
+  <string name="importtag">Invoer-Tag</string>
+  <string name="exporttag">Export-Tag</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Bank</string>
+  <string name="ok">OK</string>
+  <string name="total">Totaal</string>
+  <string name="sbank">Bank</string>
+  <string name="scounterfeit">Vervalst</string>
+  <string name="sfractured">Gebroken</string>
+  <string name="errmnt">Niet kunt uw Import directory vinden. Zorg ervoor dat uw primaire opslag in het apparaat correct is geïnstalleerd</string>
+  <string name="errimport">Er is een fout opgetreden terwijl het doen van zoeken in je map importeren</string>
+  <string name="erremptyimport">Er waren geen CloudCoins gevonden in de map van uw inkomen. Gelieve te zetten uw CloudCoins (.jpg of .stack)-bestanden in de map van uw inkomen en probeer het opnieuw. De map van uw inkomen kan worden gevonden op uw primaire opslag at:\n\n%1$s</string>
+  <string name="importwarn">Importeren zal alle CloudCoin bestanden importeren uit de Import map. Gelieve te zetten al uw CloudCoin bestanden (.jpg en .stack) in de map importeren op uw primaire opslag at:\n\n%1$s\n\nWe gaan importeren %2$d bestand(en). Tik op OK om verder te</string>
+  <string name="movedtobank">Totaal verhuisde naar Bank: %1$d munten</string>
+  <string name="importresults">Resultaten van invoer:</string>
+  <string name="importresultsauth">Authentiek en verhuisde naar de bank: </string>
+  <string name="importresultstrash">Vervalsen of is mislukt en verplaatst naar de prullenmand: </string>
+  <string name="trashnote">Controleer uw CloudCoin Trash\nof een opmerking over wat er gebeurd is</string>
+  <string name="authstring">Verificatie van %1$d van %2$d bestanden CloudCoin</string>
+  <string name="authfrackedstring">Vaststelling van %1$d van %2$d Fracked munten</string>
+  <string name="totaltoexport">Totale exporteren: %1$d CloudCoins</string>
+  <string name="globalexporterror">Algemene fout. Munten zijn niet geëxporteerd</string>
+  <string name="exportok">Munten hebben geexporteerd successfully\nYou vindt ze op uw primaire opslag at:\n%1$s</string>
+  <string name="exportfailed">Niet exporteren %1$d munten</string>
+  <string name="fixfracked">Tot vaststelling van de fracked munten</string>
+</resources>

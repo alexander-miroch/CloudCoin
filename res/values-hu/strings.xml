@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Felhő érme konzorcium</string>
+  <string name="app_name0">Bank zseb</string>
+  <string name="app_name1">A RAIDA hitelességét észlelése</string>
+  <string name="tadd">Érmék hozzáadása</string>
+  <string name="tbank">Bank</string>
+  <string name="tbankinventory">Bank készlet</string>
+  <string name="tspend">Kiad érmék</string>
+  <string name="loading">Betöltése</string>
+  <string name="importtag">Import Tag</string>
+  <string name="exporttag">Export Tag</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Bank</string>
+  <string name="ok">oké</string>
+  <string name="total">Összesen</string>
+  <string name="sbank">Bank</string>
+  <string name="scounterfeit">Hamis</string>
+  <string name="sfractured">Törött</string>
+  <string name="errmnt">Nem találja a behozatali könyvtárba. Győződjön meg arról, hogy az elsődleges raktározás megfelelően van telepítve, a készülékbe</string>
+  <string name="errimport">Hiba előfordulás rövid idő csinálás kutatás a behozatali könyvtárban</string>
+  <string name="erremptyimport">Volt nem CloudCoins a jövedelem mappában található. Tesz-a CloudCoins (.jpg vagy .stack) fájlokat a jövedelem mappában, és próbálja újra. A jövedelem mappában megtalálható az elsődleges raktározás at:\n\n%1$s</string>
+  <string name="importwarn">Behozatali CloudCoin fájlok importálása az Import mappájában. Kérjük, hogy minden a CloudCoin fájlokat (.jpg és .stack) található az elsődleges raktározás at:\n\n%1$s\n\nWe importálása mappába fog importálni a(z) %2$d fájlokat(). Érintse meg az OK</string>
+  <string name="movedtobank">Összesen költözött Bank: a(z) %1$d érmék</string>
+  <string name="importresults">Import eredményei:</string>
+  <string name="importresultsauth">Hiteles és költözött bank: </string>
+  <string name="importresultstrash">Hamis, vagy nem sikerült, és költözött a szemetet: </string>
+  <string name="trashnote">Kérjük, ellenőrizze a CloudCoin Trash\nof egy megjegyzés, hogy mi történt</string>
+  <string name="authstring">A(z) %1$d %2$d hitelesítő CloudCoin fájlok</string>
+  <string name="authfrackedstring">A(z) %1$d %2$d rögzítő Fracked érmék</string>
+  <string name="totaltoexport">Teljes export: a(z) %1$d CloudCoins</string>
+  <string name="globalexporterror">Globális hiba. Érmék nem vitték</string>
+  <string name="exportok">Érmék kivitték successfully\nYou lehet megtalálni őket a az elsődleges raktározás at:\n%1$s</string>
+  <string name="exportfailed">Nem tudta exportálni a(z) %1$d érmék</string>
+  <string name="fixfracked">Rögzítő fracked érmék</string>
+</resources>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Konsorcjum monet w chmurze</string>
+  <string name="app_name0">Bank w kieszeni</string>
+  <string name="app_name1">Z RAIDA wykrywania autentyczności</string>
+  <string name="tadd">Dodaj monety</string>
+  <string name="tbank">Bank</string>
+  <string name="tbankinventory">Bank Zapasy</string>
+  <string name="tspend">Spędzić monety</string>
+  <string name="loading">Ładowanie</string>
+  <string name="importtag">Importowanie znaczników</string>
+  <string name="exporttag">Eksportowanie znaczników</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Bank</string>
+  <string name="ok">Ok</string>
+  <string name="total">Łącznie</string>
+  <string name="sbank">Bank</string>
+  <string name="scounterfeit">Podrobione</string>
+  <string name="sfractured">Złamania kości</string>
+  <string name="errmnt">Nie można zlokalizować katalogu importu. Upewnij się, że pamięć podstawową jest prawidłowo zainstalowany w urządzeniu</string>
+  <string name="errimport">Wystąpił błąd podczas wykonywania wyszukiwania w katalogu importu</string>
+  <string name="erremptyimport">Było nie CloudCoins znaleźć w folderze dochodu. Proszę umieścić pliki CloudCoins (.jpg lub .stack) w folderze dochodów i spróbuj ponownie. Twój dochód teczka znajdują się na swoim at:\n\n%1$s podstawowej pamięci masowej</string>
+  <string name="importwarn">Importowania zaimportuje wszystkie pliki CloudCoin z folderu Import. Proszę umieścić wszystkie CloudCoin pliki (.jpg i .stack) do folderu Import znajduje się na swojej podstawowej pamięci masowej at:\n\n%1$s\n\nWe zamiar importować %2$d plik(i). Naciśnij OK, aby kontynuować</string>
+  <string name="movedtobank">Sumie przeniósł się do banku: %1$d monety</string>
+  <string name="importresults">Wyniki z importu:</string>
+  <string name="importresultsauth">Autentyczne i przeniósł się do banku: </string>
+  <string name="importresultstrash">Podrobionych lub nie powiodło się i przeniósł się do kosza: </string>
+  <string name="trashnote">Proszę sprawdzić Twój CloudCoin Trash\nof Uwaga na temat co się stało</string>
+  <string name="authstring">Uwierzytelnianie %1 %2$d $d CloudCoin pliki</string>
+  <string name="authfrackedstring">Mocowanie %1 %2$d $d Fracked monety</string>
+  <string name="totaltoexport">Całkowitego eksportu: %1$d CloudCoins</string>
+  <string name="globalexporterror">Globalny b┼é─àd. Monety nie zostały wywiezione</string>
+  <string name="exportok">Monety zostały wywiezione successfully\nYou można je znaleźć na swoim at:\n%1$s podstawowej pamięci masowej</string>
+  <string name="exportfailed">Nie można wyeksportować %1$d monety</string>
+  <string name="fixfracked">Mocowania fracked monety</string>
+</resources>

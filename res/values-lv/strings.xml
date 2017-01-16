@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Mākonis monētu Consortium</string>
+  <string name="app_name0">Kabatas banka</string>
+  <string name="app_name1">Ar RAIDA autentiskuma noteikšana</string>
+  <string name="tadd">Pievienotu monētas</string>
+  <string name="tbank">Banka</string>
+  <string name="tbankinventory">Bank krājumu</string>
+  <string name="tspend">Pavadīt monētas</string>
+  <string name="loading">Ielāde</string>
+  <string name="importtag">Taga importēšanas</string>
+  <string name="exporttag">Eksportēt Tags</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Banka</string>
+  <string name="ok">labi</string>
+  <string name="total">Kopā</string>
+  <string name="sbank">Banka</string>
+  <string name="scounterfeit">Viltojumu</string>
+  <string name="sfractured">Lauzta</string>
+  <string name="errmnt">Importēšanas direktoriju nevar atrast. Pārliecinieties, vai jūsu primārā krātuve ir pareizi instalēts ierīcē</string>
+  <string name="errimport">Veicot meklēšanu importēšanas direktorijā, radās kļūda</string>
+  <string name="erremptyimport">Nebija nekādu ienākumu mapē atrast CloudCoins. Lūdzu ievietot CloudCoins (jpg vai .stack) failus mapē jūsu ienākumi, un mēģiniet vēlreiz. Ienākumu mapē var atrast jūsu primārā krātuve at:\n\n%1$s</string>
+  <string name="importwarn">Importa importēs visus CloudCoin failus no importēšanas mapi. Lūdzu nodot visus CloudCoin failus (. jpg un .stack) importēšana mapē atrodas jūsu primārā krātuve at:\n\n%1$s\n\nWe gatavojas importēt %2$ % d faili. Nospiediet Labi, lai turpinātu</string>
+  <string name="movedtobank">Kopā pārcēlās uz bankas: %1$d monētas</string>
+  <string name="importresults">Importēšanas rezultātus:</string>
+  <string name="importresultsauth">Autentisku un pārcēlās uz banku: </string>
+  <string name="importresultstrash">Viltotas vai neizdevās un pārvietot uz miskasti: </string>
+  <string name="trashnote">Lūdzu, pārbaudiet savu CloudCoin Trash\nof piezīmi par to, kas noticis</string>
+  <string name="authstring">Autentificētu $d %1 no %2$d CloudCoin faili</string>
+  <string name="authfrackedstring">Nosakot $d %1 no %2$d Fracked monētas</string>
+  <string name="totaltoexport">Kopējais eksports: %1$d CloudCoins</string>
+  <string name="globalexporterror">Globālā, radās kļūda. Monētas netiek eksportēts</string>
+  <string name="exportok">Monētas tika eksportēti successfully\nYou var atrast tos jūsu primārā krātuve at:\n%1$s</string>
+  <string name="exportfailed">Neizdevās eksportēt %1$d monētas</string>
+  <string name="fixfracked">Nosakot fracked monētas</string>
+</resources>

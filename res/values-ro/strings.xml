@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Consorţiul de monede nor</string>
+  <string name="app_name0">Banca de buzunar</string>
+  <string name="app_name1">Cu detectare de autenticitate RAIDA</string>
+  <string name="tadd">Adăugaţi monede</string>
+  <string name="tbank">Banca</string>
+  <string name="tbankinventory">Banca inventar</string>
+  <string name="tspend">Petrece monede</string>
+  <string name="loading">Încărcare</string>
+  <string name="importtag">Import tag-ul</string>
+  <string name="exporttag">Export tag-ul</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Banca</string>
+  <string name="ok">ok</string>
+  <string name="total">Total</string>
+  <string name="sbank">Banca</string>
+  <string name="scounterfeit">Contrafăcute</string>
+  <string name="sfractured">Fracturat</string>
+  <string name="errmnt">Puteţi localiza directorul de Import. Asiguraţi-vă că spaţiul de stocare primară este corect instalată în dispozitiv</string>
+  <string name="errimport">Eroare în timp ce faci de căutare în directorul de Import</string>
+  <string name="erremptyimport">Nu au nici o CloudCoins găsit în folderul de venituri. Vă rugăm să pune fişierele CloudCoins (.jpg sau .stack) în folderul de venit și încercați din nou. Dosarul de venit pot fi găsite pe dumneavoastră at:\n\n%1$s primar de stocare</string>
+  <string name="importwarn">Import va importa toate CloudCoin fişierele din folderul de Import. Vă rugăm să pune tot al tău CloudCoin dosar (.jpg şi .stack) în folderul de Import situat pe dumneavoastră at:\n\n%1$s\n\nWe primar de stocare sunt de gând să importe %2$d fișierele. Apăsaţi OK pentru a continua</string>
+  <string name="movedtobank">Total s-a mutat la banca: %1$d monede</string>
+  <string name="importresults">Rezultatele de import:</string>
+  <string name="importresultsauth">Autentice şi sa mutat la bancă: </string>
+  <string name="importresultstrash">Contrafăcute sau nu a reuşit şi s-a mutat la gunoi: </string>
+  <string name="trashnote">Vă rugăm să verificaţi dumneavoastră CloudCoin Trash\nof o notă despre ceea ce sa întâmplat</string>
+  <string name="authstring">Autentificare %1$d de %2$d CloudCoin fişiere</string>
+  <string name="authfrackedstring">Fixarea %1$d de %2$d Fracked monede</string>
+  <string name="totaltoexport">Total export: %1$d CloudCoins</string>
+  <string name="globalexporterror">Eroare la nivel mondial. Monede nu au fost exportate</string>
+  <string name="exportok">Monedele au fost exportate successfully\nYou puteti gasi pe dumneavoastră at:\n%1$s primar de stocare</string>
+  <string name="exportfailed">Nu a reuşit să exporte %1$d monede</string>
+  <string name="fixfracked">Fixarea fracked monede</string>
+</resources>

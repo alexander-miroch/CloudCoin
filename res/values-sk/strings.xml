@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Cloud mince konzorcia</string>
+  <string name="app_name0">Vrecku banky</string>
+  <string name="app_name1">S RAIDA pravosti detekcie</string>
+  <string name="tadd">Pridať mince</string>
+  <string name="tbank">Banka</string>
+  <string name="tbankinventory">Banka zásob</string>
+  <string name="tspend">Stráviť mincí</string>
+  <string name="loading">Načítanie</string>
+  <string name="importtag">Import Tag</string>
+  <string name="exporttag">Export Tag</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Banka</string>
+  <string name="ok">ok</string>
+  <string name="total">Celkom</string>
+  <string name="sbank">Banka</string>
+  <string name="scounterfeit">Falzifikáty</string>
+  <string name="sfractured">Dislokácia</string>
+  <string name="errmnt">Nemôže nájsť Import directory. Uistite sa, že vaše primárne ukladacie správne nainštalovaný do zariadenia</string>
+  <string name="errimport">Robiť vyhľadávanie v adresári Import sa vyskytla chyba</string>
+  <string name="erremptyimport">Tam boli žiadne CloudCoins našiel v priečinku príjmu. Umiestniť súbory CloudCoins (.jpg alebo .stack) v priečinku príjmu a skúste znova. Váš príjem priečinok možno nájsť na vaše primárne ukladacie at:\n\n%1$s</string>
+  <string name="importwarn">Import importuje všetky CloudCoin súbory z priečinka Import. Prosím dať všetky CloudCoin súborov (.jpg a .stack) do priečinka Import na vaše primárne ukladacie at:\n\n%1$s\n\nWe sa chystáte import %2$d súbory. Ťuknite na položku OK chcete pokračovať</string>
+  <string name="movedtobank">Celkovo sa presťahoval do banky: %1$d mince</string>
+  <string name="importresults">Výsledky dovozu:</string>
+  <string name="importresultsauth">Autentické a presťahoval sa do banky: </string>
+  <string name="importresultstrash">Falšovanie alebo zlyhal a presunuté do koša: </string>
+  <string name="trashnote">Skontrolujte, či vaša CloudCoin Trash\nof poznámku o tom, čo sa stalo</string>
+  <string name="authstring">Overovanie %1$d %2$d CloudCoin súbory</string>
+  <string name="authfrackedstring">Stanovenie %1$d %2$d Fracked mince</string>
+  <string name="totaltoexport">Celkový export: %1$d CloudCoins</string>
+  <string name="globalexporterror">Globálna chyba. Mince nie boli vyvezené</string>
+  <string name="exportok">Mince boli vyvezené successfully\nYou môžete nájsť na vaše primárne ukladacie at:\n%1$s</string>
+  <string name="exportfailed">Nepodarilo sa exportovať %1$d mince</string>
+  <string name="fixfracked">Stanovenie fracked mince</string>
+</resources>

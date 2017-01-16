@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Debesis monetų konsorciumas</string>
+  <string name="app_name0">Kišenėje banko</string>
+  <string name="app_name1">Su RAIDA autentiškumo nustatymo</string>
+  <string name="tadd">Pridėti monetos</string>
+  <string name="tbank">Banko</string>
+  <string name="tbankinventory">Banko atsargos</string>
+  <string name="tspend">Išleisti monetų</string>
+  <string name="loading">Pakrovimo</string>
+  <string name="importtag">Importuoti žymės</string>
+  <string name="exporttag">Eksportuoti žymė</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Banko</string>
+  <string name="ok">gerai</string>
+  <string name="total">Iš viso</string>
+  <string name="sbank">Banko</string>
+  <string name="scounterfeit">Padirbtų pinigų</string>
+  <string name="sfractured">Sulaužytas</string>
+  <string name="errmnt">Negali rasti savo importo kataloge. Įsitikinkite, kad jūsų pagrindiniai saugojimo tinkamai įdiegta į prietaisą</string>
+  <string name="errimport">Darydamas importo kataloge paieška: įvyko klaida</string>
+  <string name="erremptyimport">Nebuvo jokios CloudCoins rasti savo pajamų aplanke. Prašom įdėti savo CloudCoins (.jpg arba .stack) failus aplanke pajamų ir bandykite dar kartą. Jūsų pajamos aplanką galima rasti jūsų pagrindiniai saugojimo at:\n\n%1$s</string>
+  <string name="importwarn">Importo importuos visus CloudCoin failus iš aplanko importo. Prašome įdėti visus savo CloudCoin failus (.jpg ir .stack) į importo aplanko, esančio jūsų pagrindiniai saugojimo at:\n\n%1$s\n\nWe ketinate importuoti %2$d ai. Bakstelėkite Gerai ir toliau</string>
+  <string name="movedtobank">Iš viso perkelta į banką: %1$d monetos</string>
+  <string name="importresults">Importo rezultatai:</string>
+  <string name="importresultsauth">Autentiškas ir persikėlė į banko: </string>
+  <string name="importresultstrash">Padirbtus arba nepavyko ir persikėlė į šiukšliadėžę: </string>
+  <string name="trashnote">Prašome patikrinti savo CloudCoin Trash\nof Pastaba apie tai, kas atsitiko</string>
+  <string name="authstring">Patvirtinamas %1 %2$d $d CloudCoin failus</string>
+  <string name="authfrackedstring">Nustatantis %1 %2$d $d Fracked monetos</string>
+  <string name="totaltoexport">Iš viso eksportuoti: %1$d CloudCoins</string>
+  <string name="globalexporterror">Bendrasis klaidų. Monetos ne buvo eksportuotos</string>
+  <string name="exportok">Monetos buvo eksportuoti successfully\nYou galite rasti jų pirminio saugojimo at:\n%1$s</string>
+  <string name="exportfailed">Nepavyko išeksportuoti %1$d monetos</string>
+  <string name="fixfracked">Nustatymo fracked monetos</string>
+</resources>

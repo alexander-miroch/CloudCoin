@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Cloud mønt konsortium</string>
+  <string name="app_name0">Pocket Bank</string>
+  <string name="app_name1">Med RAIDA ægthed påvisning</string>
+  <string name="tadd">Tilføje mønter</string>
+  <string name="tbank">Bank</string>
+  <string name="tbankinventory">Bank opgørelse</string>
+  <string name="tspend">Bruge mønter</string>
+  <string name="loading">Lastning</string>
+  <string name="importtag">Importere Tag</string>
+  <string name="exporttag">Eksportere Tag</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Bank</string>
+  <string name="ok">Ok</string>
+  <string name="total">I alt</string>
+  <string name="sbank">Bank</string>
+  <string name="scounterfeit">Falske</string>
+  <string name="sfractured">Brækkede</string>
+  <string name="errmnt">Kan ikke finde mappen Import. Sørg for, at din primære opbevaring er korrekt installeret i enheden</string>
+  <string name="errimport">Der opstod fejl under gøre søgning i din Import mappe</string>
+  <string name="erremptyimport">Der blev ingen CloudCoins fundet i mappen indkomst. Sætte din CloudCoins (.jpg eller .stack) filer i mappen indkomst, og prøv igen. Mappen indkomst kan findes på din primære opbevaring at:\n\n%1$s</string>
+  <string name="importwarn">Import vil importere alle CloudCoin filer fra mappen Import. Kan du sætte alle dine CloudCoin filer (.jpg og .stack) i mappen Import på din primære opbevaring at:\n\n%1$s\n\nWe kommer til at importere %2$d fil(er). Tryk OK for at fortsætte</string>
+  <string name="movedtobank">I alt flyttede til Bank: %1$d mønter</string>
+  <string name="importresults">Resultaterne af import:</string>
+  <string name="importresultsauth">Autentisk og flyttede til bank: </string>
+  <string name="importresultstrash">Forfalske eller mislykkedes og flyttes til Papirkurv: </string>
+  <string name="trashnote">Tjek venligst din CloudCoin Trash\nof en note om, hvad der skete</string>
+  <string name="authstring">Godkendelse af %1$d %2$d filer CloudCoin</string>
+  <string name="authfrackedstring">Om fastsættelse af %1$d %2$d Fracked mønter</string>
+  <string name="totaltoexport">Samlede eksport: %1$d CloudCoins</string>
+  <string name="globalexporterror">Globale fejl. Mønter er ikke blevet eksporteret</string>
+  <string name="exportok">Mønterne er blevet eksporteret successfully\nYou kan finde dem på din primære opbevaring at:\n%1$s</string>
+  <string name="exportfailed">Kunne ikke eksporteres %1$d mønter</string>
+  <string name="fixfracked">Om fastsættelse af fracked mønter</string>
+</resources>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">بادل سکہ کنسورشیم</string>
+  <string name="app_name0">جیب بینک</string>
+  <string name="app_name1">رایدا صداقت کا پتہ لگانے کے ساتھ</string>
+  <string name="tadd">سککوں کا ا ضافہ کریں</string>
+  <string name="tbank">بینک</string>
+  <string name="tbankinventory">بینک کی انوینٹری</string>
+  <string name="tspend">سککوں خرچ کرتے ہیں</string>
+  <string name="loading">لوڈ کر رہا ہے</string>
+  <string name="importtag">ٹیگ درآمد کریں</string>
+  <string name="exporttag">ٹیگ برآمد کریں</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">بینک</string>
+  <string name="ok">ٹھيک ہے</string>
+  <string name="total">کل</string>
+  <string name="sbank">بینک</string>
+  <string name="scounterfeit">جعلی</string>
+  <string name="sfractured">دراڑ زدہ</string>
+  <string name="errmnt">آپ درآمد ڈائرکٹری تلاش نہیں کر سکتے ہیں ۔ اثبات کریں کہ آپ پرائمری اسٹوریج میں آلہ کہ ٹھیک نصب ہے</string>
+  <string name="errimport">آپ درآمد ڈائرکٹری میں تلاش کرتے ہوئے نقص واقع ہوا</string>
+  <string name="erremptyimport">کوئی کلودکوانس اپنی آمدنی کے فولڈر میں پایا جاتا تھا ۔ آپ کلودکوانس (بدلیں یا .stack) مسلیں آپ کے آمدنی کے فولڈر میں ڈال دیا اور پھر کوشش کریں ۔ آپ کی آمدنی کا فولڈر آپ پرائمری اسٹوریج at:\n\n%1$s پر پایا جا سکتا</string>
+  <string name="importwarn">درآمد کریں کلودکوان سے تمام مسلیں پوشہ درآمد سے درآمد کرے گا ۔ رکھ براہ مہربانی تمام اپنے کلودکوان مسلیں (بدلیں اور .stack) آپ کے پرائمری اسٹوریج at:\n\n%1$s\n\nWe پر واقع کو درآمد کریں پوشہ %2$ درآمد کرنے جا رہے ہیں ڈی مسلیں ۔ نل جاری رکھنے کے لیے ٹھیک ہے</string>
+  <string name="movedtobank">کل بینک کو منتقل ہو گیا: %1$d سککوں</string>
+  <string name="importresults">درآمد کے نتائج:</string>
+  <string name="importresultsauth">مستند اور بینک کے لئے بڑھائی گئی: </string>
+  <string name="importresultstrash">جعلی یا ناکام اور ردی کی ٹوکری کو منتقل ہو گیا ۔ </string>
+  <string name="trashnote">براہ مہربانی آپ کلودکوان Trash\nof کیا ہوا کے بارے میں ایک نوٹ چیک کریں</string>
+  <string name="authstring">مسلیں کلودکوان %1$d %2$d کی توثیق کر رہا ہے</string>
+  <string name="authfrackedstring">%1$d از %2$d فکسنگ فراکاد سکے</string>
+  <string name="totaltoexport">برآمد کرنے کے لیے کل: %1$d کلودکوانس</string>
+  <string name="globalexporterror">عالمی نقص ۔ سککوں برآمد نہیں کیا گیا ہے</string>
+  <string name="exportok">سککوں برآمد کیا گیا ہے successfully\nYou تلاش کر سکتے ہیں ان پر اپنے پرائمری اسٹوریج at:\n%1$s</string>
+  <string name="exportfailed">%1$ برآمد کرنے میں ناکام رہا ڈی سککوں</string>
+  <string name="fixfracked">فراککاد سککوں فکسنگ</string>
+</resources>

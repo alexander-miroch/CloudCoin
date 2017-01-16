@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Molnet mynt konsortium</string>
+  <string name="app_name0">Ficka Bank</string>
+  <string name="app_name1">Med RAIDA äkthet upptäckt</string>
+  <string name="tadd">Lägg mynt</string>
+  <string name="tbank">Bank</string>
+  <string name="tbankinventory">Bank lager</string>
+  <string name="tspend">Spendera mynt</string>
+  <string name="loading">Lastning</string>
+  <string name="importtag">Importera tagg</string>
+  <string name="exporttag">Exportera tagg</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Bank</string>
+  <string name="ok">Okej</string>
+  <string name="total">Totalt</string>
+  <string name="sbank">Bank</string>
+  <string name="scounterfeit">Förfalskning</string>
+  <string name="sfractured">Fractured</string>
+  <string name="errmnt">Kan inte hitta din Import katalog. Kontrollera att din primär lagring är korrekt installerat i enheten</string>
+  <string name="errimport">Fel uppstod när göra sökning i katalogen Import</string>
+  <string name="erremptyimport">Det fanns inga CloudCoins som finns i mappen inkomst. Vänligen placera dina CloudCoins (.jpg eller .stack) filer i mappen inkomst och försök igen. Din inkomst mapp kan hittas på din primär lagring at:\n\n%1$s</string>
+  <string name="importwarn">Import importerar alla CloudCoin filer från mappen Import. Vänligen sätta alla din CloudCoin filer (.jpg och .stack) till mappen Import på din primär lagring at:\n\n%1$s\n\nWe kommer att importera %2$d fil(er). Tryck på OK för att fortsätta</string>
+  <string name="movedtobank">Totalt flyttade till Bank: %1$d mynt</string>
+  <string name="importresults">Resultat av import:</string>
+  <string name="importresultsauth">Autentiska och flyttade till banken: </string>
+  <string name="importresultstrash">Förfalska eller misslyckades och flyttas till papperskorgen: </string>
+  <string name="trashnote">Vänligen kontrollera dina CloudCoin Trash\nof en anteckning om vad som hände</string>
+  <string name="authstring">Autentisera %1$d av %2$d filer CloudCoin</string>
+  <string name="authfrackedstring">Fastställande %1$d av %2$d Fracked mynt</string>
+  <string name="totaltoexport">Totala exportera: %1$d CloudCoins</string>
+  <string name="globalexporterror">Globala fel. Mynt har inte exporterats</string>
+  <string name="exportok">Mynt har exporterats successfully\nYou kan hitta dem på din primär lagring at:\n%1$s</string>
+  <string name="exportfailed">Det gick inte att exportera %1$d mynt</string>
+  <string name="fixfracked">Fastställande fracked mynt</string>
+</resources>

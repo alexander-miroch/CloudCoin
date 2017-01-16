@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">雲的硬幣財團</string>
+  <string name="app_name0">口袋裡的銀行</string>
+  <string name="app_name1">瑞達真實性檢測</string>
+  <string name="tadd">添加硬幣</string>
+  <string name="tbank">銀行</string>
+  <string name="tbankinventory">銀行庫存</string>
+  <string name="tspend">花硬幣</string>
+  <string name="loading">載入</string>
+  <string name="importtag">導入標記</string>
+  <string name="exporttag">匯出標籤</string>
+  <string name="url">HTTP://CloudCoinConsortium.com</string>
+  <string name="bank">銀行</string>
+  <string name="ok">還行</string>
+  <string name="total">總計</string>
+  <string name="sbank">銀行</string>
+  <string name="scounterfeit">偽造</string>
+  <string name="sfractured">裂縫性</string>
+  <string name="errmnt">找不到您導入目錄。請確保您的主存儲到設備安裝正確</string>
+  <string name="errimport">做您導入目錄中的搜索時發生錯誤</string>
+  <string name="erremptyimport">沒有發現你收入資料夾中的 CloudCoins。請將您的 CloudCoins （.jpg 或.stack） 檔放在你收入資料夾，然後重試。可以在您的主存儲 at:\n\n%1$s 上找到你收入資料夾</string>
+  <string name="importwarn">導入將從您導入的資料夾中導入所有的 CloudCoin 檔。請把所有你 CloudCoin 檔 （.jpg 和.stack） 到導入資料夾位於您的主存儲 at:\n\n%1$s\n\nWe 將要導入 %2$d 檔。點擊確定以繼續</string>
+  <string name="movedtobank">共遷往銀行: %1$d 硬幣</string>
+  <string name="importresults">導入的結果︰</string>
+  <string name="importresultsauth">真實與感動銀行︰</string>
+  <string name="importresultstrash">偽造或失敗，搬到垃圾︰</string>
+  <string name="trashnote">請檢查您的 CloudCoin Trash\nof 發生了什麼事的一個注記</string>
+  <string name="authstring">驗證 %2$d %1$d CloudCoin 檔</string>
+  <string name="authfrackedstring">固定的 %2$d %1$d 失掉硬幣</string>
+  <string name="totaltoexport">總要匯出: %1$d CloudCoins</string>
+  <string name="globalexporterror">全球的錯誤。硬幣有不出口</string>
+  <string name="exportok">硬幣有出口 successfully\nYou 可以找到他們在您的主存儲 at:\n%1$s</string>
+  <string name="exportfailed">無法匯出 %1$d 硬幣</string>
+  <string name="fixfracked">固定失掉硬幣</string>
+</resources>

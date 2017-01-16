@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Huab npib Consortium</string>
+  <string name="app_name0">Txhab nyiaj hauv hnab tsho</string>
+  <string name="app_name1">Nrog kom paub tias Authenticity RAIDA</string>
+  <string name="tadd">Ntxiv npib</string>
+  <string name="tbank">Txhab nyiaj</string>
+  <string name="tbankinventory">Sij hawm thaum tsis muaj NABNPAWB DUSLAS</string>
+  <string name="tspend">Phob npib</string>
+  <string name="loading">Chaw thau khoom</string>
+  <string name="importtag">Ntshuam lossis</string>
+  <string name="exporttag">Lossis export</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Txhab nyiaj</string>
+  <string name="ok">ua li</string>
+  <string name="total">Tag nrho</string>
+  <string name="sbank">Txhab nyiaj</string>
+  <string name="scounterfeit">Counterfeit</string>
+  <string name="sfractured">Uas puas lawm</string>
+  <string name="errmnt">Yuav tsis nrhiav koj ntshuam directory. Nco ntsoov tias koj thawj cia yog zoo ntsia tau rau hauv cov kev ntaus</string>
+  <string name="errimport">Yuam kev tshwm sim thaum uas ua nrhiav hauv koj ntshuam directory</string>
+  <string name="erremptyimport">Muaj tsis muaj kev CloudCoins nyob rau hauv koj qhov nyiaj tau los sis. Thov muab koj CloudCoins (.jpg los yog .stack) ntaub ntawv los ntawm koj qhov nyiaj tau los sis thiab sim dua. Koj qhov nyiaj tau los sis muaj nyob rau ntawm koj hom kua at:\n\n%1$s</string>
+  <string name="importwarn">Ntshuam yuav import tag nrho CloudCoin ntaub ntawv los ntawm koj ntshuam nplaub tshev. Thov muab tag nrho koj CloudCoin ntaub ntawv (.jpg thiab .stack) rau hauv daim nplaub tshev ntshuam nyob rau ntawm koj hom kua at:\n\n%1$s\n\nWe mus import %2$d file(s). Kais ywm mus ntxiv</string>
+  <string name="movedtobank">Tag nrho mus rau cov sij hawm thaum: %1$d npib</string>
+  <string name="importresults">Soj ntsuam ntshuam:</string>
+  <string name="importresultsauth">Qhabnias thiab hloov mus rau lub txhab nyiaj: </string>
+  <string name="importresultstrash">Counterfeit los yog ua tsis tau tejyam thiab tshem mus kom thoob khib nyiab: </string>
+  <string name="trashnote">Thov nug koj CloudCoin Trash\nof ib tug faj seeb txog tias muaj dabtsi tshwmsim</string>
+  <string name="authstring">Authenticating %1$d ntawm %2$d CloudCoin mus</string>
+  <string name="authfrackedstring">Kho %1$d ntawm %2$d Fracked npib</string>
+  <string name="totaltoexport">Tag nrho rau export: %1$d CloudCoins</string>
+  <string name="globalexporterror">Ntiaj teb no yuam kev. Npib muaj tsis tau exported</string>
+  <string name="exportok">Npib tau tau exported successfully\nYou yuav nrhiav tau rau ntawm koj hom kua at:\n%1$s</string>
+  <string name="exportfailed">Tejyam uas export %1$d npib</string>
+  <string name="fixfracked">Kho fracked npib</string>
+</resources>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">คลาวด์เหรียญ Consortium</string>
+  <string name="app_name0">กระเป๋า ธนาคาร</string>
+  <string name="app_name1">มีการตรวจสอบความถูกต้อง RAIDA</string>
+  <string name="tadd">เพิ่มเหรียญ</string>
+  <string name="tbank">ธนาคาร</string>
+  <string name="tbankinventory">ธนาคารสินค้าคงคลัง</string>
+  <string name="tspend">ใช้เหรียญ</string>
+  <string name="loading">โหลด</string>
+  <string name="importtag">นำเข้าป้าย</string>
+  <string name="exporttag">ส่งออกป้าย</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">ธนาคาร</string>
+  <string name="ok">ตกลง, ได้</string>
+  <string name="total">รวม</string>
+  <string name="sbank">ธนาคาร</string>
+  <string name="scounterfeit">การปลอมแปลง</string>
+  <string name="sfractured">ร้าว</string>
+  <string name="errmnt">สามารถค้นหาไดเรกทอรีการนำเข้า การตรวจสอบให้แน่ใจว่า ที่เก็บข้อมูลหลักถูกติดตั้งลงในอุปกรณ์</string>
+  <string name="errimport">ข้อผิดพลาดเกิดขึ้นขณะทำการค้นหาในไดเรกทอรีการนำเข้า</string>
+  <string name="erremptyimport">CloudCoins ไม่พบในโฟลเดอร์รายได้ของคุณได้ โปรดวางไฟล์ CloudCoins (.jpg หรือ.stack) ในโฟลเดอร์รายได้ของคุณ และลองอีกครั้ง โฟลเดอร์ของคุณรายได้สามารถพบได้ใน at:\n\n%1$s เก็บข้อมูลหลักของคุณ</string>
+  <string name="importwarn">นำเข้าจะนำเข้าแฟ้ม CloudCoin ทั้งหมดจากโฟลเดอร์ของนำเข้า ใส่แฟ้มทั้งหมดของคุณ CloudCoin (.jpg และ.stack) ลงในโฟลเดอร์นำเข้าอยู่ใน at:\n\n%1$s\n\nWe ของคุณเก็บข้อมูลหลักจะนำเข้า %2$d (s) แตะตกลงเพื่อดำเนินต่อ</string>
+  <string name="movedtobank">ทั้งหมดย้ายไปธนาคาร: $d %1 เหรียญ</string>
+  <string name="importresults">ผลของการนำเข้า:</string>
+  <string name="importresultsauth">แท้จริง และย้ายไปยังธนาคาร: </string>
+  <string name="importresultstrash">ปลอม หรือไม่ และย้ายไปยังขยะ: </string>
+  <string name="trashnote">โปรดตรวจสอบคุณ CloudCoin Trash\nof หมายเหตุเกี่ยวกับสิ่งที่เกิดขึ้น</string>
+  <string name="authstring">รับรอง %1$d $d %2 ของไฟล์ CloudCoin</string>
+  <string name="authfrackedstring">แก้ไข %1$d ของ %2 d $ Fracked เหรียญ</string>
+  <string name="totaltoexport">รวมการส่งออก: %1$d CloudCoins</string>
+  <string name="globalexporterror">ข้อผิดพลาดในระดับโลก เหรียญไม่มีการส่งออก</string>
+  <string name="exportok">เหรียญมีการส่งออก successfully\nYou สามารถค้นหาได้ใน at:\n%1$s เก็บข้อมูลหลักของคุณ</string>
+  <string name="exportfailed">ไม่สามารถส่ง %1$ เหรียญ d</string>
+  <string name="fixfracked">แก้ไข fracked เหรียญ</string>
+</resources>

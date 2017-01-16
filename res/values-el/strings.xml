@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Σύννεφο κέρμα κοινοπραξία</string>
+  <string name="app_name0">Τσέπη Τράπεζα</string>
+  <string name="app_name1">Με την ανίχνευση RAIDA γνησιότητας</string>
+  <string name="tadd">Προσθέσετε κέρματα</string>
+  <string name="tbank">Τράπεζα</string>
+  <string name="tbankinventory">Τράπεζα αποθέματος</string>
+  <string name="tspend">Περάσετε κέρματα</string>
+  <string name="loading">Φόρτωση</string>
+  <string name="importtag">Εισαγωγή ετικέτας</string>
+  <string name="exporttag">Εξαγωγή ετικέτα</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Τράπεζα</string>
+  <string name="ok">Ok</string>
+  <string name="total">Σύνολο</string>
+  <string name="sbank">Τράπεζα</string>
+  <string name="scounterfeit">Τα πλαστά προϊόντα</string>
+  <string name="sfractured">Κάταγμα</string>
+  <string name="errmnt">Δεν μπορεί να εντοπίσει καταλόγου εισαγωγής σας. Βεβαιωθείτε ότι το κύριο χώρο αποθήκευσης έχει εγκατασταθεί σωστά στη συσκευή</string>
+  <string name="errimport">Παρουσιάστηκε σφάλμα ενώ κάνετε αναζήτηση στον κατάλογο εισαγωγής σας</string>
+  <string name="erremptyimport">Υπήρχαν δεν CloudCoins που βρέθηκαν στο φάκελο του εισοδήματος σας. Παρακαλώ Βάλτε σας αρχεία (.jpg ή .stack) CloudCoins στο φάκελο του εισοδήματος σας και προσπαθήστε ξανά. Σας φάκελο εισοδήματος μπορούν να βρεθούν στο at:\n\n%1$s κύρια συστήματα αποθήκευσης σας</string>
+  <string name="importwarn">Εισαγωγή θα εισάγει όλα τα CloudCoin αρχεία από το φάκελο εισαγωγής. Παρακαλώ να βάλετε όλες σας CloudCoin αρχείων (.jpg και .stack στο φάκελο εισαγωγής βρίσκεται σε σας αποθήκευσης πρωτεύον at:\n\n%1$s\n\nWe) πρόκειται για την εισαγωγή %2$ δ αρχείο(α). Πατήστε OK για να συνεχίσετε</string>
+  <string name="movedtobank">Σύνολο μετακόμισε στην Τράπεζα: %1$d κέρματα</string>
+  <string name="importresults">Αποτελέσματα εισαγωγής:</string>
+  <string name="importresultsauth">Αυθεντικό και κινημένος προς την Τράπεζα: </string>
+  <string name="importresultstrash">Πλαστά ή απέτυχε και μετακινείται στον κάδο απορριμμάτων: </string>
+  <string name="trashnote">Παρακαλώ ελέγξτε Trash\nof σας CloudCoin μια σημείωση για το τι συνέβη</string>
+  <string name="authstring">Επικυρώνει το d $ %1 %2$ δ CloudCoin αρχεία</string>
+  <string name="authfrackedstring">Τον καθορισμό δ $ %1 %2$ δ Fracked κέρματα</string>
+  <string name="totaltoexport">Συνολικά για την εξαγωγή: %1$d CloudCoins</string>
+  <string name="globalexporterror">Παγκόσμια σφάλμα. Νομίσματα δεν έχουν εξαχθεί</string>
+  <string name="exportok">Κέρματα έχουν εξαχθεί successfully\nYou να τους βρείτε στο σας κύρια συστήματα αποθήκευσης at:\n%1$s</string>
+  <string name="exportfailed">Απέτυχε η εξαγωγή %1$ δ κέρματα</string>
+  <string name="fixfracked">Για τον καθορισμό fracked κέρματα</string>
+</resources>

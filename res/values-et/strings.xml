@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Pilve mündi konsortsiumi</string>
+  <string name="app_name0">Tasku Pank</string>
+  <string name="app_name1">RAIDA autentsuse detektoriga</string>
+  <string name="tadd">Lisada mündid</string>
+  <string name="tbank">Pank</string>
+  <string name="tbankinventory">Panga varude</string>
+  <string name="tspend">Veeta mündid</string>
+  <string name="loading">Laadimine</string>
+  <string name="importtag">Impordi silt</string>
+  <string name="exporttag">Ekspordi Tag</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Pank</string>
+  <string name="ok">Ok</string>
+  <string name="total">Kokku</string>
+  <string name="sbank">Pank</string>
+  <string name="scounterfeit">Võltsitud</string>
+  <string name="sfractured">Mõranenud</string>
+  <string name="errmnt">Ei leia kataloogi Import. Et esmane ladustamine on õigesti seadmesse installitud</string>
+  <string name="errimport">Otsi kataloogi impordi tehes ilmnes tõrge</string>
+  <string name="erremptyimport">Ei olnud mingit tulu kaustas CloudCoins. Palun panna kausta tulu CloudCoins (.jpg või .stack) faile ja proovige uuesti. Tulu kausta leiate esmased at:\n\n%1$s</string>
+  <string name="importwarn">Impordi impordib kõik CloudCoin failid kausta importida. Palun panna kõik CloudCoin failid (.jpg ja .stack) importimine kausta asub teie esmased at:\n\n%1$s\n\nWe saab importida %2$d fail(ID). Koputage nuppu OK jätkata</string>
+  <string name="movedtobank">Pank kolis kokku: %1$d mündid</string>
+  <string name="importresults">Impordi tulemustest:</string>
+  <string name="importresultsauth">Autentne ja teisaldatud panka: </string>
+  <string name="importresultstrash">Võltsitud või nurjus ning teisaldatud prügikasti: </string>
+  <string name="trashnote">Palun kontrollige oma CloudCoin Trash\nof juhtunu üles</string>
+  <string name="authstring">%1 %2$d $d manifestidest CloudCoin faile</string>
+  <string name="authfrackedstring">Millega määratakse kindlaks %1 %2$d $d Fracked mündid</string>
+  <string name="totaltoexport">Eksport kokku: %1$d CloudCoins</string>
+  <string name="globalexporterror">Üldise veamäära. Mündid ei eksporditud</string>
+  <string name="exportok">Mündid on eksporditud successfully\nYou ei võida neid kõiki oma esmased at:\n%1$s</string>
+  <string name="exportfailed">%1$ eksportimine nurjus d mündid</string>
+  <string name="fixfracked">Millega määratakse kindlaks fracked mündid</string>
+</resources>

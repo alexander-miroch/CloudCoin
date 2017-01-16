@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Đám mây xu Consortium</string>
+  <string name="app_name0">Túi ngân hàng</string>
+  <string name="app_name1">Với RAIDA xác thực phát hiện</string>
+  <string name="tadd">Thêm tiền xu</string>
+  <string name="tbank">Ngân hàng</string>
+  <string name="tbankinventory">Ngân hàng tồn kho</string>
+  <string name="tspend">Chi tiêu tiền xu</string>
+  <string name="loading">Đang nạp</string>
+  <string name="importtag">Nhập từ khóa</string>
+  <string name="exporttag">Xuất khẩu từ khóa</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Ngân hàng</string>
+  <string name="ok">Ok</string>
+  <string name="total">Tổng cộng</string>
+  <string name="sbank">Ngân hàng</string>
+  <string name="scounterfeit">Giả mạo</string>
+  <string name="sfractured">Bị gãy</string>
+  <string name="errmnt">Không thể định vị thư mục nhập khẩu của bạn. Đảm bảo rằng lưu trữ chính của bạn được cài đặt đúng vào thiết bị</string>
+  <string name="errimport">Lỗi xuất hiện khi thực hiện tìm kiếm trong thư mục nhập khẩu của bạn</string>
+  <string name="erremptyimport">Đã có không có CloudCoins tìm thấy trong thư mục thu nhập của bạn. Xin vui lòng đặt file của bạn CloudCoins (.jpg hoặc .stack) trong thư mục thu nhập của bạn và thử lại. Cặp của bạn thu nhập có thể được tìm thấy trên at:\n\n%1$s lí chính của bạn</string>
+  <string name="importwarn">Nhập khẩu sẽ nhập khẩu tất cả CloudCoin tập tin từ thư mục nhập khẩu của bạn. Xin vui lòng đặt tất cả CloudCoin tập tin của bạn (.jpg và .stack) vào thư mục nhập khẩu nằm trên at:\n\n%1$s\n\nWe lí chính của bạn sẽ chuyển nhập %2$d (các) tệp. Tap OK để tiếp tục</string>
+  <string name="movedtobank">Tổng số chuyển sang ngân hàng: %1$d xu</string>
+  <string name="importresults">Kết quả nhập khẩu:</string>
+  <string name="importresultsauth">Xác thực và di chuyển để ngân hàng: </string>
+  <string name="importresultstrash">Giả mạo hoặc không thành công và di chuyển vào thùng rác: </string>
+  <string name="trashnote">Vui lòng kiểm tra của bạn CloudCoin Trash\nof một lưu ý về những gì đã xảy ra</string>
+  <string name="authstring">Cá %1$d %2$d CloudCoin tập tin</string>
+  <string name="authfrackedstring">Sửa chữa %1$d %2$d Fracked tiền xu</string>
+  <string name="totaltoexport">Tất cả để xuất khẩu: %1$d CloudCoins</string>
+  <string name="globalexporterror">Lỗi toàn cầu. Đồng tiền đã không được xuất khẩu</string>
+  <string name="exportok">Tiền xu đã được xuất khẩu successfully\nYou có thể tìm thấy chúng trên của bạn lưu trữ chính at:\n%1$s</string>
+  <string name="exportfailed">Thất bại trong việc xuất khẩu %1$d tiền xu</string>
+  <string name="fixfracked">Sửa chữa đồng tiền fracked</string>
+</resources>

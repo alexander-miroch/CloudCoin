@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Хмара монета консорціуму</string>
+  <string name="app_name0">Кишеньковий банку</string>
+  <string name="app_name1">З RAIDA автентичності виявлення</string>
+  <string name="tadd">Додати монети</string>
+  <string name="tbank">Банк</string>
+  <string name="tbankinventory">Банк інвентаризації</string>
+  <string name="tspend">Витрачати монети</string>
+  <string name="loading">Завантаження</string>
+  <string name="importtag">Імпортування тегу</string>
+  <string name="exporttag">Експорт тег</string>
+  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="bank">Банк</string>
+  <string name="ok">Гаразд</string>
+  <string name="total">Всього</string>
+  <string name="sbank">Банк</string>
+  <string name="scounterfeit">Фальсифікація</string>
+  <string name="sfractured">Перелом</string>
+  <string name="errmnt">Не можете знайти вашого каталогу імпортування. Переконайтеся, що основного сховища правильно встановлений в пристрій</string>
+  <string name="errimport">Сталася помилка під час виконання пошуку в каталозі імпорту</string>
+  <string name="erremptyimport">Не було ніяких CloudCoins, знайдені в папці доходу. Поставити CloudCoins (. jpg або .stack) файли в папці доходів та повторіть спробу. Ваш дохід папки можуть бути знайдені на первинний зберігання at:\n\n%1$s</string>
+  <string name="importwarn">Імпорту буде імпортувати всі CloudCoin файли з папки імпорту. Будь ласка, помістіть всі ваші CloudCoin файли (. jpg та .stack) до імпорту папки, розташовані на основного сховища at:\n\n%1$s\n\nWe будете імпортувати %2$d файл (и). Натисніть кнопку ОК, щоб продовжити</string>
+  <string name="movedtobank">Цілому, переїхав до банку: %1$d монети</string>
+  <string name="importresults">Результати імпорту:</string>
+  <string name="importresultsauth">Автентичний і вирушили в банк: </string>
+  <string name="importresultstrash">Підробні або не вдалося і переїхав до «смітника»: </string>
+  <string name="trashnote">Будь ласка, перевірте CloudCoin Trash\nof записку про те, що сталося</string>
+  <string name="authstring">Автентифікації %1$d %2$d CloudCoin файли</string>
+  <string name="authfrackedstring">Фіксація %1$d %2$d Fracked монети</string>
+  <string name="totaltoexport">Загальна експортувати: %1$d CloudCoins</string>
+  <string name="globalexporterror">Глобальна помилка. Монети не експортовано</string>
+  <string name="exportok">Монети було експортовано successfully\nYou можна знайти їх на ваш основний зберігання at:\n%1$s</string>
+  <string name="exportfailed">Не вдалося експортувати %1$d монети</string>
+  <string name="fixfracked">Фіксація fracked монети</string>
+</resources>
