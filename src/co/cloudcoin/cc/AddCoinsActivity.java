@@ -63,6 +63,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 public class AddCoinsActivity extends Activity implements OnClickListener {
 
@@ -153,11 +155,16 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 			mainText.setText(R.string.errmnt);
 			return;
 		}
+		if (!isOnline()) {
+			mainText.setText(R.string.errconnection);
+			return;
+		}
 		
 		if (!bank.examineImportDir()) {
 			mainText.setText(R.string.errimport);
 			return;
 		}
+
 
 		String result;
 		totalIncomeLength = bank.getLoadedIncomeLength();
@@ -272,6 +279,16 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 		}
 	}
 
+	public boolean isOnline() {
+		ConnectivityManager cm =
+			(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+
+		return netInfo != null && netInfo.isConnectedOrConnecting();
+	}
+
+
+
 	class ImportTask extends AsyncTask<String, Integer, String> {
 		protected String doInBackground(String... params) {
 
@@ -294,7 +311,6 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 
 			return "OK";
 		}
-
 
 		protected void onPostExecute(String result) {
 			mainText.setText(getImportResultString());
