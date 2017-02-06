@@ -38,6 +38,9 @@ import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class SpendCoinsActivity extends Activity implements NumberPicker.OnValueChangeListener, OnClickListener {
 
 
@@ -62,7 +65,7 @@ public class SpendCoinsActivity extends Activity implements NumberPicker.OnValue
 	TextView[] tvs;
 
 	RadioGroup rg;
-	Button button;
+	Button button, emailButton;
 
 	public void onCreate(Bundle savedInstanceState) {
 		int i, resId;
@@ -95,6 +98,8 @@ public class SpendCoinsActivity extends Activity implements NumberPicker.OnValue
 		button = (Button) findViewById(R.id.button);
 		button.setOnClickListener(this);		
 
+		emailButton = (Button) findViewById(R.id.email);
+		emailButton.setOnClickListener(this);		
 
 		
 	}
@@ -111,6 +116,8 @@ public class SpendCoinsActivity extends Activity implements NumberPicker.OnValue
 		super.onResume();
 
 		lastScreen = false;
+
+		emailButton.setVisibility(View.GONE);
 
 		bank = new Bank(this);
 		bankCoins = bank.countCoins("bank");
@@ -199,6 +206,7 @@ public class SpendCoinsActivity extends Activity implements NumberPicker.OnValue
 		}
 
 		hideScreen();
+		emailButton.setVisibility(View.VISIBLE);
 		mtv.setText(msg);
 	}
 
@@ -210,10 +218,24 @@ public class SpendCoinsActivity extends Activity implements NumberPicker.OnValue
 		parent.removeView(et);
 	}
 
+	public void doSendEmail() {
+		ArrayList<String> filenames;
+
+		Log.v("EE","EXPORT");
+
+		filenames = bank.getExportedFilenames();
+	for (String file : filenames) {
+		Log.v("ZZZ", "f="+file);
+	}
+
+
+		EmailSender email = new EmailSender(this, "", "Send CloudCoins");
+                email.openDialogWithAttachments(filenames);
+	}
+
 	public void onClick(View v) {
 		int id = v.getId();
 		String exportTag = "";
-
 
 		switch (id) {
 			case R.id.button:
@@ -235,8 +257,26 @@ public class SpendCoinsActivity extends Activity implements NumberPicker.OnValue
 				}
 
 				doExport(exportTag);
+				break;
+
+			case R.id.email:
+				doSendEmail();
+				break;
 		}
 	}
 
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		// no need to check anything, because EMAIL intent will not return anything useful
+		
+		
+		Log.v(TAG, "RESULT=" + requestCode);
+		Log.v(TAG, "RESULT1=" + resultCode);
+
+
+		bank.moveExportedToSent();
+		finish();
+	}
 }
 

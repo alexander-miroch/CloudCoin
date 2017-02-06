@@ -127,6 +127,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		bt2.setOnClickListener(this);
 
 		mSettings = PreferenceManager.getDefaultSharedPreferences(this);
+
+		((TextView) findViewById(R.id.tversion)).setText(version);
 	}
 
 
@@ -159,6 +161,9 @@ public class MainActivity extends Activity implements OnClickListener {
 
 		switch (id) {
 			case R.id.iadd:
+
+		//		EmailSender e = new EmailSender(this, "alexander.miroch@gmail.com", "subject");
+		//		e.openDialog();
 				if (!asyncFinished) 
 					return;
 

@@ -19,6 +19,7 @@
 	<string name="sbank">Bank</string>
 	<string name="scounterfeit">Counterfeit</string>
 	<string name="sfractured">Fractured</string>
+	<string name="email">Email</string>
 
 
 	<string name="errmnt">Can not locate your Import directory. Make sure that your primary storage is properly installed into the device</string>
@@ -41,4 +42,13 @@
 	<string name="exportfailed">Failed to export %1$d coins</string>
 	<string name="fixfracked">Fixing fracked coins</string>
 	<string name="errconnection">Network is unavailable. Import is impossible. Please check your internet connection</string>
+	<string name="serialnumber">Serial Number</string>
+	<string name="importresult">Import Result</string>
+	<string name="paymentreceived">Payment Received on</string>
+	<string name="totalreceived">Total CloudCoins received</string>
+	<string name="changefolder">Change Folder</string>
+	<string name="select">Select</string>
+	<string name="currentdirectory">Current Directory</string>
+	<string name="cantread">Directory can not be read</string>
+	<string name="emptydir">No folders</string>
 </resources>

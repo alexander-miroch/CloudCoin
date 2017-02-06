@@ -33,5 +33,15 @@
   <string name="exportok">Монеты были экспортированы успешно\nВы их можете найти на основном хранилище:\n%1$s</string>
   <string name="exportfailed">Не удалось экспортировать %1$d монеты</string>
   <string name="fixfracked">Правка fracked монет</string>
- <string name="errconnection">Сеть недоступна. Импорт невозможен. Пожалуйста, проверьте доступ в интернет</string>
+  <string name="errconnection">Сеть недоступна. Импорт невозможен. Пожалуйста, проверьте доступ в интернет</string>
+  <string name="serialnumber">Серийный номер</string>
+        <string name="importresult">Результат импорта</string>
+        <string name="paymentreceived">Payment Received on</string>
+        <string name="totalreceived">Total CloudCoins received</string>
+        <string name="changefolder">Изменить папку</string>
+        <string name="select">Выбрать</string>
+        <string name="currentdirectory">Текущая папка</string>
+        <string name="cantread">Невоможно получить доступ</string>
+        <string name="emptydir">Нет директорий</string>
+
 </resources>

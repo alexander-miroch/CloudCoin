@@ -42,6 +42,7 @@ public class Bank {
 	static String EXPORT_DIR_NAME = "Export";
 	static String IMPORTED_DIR_NAME = "Imported";
 	static String TRASH_DIR_NAME = "Trash";
+	static String SENT_DIR_NAME = "Sent";
 	static String BANK_DIR_NAME = "Bank";
 	static String TAG = "CLOUDCOIN";
 	static int CONNECTION_TIMEOUT = 5000; // ms
@@ -58,6 +59,7 @@ public class Bank {
 	private String importedDirPath;
 	private String trashDirPath;
 	private String bankDirPath;
+	private String sentDirPath;
 
 	private Context ctx;
 
@@ -70,6 +72,11 @@ public class Bank {
 
 	private int[] importStats;
 
+	String[][] report;
+	int reportIdx;
+
+	private ArrayList<String> exportedFilenames; 
+
 	public Bank(Context ctx) {
 
 		this.importDirPath = null;
@@ -77,9 +84,10 @@ public class Bank {
 
 		this.raida = new RAIDA(ctx);
 		this.resetImportStats();
-//		this.findImportDir();
 		this.createDirectories();
 		this.ctx = ctx;
+
+		this.exportedFilenames = new ArrayList<String>();
 	}
 
 	public void resetImportStats() {
@@ -89,20 +97,41 @@ public class Bank {
 			importStats[i] = 0;
 	}
 
+	public void setImportDirPath(String importDirPath) {
+		this.importDirPath = importDirPath;
+		this.importedDirPath = importDirPath + "/" + IMPORTED_DIR_NAME;
+
+		try {  
+			File idPathFile = new File(this.importedDirPath);
+                        idPathFile.mkdirs();
+                } catch (Exception e) {
+                        Log.e(TAG, "Can not create Import/Imported directory");
+                }
+
+	}
+
 	public String getImportDirPath() {
 		return this.importDirPath;
+	}
+
+	public String[][] getReport() {
+		return this.report;
 	}
 
 	public String getRelativeExportDirPath() {
 		return DIR_BASE + "/" + EXPORT_DIR_NAME;
 
 	}
-	public String getRelativeImportDirPath() {
+	public String getDefaultRelativeImportDirPath() {
 		return DIR_BASE + "/" + IMPORT_DIR_NAME;
 	}
 
 	public String getBankDirPath() {
 		return this.bankDirPath;
+	}
+
+	public ArrayList<String> getExportedFilenames() {
+		return this.exportedFilenames;
 	}
 
 	private String createDirectory(File path, String dirName) {
@@ -137,6 +166,7 @@ public class Bank {
 		importDirPath = createDirectory(path, IMPORT_DIR_NAME);
 		exportDirPath = createDirectory(path, EXPORT_DIR_NAME);
 		bankDirPath = createDirectory(path, BANK_DIR_NAME);
+		sentDirPath = createDirectory(path, SENT_DIR_NAME);
 
 		importedDirPath = createDirectory(path, IMPORT_DIR_NAME + "/" + IMPORTED_DIR_NAME);
 		trashDirPath = createDirectory(path, IMPORT_DIR_NAME + "/" + TRASH_DIR_NAME);
@@ -228,6 +258,36 @@ public class Bank {
 
 		if (iFile != null)
 			moveFileToTrash(fileName, error);
+
+		addCoinToReport(null, "failed");
+	}
+
+	public void addCoinToReport(CloudCoin cc, String status) {
+		String serial;
+		String denom;
+
+		if (this.reportIdx >= this.report.length)
+			return;
+
+		if (cc == null)
+			return;
+
+		this.report[this.reportIdx] = new String[3];
+
+		serial = (cc == null) ? "?" : Integer.toString(cc.sn);
+		denom = (cc == null) ? "?" : Integer.toString(cc.getDenomination());
+
+		this.report[this.reportIdx][0] = serial;
+		this.report[this.reportIdx][1] = status;
+		this.report[this.reportIdx][2] = denom;
+
+		this.reportIdx++;
+		
+	} 
+
+	public void initReport() {
+		this.report = new String[this.getLoadedIncomeLength()][];
+		this.reportIdx = 0;
 	}
 
 	public void importLoadedItem(int idx) {
@@ -353,6 +413,27 @@ public class Bank {
 		return;
 	}
 
+	public void moveExportedToSent() {
+		File fsource, ftarget;
+		String target;
+
+		ArrayList<String> filenames = getExportedFilenames();
+
+		for (String fileName : filenames) {
+			try {
+				fsource = new File(fileName);
+			
+				target = sentDirPath + "/" + fsource.getName();
+				ftarget = new File(target);
+				fsource.renameTo(ftarget);
+			} catch (Exception e) {
+				// Non critical, dont throw and anything and interrupt the process.
+				Log.e(TAG, "Failed to move to Sent " + fileName);
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public void moveFileToImported(String fileName) {
 		File fsource, ftarget;
 		String target;
@@ -385,15 +466,6 @@ public class Bank {
 		}
 	}
 
-	
-/*
-	private String getOneJSON(String jsonData) {
-		int indexOfFirstSquareBracket = CloudCoin.ordinalIndexOf(jsonData, "[", 0);
-		int indexOfLastSquareBracket = CloudCoin.ordinalIndexOf(jsonData, "]", 0);
-
-		return jsonData.substring(indexOfFirstSquareBracket, indexOfLastSquareBracket);
-	}
-*/
 	public int[] exportJson(int[] values, String tag) {
 		int[] failed;
 		CloudCoin cc;
@@ -477,12 +549,6 @@ public class Bank {
 				Log.v(TAG, "Filename " + fileName + " already exists");
 				failed[0] = -1;
 				return failed;
-		
-				/*
-				Random rnd = new Random();
-				int tagrand = rnd.nextInt(999);
-				fileName = exportDirPath + "/" + totalSaved + ".CloudCoins." + tag + tagrand + ".stack";
-				*/
 			}
 
                         writer = new BufferedWriter(new FileWriter(fileName));
@@ -502,6 +568,8 @@ public class Bank {
                         }
                 }
 		
+		exportedFilenames.add(fileName);
+
 		for (String ctd : coinsToDelete) {
 			try {
 				deleteCoin(ctd);
@@ -550,7 +618,10 @@ public class Bank {
 						fileToExport.fileTag = tag;
 						cc = new CloudCoin(fileToExport);
 						cc.setJpeg(bankDirPath, ctx);
-						cc.writeJpeg(exportDirPath);
+
+						String fileName = cc.writeJpeg(exportDirPath);
+						exportedFilenames.add(fileName);
+
 						deleteCoin(fileToExport.fileName);
 						// delete
 					} catch (Exception e) {
@@ -580,12 +651,15 @@ public class Bank {
 				cc = new CloudCoin(incomeFiles.get(i));	
 				raida.detectCoin(cc);
 
+				Log.v(TAG, "CCCC="+cc.sn);
+
 				if (cc.extension.equals("bank")) {
 					cc.saveCoin(bankDirPath, cc.extension);
 
 					importStats[STAT_AUTHENTIC]++;
 					importStats[STAT_VALUE_MOVED_TO_BANK] += cc.getDenomination();
 					moveFileToImported(importedfileName);
+					addCoinToReport(cc, "authentic");
 				} else if (cc.extension.equals("fracked")) {
 					cc.saveCoin(bankDirPath, cc.extension);
 
@@ -593,13 +667,16 @@ public class Bank {
 					importStats[STAT_AUTHENTIC]++;
 					importStats[STAT_VALUE_MOVED_TO_BANK] += cc.getDenomination();
 					moveFileToImported(importedfileName);
+					addCoinToReport(cc, "fracked");
 				} else if (cc.extension.equals("counterfeit")) {
 					//importStats[STAT_COUNTERFEIT]++;
 					importStats[STAT_FAILED]++;
 					moveFileToTrash(importedfileName, "The coin is counterfeit. Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
+					addCoinToReport(cc, "counterfeit");
 				} else {
 					importStats[STAT_FAILED]++;
 					moveFileToTrash(importedfileName, "RAIDA failed to detect the coin: Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
+					addCoinToReport(cc, "failed");
 				}
 
 				deleteCoin(incomeFiles.get(i).fileName);

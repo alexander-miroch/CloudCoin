@@ -348,7 +348,7 @@ class CloudCoin {
 		this.jpeg = returnBytes;
 	}
 		
-	public void writeJpeg(String path) throws Exception {
+	public String writeJpeg(String path) throws Exception {
 		Log.v(TAG, "writejpeg " + path);
 
 		String fileName = path + "/" + this.fileName + "jpg";
@@ -368,6 +368,8 @@ class CloudCoin {
 			e.printStackTrace();
 			throw new Exception();
 		}
+
+		return fileName;
 	}
 
 	public void saveCoin(String path, String extension) throws Exception {

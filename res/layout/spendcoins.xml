@@ -173,6 +173,17 @@
                 android:textSize="16dp"
         />
 
+	<LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/bwrapper"
+                android:background="@android:color/transparent"
+        >
+
+
 	<Button
                 android:layout_width="128dp"
                 android:layout_height="wrap_content"
@@ -180,8 +191,15 @@
                 android:text="@string/ok"
                 android:id="@+id/button"
         />
+	<Button
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/email"
+                android:id="@+id/email"
+        />
 
-
+	</LinearLayout>
 
 
 	</LinearLayout>
