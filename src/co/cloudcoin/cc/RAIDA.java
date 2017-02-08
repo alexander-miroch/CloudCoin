@@ -154,6 +154,7 @@ public class RAIDA {
 			final int iFinal = i;
 			Future f = service.submit(new Runnable() {
 				public void run() {
+					Log.v(TAG, "run agent=" + triadFinal[iFinal] + " i="+iFinal+ " a="+ansFinal[iFinal]);
 					returnTickets[iFinal] = agents[triadFinal[iFinal]].get_ticket(nnFinal, snFinal, ansFinal[iFinal], denominationFinal);
 				}
 			});
@@ -187,13 +188,17 @@ public class RAIDA {
 				FixitHelper fixer = new FixitHelper(guid_id);
 				int corner = 1;
 
+				Log.v(TAG, "Iteration " + guid_id + " fc=" + fixer.currentTriad[0] + " fc1= " + fixer.currentTriad[1] + " fc2= " + fixer.currentTriad[2]);
+
+				while (!fixer.finnished) {
 				String[] trustedServerAns = new String[] {
 					brokeCoin.ans[fixer.currentTriad[0]],
 					brokeCoin.ans[fixer.currentTriad[1]],
 					brokeCoin.ans[fixer.currentTriad[2]]
 				};
 
-				while (!fixer.finnished) {
+				Log.v(TAG, "ans0="+trustedServerAns[0] + " ans1="+trustedServerAns[1] + " ans2="+trustedServerAns[2]);
+
 					String fix_result = "";
 					String[] tickets = getTickets(fixer.currentTriad, trustedServerAns, brokeCoin.nn, brokeCoin.sn, brokeCoin.getDenomination());
 
@@ -223,7 +228,6 @@ public class RAIDA {
 		brokeCoin.calculateHP();
         	brokeCoin.calcExpirationDate();
 	        brokeCoin.gradeStatus();
-
 	}
 
 	public void detectCoin(CloudCoin ccIn) {

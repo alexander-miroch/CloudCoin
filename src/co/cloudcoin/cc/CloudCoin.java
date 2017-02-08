@@ -528,6 +528,7 @@ class CloudCoin {
 				internalAoid += "p";
 			} else if (pastStatus[i] == PAST_STATUS_FAIL) {
 				internalAoid += "f";
+				Log.v(TAG, "Failed " + i);
 				failed++;
 			} else {
 				internalAoid += "u";

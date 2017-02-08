@@ -370,7 +370,8 @@ public class Bank {
 				cc.saveCoin(bankDirPath, cc.extension);
 				deleteCoin(cc.fullFileName);
 			} else if (cc.extension.equals("fracked")) {
-				// do nothing
+				deleteCoin(cc.fullFileName);
+				cc.saveCoin(bankDirPath, cc.extension);
 			} else if (cc.extension.equals("counterfeit")) {
 				moveFileToTrash(cc.fullFileName, "The coin is counterfeit (after fracked). Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
 			} else {
