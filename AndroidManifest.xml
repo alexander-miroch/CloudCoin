@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
       package="co.cloudcoin.cc"
       android:installLocation="internalOnly"	
-      android:versionCode="31"
-      android:versionName="1.1.41">
+      android:versionCode="33"
+      android:versionName="1.1.43">
 
 <supports-screens
 	android:smallScreens="true"

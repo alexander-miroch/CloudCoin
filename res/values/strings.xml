@@ -46,9 +46,12 @@
 	<string name="importresult">Import Result</string>
 	<string name="paymentreceived">Payment Received on</string>
 	<string name="totalreceived">Total CloudCoins received</string>
-	<string name="changefolder">Change Folder</string>
+	<string name="changefolder">Pick files</string>
 	<string name="select">Select</string>
 	<string name="currentdirectory">Current Directory</string>
 	<string name="cantread">Directory can not be read</string>
 	<string name="emptydir">No folders</string>
+	<string name="filespicked">Files Picked</string>
+	<string name="toomanyfiles">Too many files</string>
+	<string name="importfiles">We are going to import %1$d file(s)</string>
 </resources>

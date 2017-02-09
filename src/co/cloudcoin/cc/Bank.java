@@ -215,6 +215,30 @@ public class Bank {
 		return fileArray;
 	}
 	
+	public void loadIncomeFromFiles(ArrayList<String> files) {
+		String extension;
+		int fileType;
+
+		for (String file : files) {
+			File inFile = new File(file);
+			try {  
+				if (inFile.isFile()) {
+					extension = getFileExtension(inFile.getName()).toLowerCase();
+
+					if (extension.equals("jpeg") || extension.equals("jpg")) {
+                                                fileType = IncomeFile.TYPE_JPEG;
+                                        } else {
+                                                fileType = IncomeFile.TYPE_STACK;
+                                        }
+
+                                        loadedIncome.add(new IncomeFile(inFile.getAbsolutePath(), fileType));
+				}
+			} catch (Exception e) {
+	                        Log.e(TAG, "Failed to read file " + file);
+			}
+		}
+	}
+
 	public boolean examineImportDir() {
 		String extension;
 		int fileType;

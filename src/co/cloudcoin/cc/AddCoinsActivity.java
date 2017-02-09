@@ -69,6 +69,7 @@ import android.net.NetworkInfo;
 
 import java.util.Date;
 import java.util.Calendar;
+import java.util.ArrayList;
 
 import android.content.SharedPreferences;
 
@@ -82,6 +83,7 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 	static int STATE_FIX = 3;
 	static int STATE_DONE = 4;
 
+	ArrayList<String> files;
 	int state;
 
 	Typeface tf;
@@ -133,6 +135,8 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 		ib.setBackgroundResource(R.drawable.ic_chooser);
 		ib.setOnClickListener(this);		
 
+		this.files = null;
+
 		mHandler = new Handler(Looper.getMainLooper()) {
 			public void handleMessage(Message inputMessage) {
 				int what = inputMessage.what;
@@ -166,6 +170,8 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 	public void onResume() {
 		super.onResume();
 		int totalIncomeLength;
+		String result;
+		String importDir = "";
 
 		state = STATE_INIT;
 
@@ -175,43 +181,47 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 		emailButton.setVisibility(View.GONE);
 		hideControls();
 
-		bank = new Bank(this);
-
-		String savedImportDir = mSettings.getString(APP_PREFERENCES_IMPORTDIR, "");	
-		String importDir = "";
-
-		if (savedImportDir == "") {
-			importDir = bank.getDefaultRelativeImportDirPath();
-			if (importDir == null) {
-				mainText.setText(R.string.errmnt);
-				return;
-			}
-		} else {
-			importDir = savedImportDir;
-			bank.setImportDirPath(importDir);
-		}
-
 		if (!isOnline()) {
 			mainText.setText(R.string.errconnection);
 			return;
 		}
+
+		bank = new Bank(this);
+
+		if (this.files != null && this.files.size() > 0) {
+			bank.loadIncomeFromFiles(this.files);
+		} else {
+			String savedImportDir = mSettings.getString(APP_PREFERENCES_IMPORTDIR, "");	
+
+			if (savedImportDir == "") {
+				importDir = bank.getDefaultRelativeImportDirPath();
+				if (importDir == null) {
+					mainText.setText(R.string.errmnt);
+					return;
+				}
+			} else {
+				importDir = savedImportDir;
+				bank.setImportDirPath(importDir);
+			}
+
 		
-		if (!bank.examineImportDir()) {
-			mainText.setText(R.string.errimport);
-			return;
+			if (!bank.examineImportDir()) {
+				mainText.setText(R.string.errimport);
+				return;
+			}
 		}
 
-
-		String result;
 		totalIncomeLength = bank.getLoadedIncomeLength();
 		if (totalIncomeLength == 0) {
 			result = String.format(getResources().getString(R.string.erremptyimport), importDir);
-
 			mainText.setText(result); 
 			return;
 		}
 
-		result = String.format(getResources().getString(R.string.importwarn), importDir, totalIncomeLength);
+		if (this.files != null && this.files.size() > 0) {
+			result = String.format(getResources().getString(R.string.importfiles), totalIncomeLength);
+		} else {
+			result = String.format(getResources().getString(R.string.importwarn), importDir, totalIncomeLength);		}
 		mainText.setText(result);
 
 		showControls();
@@ -352,21 +362,22 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
 		if (requestCode != REQUEST_CODE_IMPORT_DIR) 
 			return;
 
 		if(resultCode == RESULT_OK) {
-        		String dir = data.getStringExtra(DirPickerActivity.returnParameter);
+			this.files = data.getStringArrayListExtra(DirPickerActivity.returnParameter);
 			
-			Editor editorObject = mSettings.edit();
+//			Editor editorObject = mSettings.edit();
 
-			editorObject.putString(APP_PREFERENCES_IMPORTDIR, dir);
-			editorObject.commit();
+//			editorObject.putString(APP_PREFERENCES_IMPORTDIR, dir);
+//			editorObject.commit();
         	} else {
 			showError("Internal error");
 		}
 	
-		super.onActivityResult(requestCode, resultCode, data);
 	}
 
 	public void onClick(View v) {

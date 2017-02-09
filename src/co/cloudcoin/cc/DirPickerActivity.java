@@ -23,12 +23,11 @@ import android.widget.*;
 public class DirPickerActivity extends Activity {
 	// Intent parameters names constants
 	public static final String returnParameter = "directoryPathRet";
-	public static final String showCannotReadParameter = "ua.com.vassiliev.androidfilebrowser.showCannotRead";
-	public static final String filterExtension = "ua.com.vassiliev.androidfilebrowser.filterExtension";
 
 	// Stores names of traversed directories
 	ArrayList<String> pathDirsList = new ArrayList<String>();
 
+	ArrayList<String> chosenFiles = new ArrayList<String>();
 
 	static String TAG = "CLOUDCOIN";
 
@@ -43,6 +42,8 @@ public class DirPickerActivity extends Activity {
 	private boolean directoryShownIsEmpty = false;
 
 	private String filterFileExtension = null;
+
+	private static final int MAX_FILES = 100;
 
 	// Action constants
 	private static final int SELECT_DIRECTORY = 1;
@@ -131,8 +132,12 @@ public class DirPickerActivity extends Activity {
 			((Button) this.findViewById(R.id.upDirectoryButton)).setEnabled(true);
 
 		String cd = getResources().getString(R.string.currentdirectory);
+		String fp = getResources().getString(R.string.filespicked);
 
 		((TextView) this.findViewById(R.id.currentdir)).setText(cd + ": " + curDirString);
+
+		((TextView) this.findViewById(R.id.filespicked)).setText(fp + ": " + chosenFiles.size());
+
 	}
 
 	private void showToast(String message) {
@@ -160,14 +165,56 @@ public class DirPickerActivity extends Activity {
 					} else {
 						showToast(getResources().getString(R.string.cantread));
 					}
+				} else {
+					if (sel.canRead()) {
+						int rv = pickPath(path + "/" + chosenFile);
+
+						if (rv == -1) {
+							showToast(getResources().getString(R.string.toomanyfiles));
+							return;
+						}
+
+						if (rv == 0) {
+							view.setBackgroundColor(Color.LTGRAY);
+						} else {
+							view.setBackgroundColor(Color.CYAN);
+						}
+
+						updateCurrentDirectoryTextView();
+					} else {
+						showToast(getResources().getString(R.string.cantread));
+					}
 				}
 			}
 		});
 	}
 
+	private int pickPath(String path) {
+		boolean toDelete = false;
+		for (String file : chosenFiles) {
+			if (file.equals(path)) {
+				toDelete = true;
+				break;
+			}
+		}
+
+		if (toDelete) {
+			chosenFiles.remove(path);
+			return 0;
+		}
+
+		if (chosenFiles.size() >= MAX_FILES) 
+			return -1;
+			
+
+		chosenFiles.add(path);
+		
+		return 1;
+	}
+
 	private void returnDirectoryFinishActivity() {
 		Intent retIntent = new Intent();
-		retIntent.putExtra(returnParameter, path.getAbsolutePath());
+		retIntent.putStringArrayListExtra(returnParameter, chosenFiles);
 		this.setResult(RESULT_OK, retIntent);
 		this.finish();
 	}
@@ -186,7 +233,7 @@ public class DirPickerActivity extends Activity {
 					File sel = new File(dir, filename);
 					boolean showReadableFile = showHiddenFilesAndDirs || sel.canRead();
 
-					return (sel.isDirectory() && showReadableFile);
+					return ((sel.isDirectory() || sel.isFile()) && showReadableFile);
 				}
 			};
 
@@ -197,13 +244,17 @@ public class DirPickerActivity extends Activity {
 				int drawableID;
 				boolean canRead = sel.canRead();
 
-				if (!sel.isDirectory()) 	
-					continue;
+				//if (!sel.isDirectory()) 	
+				//	continue;
 
-				if (canRead) {
-					drawableID = R.drawable.folder_icon;
+				if (sel.isDirectory()) {
+					if (canRead) {
+						drawableID = R.drawable.folder_icon;
+					} else {
+						drawableID = R.drawable.folder_icon_light;
+					}
 				} else {
-					drawableID = R.drawable.folder_icon_light;
+					drawableID = R.drawable.file_icon;	
 				}
 					
 				fileList.add(i, new Item(fList[i], drawableID, canRead));

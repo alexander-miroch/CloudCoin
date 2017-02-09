@@ -180,11 +180,15 @@ public class RAIDA {
 	}
 
 	public void fixCoin(CloudCoin brokeCoin) {
+		boolean[] raidaIsBroke = new boolean[TOTAL_RAIDA_COUNT];
+
+		for (int guid_id = 0; guid_id < TOTAL_RAIDA_COUNT; guid_id++)
+			raidaIsBroke[guid_id] = false;
 
 		brokeCoin.setAnsToPans();
 
 		for (int guid_id = 0; guid_id < TOTAL_RAIDA_COUNT; guid_id++) { 
-			if (brokeCoin.pastStatus[guid_id] == CloudCoin.PAST_STATUS_FAIL) { 
+			if (brokeCoin.pastStatus[guid_id] == CloudCoin.PAST_STATUS_FAIL && !raidaIsBroke[guid_id]) { 
 				FixitHelper fixer = new FixitHelper(guid_id);
 				int corner = 1;
 
@@ -203,8 +207,12 @@ public class RAIDA {
 					String[] tickets = getTickets(fixer.currentTriad, trustedServerAns, brokeCoin.nn, brokeCoin.sn, brokeCoin.getDenomination());
 
 					if (tickets[0].equals("error") || tickets[2].equals("error") ||  tickets[2].equals("error")) {
+	
 						corner++;
 						fixer.setCornerToCheck(corner);
+
+						if (corner == 5)
+							raidaIsBroke[guid_id] = true; 
 					} else {
 						fix_result = agents[guid_id].fix(fixer.currentTriad, tickets[0], tickets[1], tickets[2], brokeCoin.ans[guid_id]);
 						if (fix_result.equalsIgnoreCase("success")) { 
@@ -213,6 +221,9 @@ public class RAIDA {
 						} else {
 							corner++;
 							fixer.setCornerToCheck(corner);
+
+							if (corner == 5)
+								raidaIsBroke[guid_id] = true; 
 						}
 		                        }
 
