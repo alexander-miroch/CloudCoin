@@ -25,7 +25,7 @@
   <string name="importresults">Results of import:</string>
   <string name="importresultsauth">Authentic and moved to bank: </string>
   <string name="importresultstrash">Counterfeit or failed and moved to Trash: </string>
-  <string name="trashnote">Please check your CloudCoin Trash\nof a note about what happened</string>
+  <string name="trashnote">Please check your CloudCoin Trash \n for a note about what happened</string>
   <string name="authstring">Authenticating %1$d of %2$d CloudCoin Files</string>
   <string name="authfrackedstring">Fixing %1$d of %2$d Fracked Coins</string>
   <string name="totaltoexport">Total to export: %1$d CloudCoins</string>
