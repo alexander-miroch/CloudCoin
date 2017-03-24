@@ -369,13 +369,8 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 
 		if(resultCode == RESULT_OK) {
 			this.files = data.getStringArrayListExtra(DirPickerActivity.returnParameter);
-			
-//			Editor editorObject = mSettings.edit();
-
-//			editorObject.putString(APP_PREFERENCES_IMPORTDIR, dir);
-//			editorObject.commit();
         	} else {
-			showError("Internal error");
+			//showError("Internal error");
 		}
 	
 	}

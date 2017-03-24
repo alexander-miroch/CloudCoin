@@ -399,8 +399,8 @@ public class Bank {
 			} else if (cc.extension.equals("counterfeit")) {
 				moveFileToTrash(cc.fullFileName, "The coin is counterfeit (after fracked). Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
 			} else {
-				moveFileToTrash(cc.fullFileName, "The coin is failed (after fracked). Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
-                                }
+			//	moveFileToTrash(cc.fullFileName, "The coin is failed (after fracked). Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			Log.e(TAG, "Failed to save coin: " + cc.fullFileName);
@@ -700,7 +700,7 @@ public class Bank {
 					addCoinToReport(cc, "counterfeit");
 				} else {
 					importStats[STAT_FAILED]++;
-					moveFileToTrash(importedfileName, "RAIDA failed to detect the coin: Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
+					//moveFileToTrash(importedfileName, "RAIDA failed to detect the coin: Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
 					addCoinToReport(cc, "failed");
 				}
 

@@ -41,7 +41,7 @@
 	<string name="exportok">Coins have been exported successfully\nYou can find them on your primary storage  at:\n%1$s</string>
 	<string name="exportfailed">Failed to export %1$d coins</string>
 	<string name="fixfracked">Fixing fracked coins</string>
-	<string name="errconnection">Network is unavailable. Import is impossible. Please check your internet connection</string>
+	<string name="errconnection">Network is unavailable. Import is impossible. You may not have an internet connection. Your router may be blocking your ports</string>
 	<string name="serialnumber">Serial Number</string>
 	<string name="importresult">Import Result</string>
 	<string name="paymentreceived">Payment Received on</string>

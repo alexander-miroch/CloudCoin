@@ -12,7 +12,7 @@
   <string name="exporttag">Экспорт тегов</string>
   <string name="url">http://CloudCoinConsortium.com</string>
   <string name="bank">Банк</string>
-  <string name="ok">Успешно</string>
+  <string name="ok">OK</string>
   <string name="total">Итого</string>
   <string name="sbank">Банк</string>
   <string name="scounterfeit">Контрафакт</string>
@@ -27,13 +27,13 @@
   <string name="importresultstrash">Подделка или сбой и переехал в корзину: </string>
   <string name="trashnote">Пожалуйста, проверьте ваш CloudCoin Trash\n о том, что произошло</string>
   <string name="authstring">Проверка подлинности %1$d из %2$d CloudCoin файлов</string>
-  <string name="authfrackedstring">Фиксация %1$d %2$d Fracked монет</string>
+  <string name="authfrackedstring">Фиксация %1$d из %2$d поврежденных монет</string>
   <string name="totaltoexport">Всего на экспорт: %1$d CloudCoins</string>
   <string name="globalexporterror">Глобальная ошибка. Монеты не были экспортированы</string>
   <string name="exportok">Монеты были экспортированы успешно\nВы их можете найти на основном хранилище:\n%1$s</string>
   <string name="exportfailed">Не удалось экспортировать %1$d монеты</string>
   <string name="fixfracked">Правка fracked монет</string>
-  <string name="errconnection">Сеть недоступна. Импорт невозможен. Пожалуйста, проверьте доступ в интернет</string>
+  <string name="errconnection">Сеть недоступна. Импорт невозможен. Пожалуйста, проверьте доступ в интернет, возможно файрвол блокирует соединение</string>
   <string name="serialnumber">Серийный номер</string>
         <string name="importresult">Результат импорта</string>
         <string name="paymentreceived">Payment Received on</string>
