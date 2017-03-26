@@ -26,7 +26,7 @@
   <string name="importresults">Результаты импорта:</string>
   <string name="importresultsauth">Аутентичные и переехал в банк: </string>
   <string name="importresultstrash">Подделка или сбой и переехал в корзину: </string>
-  <string name="trashnote">Пожалуйста, проверьте ваш CloudCoin Trash\n о том, что произошло</string>
+  <string name="trashnote">Пожалуйста, проверьте папку Trash\n, чтобы узнать, что произошло</string>
   <string name="authstring">Проверка подлинности %1$d из %2$d CloudCoin файлов</string>
   <string name="authfrackedstring">Фиксация %1$d из %2$d поврежденных монет</string>
   <string name="totaltoexport">Всего на экспорт: %1$d CloudCoins</string>
