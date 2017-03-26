@@ -34,6 +34,11 @@ import android.os.Environment;
 import java.io.FilenameFilter;
 import java.util.Random;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+
+
 public class Bank {
 
 	static String RAIDA_AUTH_URL = "https://www.cloudcoin.co/servers.html";
@@ -69,6 +74,7 @@ public class Bank {
 	static int[] denominations = {1, 5, 25, 100, 250};
 
 	RAIDA raida;
+	boolean isCancelled;
 
 	private int[] importStats;
 
@@ -86,6 +92,7 @@ public class Bank {
 		this.resetImportStats();
 		this.createDirectories();
 		this.ctx = ctx;
+		this.isCancelled = false;
 
 		this.exportedFilenames = new ArrayList<String>();
 	}
@@ -370,6 +377,9 @@ public class Bank {
 		}
 	}
 
+	public void cancel() {
+		this.isCancelled = true;
+	}
 
 	public void loadFracked() {
 		this.frackedCoins = loadCoinArray("fracked");
@@ -671,12 +681,21 @@ public class Bank {
 			throw new Exception("Failed to read directory " + bankDirPath);
 		}
 
-		for (int i = 0; i < incomeFiles.size(); i++) {
+		Handler h = ((AddCoinsActivity) this.ctx).getHandler();
+
+		int iFSize = incomeFiles.size();
+		for (int i = 0; i < iFSize; i++) {
+			if (this.isCancelled)
+				return;
+
 			try {
+				Message msg = h.obtainMessage(AddCoinsActivity.COINS_CNT, i, iFSize);
+				h.sendMessage(msg);
+
 				cc = new CloudCoin(incomeFiles.get(i));	
 				raida.detectCoin(cc);
 
-				Log.v(TAG, "CCCC="+cc.sn);
+				Log.v(TAG, "Coin #" + cc.sn + " got extension " + cc.extension);
 
 				if (cc.extension.equals("bank")) {
 					cc.saveCoin(bankDirPath, cc.extension);
@@ -685,6 +704,7 @@ public class Bank {
 					importStats[STAT_VALUE_MOVED_TO_BANK] += cc.getDenomination();
 					moveFileToImported(importedfileName);
 					addCoinToReport(cc, "authentic");
+					deleteCoin(incomeFiles.get(i).fileName);
 				} else if (cc.extension.equals("fracked")) {
 					cc.saveCoin(bankDirPath, cc.extension);
 
@@ -693,18 +713,19 @@ public class Bank {
 					importStats[STAT_VALUE_MOVED_TO_BANK] += cc.getDenomination();
 					moveFileToImported(importedfileName);
 					addCoinToReport(cc, "fracked");
+					deleteCoin(incomeFiles.get(i).fileName);
 				} else if (cc.extension.equals("counterfeit")) {
 					//importStats[STAT_COUNTERFEIT]++;
 					importStats[STAT_FAILED]++;
 					moveFileToTrash(importedfileName, "The coin is counterfeit. Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
 					addCoinToReport(cc, "counterfeit");
+					deleteCoin(incomeFiles.get(i).fileName);
 				} else {
 					importStats[STAT_FAILED]++;
 					//moveFileToTrash(importedfileName, "RAIDA failed to detect the coin: Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
 					addCoinToReport(cc, "failed");
 				}
 
-				deleteCoin(incomeFiles.get(i).fileName);
 			} catch (Exception e) {
 				Log.e(TAG, "Failed to detect coin: " + e.getMessage());
 				e.printStackTrace();

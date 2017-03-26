@@ -12,6 +12,7 @@
 	<string name="exporttag">Export Tag</string>
 	<string name="url">http://CloudCoinConsortium.com</string>
 
+	<string name="coin">Coin</string>
 	<string name="bank">Bank</string>
 
 	<string name="ok">OK</string>

@@ -260,16 +260,6 @@ public class RAIDA {
 
 					Handler h = ((AddCoinsActivity) ctx).getHandler();
 					h.sendEmptyMessage(0);
-					/*
-					new Handler(Looper.getMainLooper()).post(new Runnable() {
-						public void run() {
-							Log.v(TAG, "I am the UI thread: ");
-							TextView tv = (TextView) ctx.findViewById(R.id.text);
-							tv.setText("x"+iFinal);
-						}
-					});
-					*/
-					
 				}
 			});
 			futures.add(f);

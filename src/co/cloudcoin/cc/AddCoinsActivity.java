@@ -26,6 +26,10 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.view.Display;
 import android.util.DisplayMetrics;
+import android.content.pm.ActivityInfo;
+import android.view.Surface;
+import android.graphics.Point;
+import android.os.Build;
 
 import android.view.MotionEvent;
 import java.lang.Thread;
@@ -37,6 +41,7 @@ import java.io.FileInputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 import java.io.IOException;
+
 
 import java.util.Locale;
 import android.preference.PreferenceManager;
@@ -96,15 +101,21 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 
 	int count = 0;
 	int raidaStatus = 0;
+	int coinActive = 0;
+	int coinTotal = 0;
 
 	Handler mHandler;
 	LinearLayout ll;
 
 	final static int REQUEST_CODE_IMPORT_DIR = 1;
 
+	final static int COINS_CNT = 1;
+
 	public static final String APP_PREFERENCES_IMPORTDIR = "pref_importdir";
 
 	SharedPreferences mSettings;
+
+	ImportTask iTask;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -118,7 +129,6 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 
 		tf = Typeface.createFromAsset(getAssets(), "fonts/font.ttf");
 
-		//et = (EditText) findViewById(R.id.importtag);
 		tvt = (TextView) findViewById(R.id.title);
 		dotsView = (TextView) findViewById(R.id.dots);
 
@@ -136,23 +146,43 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 		ib.setOnClickListener(this);		
 
 		this.files = null;
+		this.iTask = null;
 
 		mHandler = new Handler(Looper.getMainLooper()) {
 			public void handleMessage(Message inputMessage) {
 				int what = inputMessage.what;
 
-				raidaStatus++;
-				setDots();
+				if (what == 0) {
+					raidaStatus++;
+					setDots();
+				} else if (what == COINS_CNT) {
+					raidaStatus = 0;
+					coinActive = inputMessage.arg1 + 1;
+					coinTotal = inputMessage.arg2;
+					setDots();
+				}
 			
 			}
 		};
 
 		ll = (LinearLayout) findViewById(R.id.fwrapper);
+
+		mSettings = PreferenceManager.getDefaultSharedPreferences(this);
+
+		// save state. not now
+		//state = mSettings.getInt("state", STATE_INIT);
+		state = STATE_INIT;
 	}
 
 	private void setDots() {
+		String s;
 
-		String s = "";
+		if (coinTotal == 0) {
+			s = "";
+		} else {
+			s = getResources().getString(R.string.coin) + " " + coinActive + "/" + coinTotal + ":\n";
+		}
+
 		for (int i = 0; i < raidaStatus; i++)
 			s += ".";
 
@@ -167,15 +197,23 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 		super.onPause();
 	}
 
+	public void onDestroy() {
+                super.onDestroy();
+		if (iTask != null) {
+			iTask.doCancel();
+			iTask = null;
+		}
+	}
+
 	public void onResume() {
 		super.onResume();
 		int totalIncomeLength;
 		String result;
 		String importDir = "";
 
-		state = STATE_INIT;
+		if (state != STATE_INIT)
+			return;
 
-		mSettings = PreferenceManager.getDefaultSharedPreferences(this);
 
 		headerText.setVisibility(View.GONE);
 		emailButton.setVisibility(View.GONE);
@@ -235,9 +273,6 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 
 		StringBuilder sb = new StringBuilder();
 		
-		//sb.append(res.getString(R.string.importresults));
-		//sb.append("\n\n");
-
 		result = String.format(res.getString(R.string.movedtobank), bank.getImportStats(Bank.STAT_VALUE_MOVED_TO_BANK));
 		sb.append(result);
 		sb.append("\n");
@@ -246,7 +281,6 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 		sb.append("\n");
 		
 		sb.append(res.getString(R.string.importresultstrash));
-		//sb.append(bank.getImportStats(Bank.STAT_COUNTERFEIT));
 		sb.append(bank.getImportStats(Bank.STAT_FAILED));
 
 		if (bank.getImportStats(Bank.STAT_FAILED) != 0) {
@@ -254,13 +288,6 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 			sb.append(res.getString(R.string.trashnote));
 		}
 
-		//sb.append("\nFractured and will be repaired: ");
-		//sb.append(bank.getImportStats(Bank.STAT_FRACTURED));
-
-		//sb.append("\nFailed and left untouched: ");
-		//sb.append(bank.getImportStats(Bank.STAT_FAILED));
-		
-	
 		return sb.toString();
 	
 	}
@@ -293,8 +320,8 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 	}
 
 	private void doImport() {
-		
-		new ImportTask().execute();
+		iTask = new ImportTask();
+		iTask.execute();
 	}
 
 	private void hideControls() {
@@ -375,6 +402,14 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 	
 	}
 
+	public void setState(int newState) {
+		SharedPreferences.Editor ed = mSettings.edit();
+		ed.putInt("state", newState);
+		ed.commit();
+
+		state = newState;
+	}
+
 	public void onClick(View v) {
 		int id = v.getId();
 		String importTag; 
@@ -382,6 +417,7 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
                 switch (id) {
                         case R.id.button:
 				if (state == STATE_DONE) {
+					setState(STATE_INIT);
 					finish();
 					return;
 				}
@@ -395,6 +431,7 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 				doEmailReceipt();
 
 				if (state == STATE_DONE) {
+					setState(STATE_INIT);
 					finish();
 					return;
 				}
@@ -414,24 +451,80 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 		return netInfo != null && netInfo.isConnectedOrConnecting();
 	}
 
+	private void lockOrientation() {
+		Display display = getWindowManager().getDefaultDisplay();
+		int rotation = display.getRotation();
+		int height, width;
+
+		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB_MR2) {
+			height = display.getHeight();
+			width = display.getWidth();
+		} else {
+			Point size = new Point();
+			display.getSize(size);
+			height = size.y;
+			width = size.x;
+		}
+
+		switch (rotation) {
+			case Surface.ROTATION_90:
+				if (width > height)
+					setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+				else
+					setRequestedOrientation(9/* reversePortait */);
+				break;
+			case Surface.ROTATION_180:
+				if (height > width)
+					setRequestedOrientation(9/* reversePortait */);
+				else
+					setRequestedOrientation(8/* reverseLandscape */);
+				break;          
+			case Surface.ROTATION_270:
+				if (width > height)
+					setRequestedOrientation(8/* reverseLandscape */);
+				else
+					setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+				break;
+			default:
+				if (height > width)
+					setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+				else
+					setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		}
+	}
+
 	class ImportTask extends AsyncTask<String, Integer, String> {
+
+		public void doCancel() {
+			bank.cancel();
+			cancel(true);
+		}
+
 		protected String doInBackground(String... params) {
 
-			state = STATE_IMPORT;
+			setState(STATE_IMPORT);
 
 			bank.initReport();
 
 			for (int i = 0; i < bank.getLoadedIncomeLength(); i++) {
+				if (isCancelled()) 	
+					return "CANCELLED";		
+
 				publishProgress(i);
 				bank.importLoadedItem(i);	
 				
 			}
 
-			state = STATE_FIX;
+			if (isCancelled()) 
+				return "CANCELLED";
 
+			setState(STATE_FIX);
 			bank.loadFracked();
 
 			for (int i = 0; i < bank.getFrackedCoinsLength(); i++) {
+				if (isCancelled()) 		
+					return "CANCELLED";
+
 				publishProgress(i);
 				bank.fixFracked(i);
 			}
@@ -446,12 +539,15 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 			emailButton.setVisibility(View.VISIBLE);
 			dotsView.setVisibility(View.GONE);
 			headerText.setVisibility(View.VISIBLE);
-			state = STATE_DONE;
+			setState(STATE_DONE);
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 		}
 		protected void onPreExecute() {
+			lockOrientation();
 			ll.setVisibility(View.GONE);
 			mainText.setText(getStatusString(0));
 		}
+
 		protected void onProgressUpdate(Integer... values) {
 			if (state == STATE_FIX)
 				mainText.setText(getFrackedStatusString(values[0]));
@@ -459,6 +555,8 @@ public class AddCoinsActivity extends Activity implements OnClickListener {
 				mainText.setText(getStatusString(values[0]));
 
 			raidaStatus = 0;
+			coinActive = 0;
+			coinTotal = 0;
 			setDots();
 	        }
 
