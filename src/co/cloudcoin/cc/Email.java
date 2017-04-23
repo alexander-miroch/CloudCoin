@@ -75,7 +75,7 @@ class EmailSender {
 
 		i.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
 		try {
-			((SpendCoinsActivity) ctx).startActivityForResult(Intent.createChooser(i, "Send mail"), 66);
+			((MainActivity) ctx).startActivityForResult(Intent.createChooser(i, "Send mail"), 66);
 		} catch (android.content.ActivityNotFoundException e) {
 			Log.e(TAG, "Can not open Email Client");
 			return false;

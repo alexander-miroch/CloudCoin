@@ -3,18 +3,18 @@
   <string name="app_name">Cloud Coin Consortium</string>
   <string name="app_name0">Pocket Bank</string>
   <string name="app_name1">With RAIDA Authenticity Detection</string>
-  <string name="tadd">Add Coins</string>
-  <string name="tbank">Bank</string>
+  <string name="tadd">IMPORT</string>
+  <string name="tbank">BANK</string>
   <string name="tbankinventory">Bank Inventory</string>
-  <string name="tspend">Spend Coins</string>
+  <string name="tspend">EXPORT</string>
   <string name="loading">Loading</string>
   <string name="importtag">Import Tag</string>
   <string name="exporttag">Export Tag</string>
-  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="url">CloudCoinConsortium.com</string>
   <string name="bank">Bank</string>
   <string name="ok">OK</string>
   <string name="total">Total</string>
-  <string name="sbank">Bank</string>
+  <string name="sbank">Bank Inventory</string>
   <string name="scounterfeit">Counterfeit</string>
   <string name="sfractured">Fractured</string>
   <string name="errmnt">Can not locate your Import directory. Make sure that your primary storage is properly installed into the device</string>
@@ -23,8 +23,8 @@
   <string name="importwarn">Import will import all CloudCoin files from your Import folder. Please put all your CloudCoin files (.jpg and .stack) into the Import folder located on your primary storage at:\n\n%1$s\n\nWe are going to import %2$d file(s). Tap OK to continue</string>
   <string name="movedtobank">Total Moved to Bank: %1$d Coins</string>
   <string name="importresults">Results of import:</string>
-  <string name="importresultsauth">Authentic and moved to bank: </string>
-  <string name="importresultstrash">Counterfeit or failed and moved to Trash: </string>
+  <string name="importresultsauth">Authentic and moved to bank</string>
+  <string name="importresultstrash">Counterfeit or failed and moved to Trash</string>
   <string name="trashnote">Please check your CloudCoin Trash \n for a note about what happened</string>
   <string name="authstring">Authenticating %1$d of %2$d CloudCoin Files</string>
   <string name="authfrackedstring">Fixing %1$d of %2$d Fracked Coins</string>
@@ -33,4 +33,5 @@
   <string name="exportok">Coins have been exported successfully\nYou can find them on your primary storage  at:\n%1$s</string>
   <string name="exportfailed">Failed to export %1$d coins</string>
   <string name="fixfracked">Fixing fracked coins</string>
+   <string name="exportcoins">Export Coins</string>
 </resources>

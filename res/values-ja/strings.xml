@@ -10,7 +10,7 @@
   <string name="loading">読み込み中</string>
   <string name="importtag">インポートタグ</string>
   <string name="exporttag">エクスポートタグ</string>
-  <string name="url">http://CloudCoinConsortium.com</string>
+  <string name="url">CloudCoinConsortium.com</string>
   <string name="bank">バンク</string>
   <string name="ok">OK</string>
   <string name="total">合計</string>

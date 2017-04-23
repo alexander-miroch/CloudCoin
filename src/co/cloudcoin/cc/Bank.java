@@ -78,8 +78,7 @@ public class Bank {
 
 	private int[] importStats;
 
-	String[][] report;
-	int reportIdx;
+	ArrayList<String[]> report;
 
 	private ArrayList<String> exportedFilenames; 
 
@@ -121,7 +120,7 @@ public class Bank {
 		return this.importDirPath;
 	}
 
-	public String[][] getReport() {
+	public ArrayList<String[]> getReport() {
 		return this.report;
 	}
 
@@ -297,28 +296,20 @@ public class Bank {
 		String serial;
 		String denom;
 
-		if (this.reportIdx >= this.report.length)
-			return;
-
-		if (cc == null)
-			return;
-
-		this.report[this.reportIdx] = new String[3];
-
 		serial = (cc == null) ? "?" : Integer.toString(cc.sn);
 		denom = (cc == null) ? "?" : Integer.toString(cc.getDenomination());
 
-		this.report[this.reportIdx][0] = serial;
-		this.report[this.reportIdx][1] = status;
-		this.report[this.reportIdx][2] = denom;
+		String[] s = new String[3];
 
-		this.reportIdx++;
-		
+		s[0] = serial;
+		s[1] = status;
+		s[2] = denom;
+
+		this.report.add(s);
 	} 
 
 	public void initReport() {
-		this.report = new String[this.getLoadedIncomeLength()][];
-		this.reportIdx = 0;
+		this.report = new ArrayList<String[]>();
 	}
 
 	public void importLoadedItem(int idx) {
@@ -681,7 +672,7 @@ public class Bank {
 			throw new Exception("Failed to read directory " + bankDirPath);
 		}
 
-		Handler h = ((AddCoinsActivity) this.ctx).getHandler();
+		Handler h = ((MainActivity) this.ctx).getHandler();
 
 		int iFSize = incomeFiles.size();
 		for (int i = 0; i < iFSize; i++) {
@@ -689,7 +680,7 @@ public class Bank {
 				return;
 
 			try {
-				Message msg = h.obtainMessage(AddCoinsActivity.COINS_CNT, i, iFSize);
+				Message msg = h.obtainMessage(MainActivity.COINS_CNT, i, iFSize);
 				h.sendMessage(msg);
 
 				cc = new CloudCoin(incomeFiles.get(i));	
@@ -787,6 +778,9 @@ public class Bank {
 		int[] returnCounts = new int[6]; //0. Total, 1.1s, 2,5s, 3.25s 4.100s, 5.250s
 		
 		ArrayList<IncomeFile> incomeFiles = selectAllFileNamesFolder(bankDirPath, extension);
+		if (incomeFiles == null) {
+			return returnCounts;
+		}
 
 		for (int i = 0; i < incomeFiles.size(); i++) {
 			denomination = getDenomination(incomeFiles.get(i));

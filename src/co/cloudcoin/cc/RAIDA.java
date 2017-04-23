@@ -201,7 +201,7 @@ public class RAIDA {
 					brokeCoin.ans[fixer.currentTriad[2]]
 				};
 
-				Log.v(TAG, "ans0="+trustedServerAns[0] + " ans1="+trustedServerAns[1] + " ans2="+trustedServerAns[2]);
+					Log.v(TAG, "ans0="+trustedServerAns[0] + " ans1="+trustedServerAns[1] + " ans2="+trustedServerAns[2]);
 
 					String fix_result = "";
 					String[] tickets = getTickets(fixer.currentTriad, trustedServerAns, brokeCoin.nn, brokeCoin.sn, brokeCoin.getDenomination());
@@ -229,7 +229,7 @@ public class RAIDA {
 
 				}
 
-				Handler h = ((AddCoinsActivity) ctx).getHandler();
+				Handler h = ((MainActivity) ctx).getHandler();
 				h.sendEmptyMessage(0);
 			}
 
@@ -258,7 +258,7 @@ public class RAIDA {
 				public void run() {
 					pastStatuses[iFinal] = agents[iFinal].detect(cc.nn, cc.sn, cc.ans[iFinal], cc.pans[iFinal], cc.getDenomination());
 
-					Handler h = ((AddCoinsActivity) ctx).getHandler();
+					Handler h = ((MainActivity) ctx).getHandler();
 					h.sendEmptyMessage(0);
 				}
 			});
