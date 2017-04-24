@@ -71,4 +71,7 @@
 	<string name="cancel">Cancel</string>
 	<string name="awesome">Awesome</string>
 	<string name="tcimported">Total Coins moved to Bank</string>
+	<string name="fixing">We are fixing coins now. Please, try again later</string>
+	<string name="fixstart">Starting to fix %1$d CloudCoins</string>
+	<string name="fixed">Fixed %1$d of %2$d CloudCoins</string>
 </resources>

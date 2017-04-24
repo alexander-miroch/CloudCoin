@@ -229,8 +229,8 @@ public class RAIDA {
 
 				}
 
-				Handler h = ((MainActivity) ctx).getHandler();
-				h.sendEmptyMessage(0);
+				//Handler h = ((MainActivity) ctx).getHandler();
+				//h.sendEmptyMessage(0);
 			}
 
 		}

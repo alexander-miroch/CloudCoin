@@ -195,12 +195,14 @@ public class Bank {
 		int fileType;
 		ArrayList<IncomeFile> fileArray = new ArrayList<IncomeFile>();
 
+		Log.v("ZZZ", "p="+path);
 		try {
 			File f = new File(path);
 			File[] files = f.listFiles();
 			for (File inFile : files) {
 				if (inFile.isFile()) {
 					String currentExtension = getFileExtension(inFile.getName()).toLowerCase();
+					
 					if (currentExtension.equals(extension)) {
 						if (extension.equals("jpeg") || extension.equals("jpg")) {
 							fileType = IncomeFile.TYPE_JPEG;
@@ -386,6 +388,10 @@ public class Bank {
 		}
 
 		cc = frackedCoins[idx];
+	
+		// File was not loaded as it was corrupted
+		if (cc == null) 
+			return;
 
 		Log.v(TAG, "Fixing Fracked coin: " +  cc.fullFileName);
 		raida.fixCoin(cc);
@@ -713,7 +719,6 @@ public class Bank {
 					deleteCoin(incomeFiles.get(i).fileName);
 				} else {
 					importStats[STAT_FAILED]++;
-					//moveFileToTrash(importedfileName, "RAIDA failed to detect the coin: Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
 					addCoinToReport(cc, "failed");
 				}
 
@@ -806,7 +811,12 @@ public class Bank {
 
 			loadedCoins = new CloudCoin[incomeFiles.size()];
 			for (int i = 0; i < incomeFiles.size(); i++) {
-				loadedCoins[i] = new CloudCoin(incomeFiles.get(i)); 
+				try {
+					loadedCoins[i] = new CloudCoin(incomeFiles.get(i)); 
+				} catch (Exception e) {
+					Log.e(TAG, "Can not parse coin " + incomeFiles.get(i));
+					continue;
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

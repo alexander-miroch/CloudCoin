@@ -132,6 +132,7 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 
 	Dialog dialog;
 	ImportTask iTask;
+	FixFrackedTask ffTask;
 
 	int importState;
 
@@ -145,6 +146,7 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 	int coinTotal = 0;
 
 	Handler mHandler;
+	boolean isFixing = false;
 
 	public static final String APP_PREFERENCES_IMPORTDIR = "pref_importdir";
 
@@ -162,6 +164,7 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 		init();
 
 		setImportState(IMPORT_STATE_INIT);
+		bank = new Bank(this);
 
 		mHandler = new Handler(Looper.getMainLooper()) {
                         public void handleMessage(Message inputMessage) {
@@ -180,7 +183,6 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
                         }
                 };
 
-
 		Thread myThread = new Thread(new Runnable() {
 			public void run() {
 				RAIDA.updateRAIDAList(MainActivity.this);
@@ -194,6 +196,7 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 		});
 
 		myThread.start();
+
 	}
 
 	Handler getHandler() {
@@ -250,6 +253,7 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 
 	public void onResume() {
 		super.onResume();
+		doFixFracked();
 	}
 
 	public void onDestroy() {
@@ -392,6 +396,11 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 		values = new int[size];
 		for (int i = 0; i < size; i++)
 			values[i] = nps[i].getValue();
+
+		if (isFixing) {
+			showError(res.getString(R.string.fixing));
+			return;
+		}
 
 		if (selectedId == R.id.rjpg) {
                         failed = bank.exportJpeg(values, exportTag);
@@ -555,7 +564,6 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 
 		tv = (TextView) dialog.findViewById(R.id.infotext);
 
-		bank = new Bank(this);
 		if (files != null && files.size() > 0) {
 			bank.loadIncomeFromFiles(files);
 		} else {
@@ -645,7 +653,6 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 		tvTotal = (TextView) dialog.findViewById(R.id.exptotal);
 		exportTv = (TextView) dialog.findViewById(R.id.exporttv);
 
-		bank = new Bank(this);
 		bankCoins = bank.countCoins("bank");
 		frackedCoins = bank.countCoins("fracked");
 
@@ -690,8 +697,6 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 		allocId(IDX_BANK, "bs");
 		allocId(IDX_COUNTERFEIT, "cs");
 		allocId(IDX_FRACTURED, "fs");
-
-		bank = new Bank(this);
 
                 stats[IDX_BANK] = bank.countCoins("bank");
                 stats[IDX_FRACTURED] = bank.countCoins("fracked");
@@ -808,13 +813,51 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
         }
 
 
+	class FixFrackedTask extends AsyncTask<String, Integer, String> {
+		int before, after;
 
-	class ImportTask extends AsyncTask<String, Integer, String> {
-                public void doCancel() {
-			bank.cancel();
-			cancel(true);
+                protected String doInBackground(String... params) {
+                        for (int i = 0; i < bank.getFrackedCoinsLength(); i++) {
+				publishProgress(i);
+				bank.fixFracked(i);
+			}
+
+			return "OK";
 		}
 
+		protected void onPreExecute() {
+			isFixing = true;
+                        bank.loadFracked();
+
+			before = bank.getFrackedCoinsLength();
+			String msg = String.format(getResources().getString(R.string.fixstart), before);
+			showError(msg);
+		}
+
+		protected void onPostExecute(String result) {
+			int fixedCnt;
+
+			if (before == 0)
+				return;
+
+			isFixing = false;
+			after = bank.getFrackedCoinsLength();
+			fixedCnt = before - after;
+
+			// It is possible that some coins will be added during Import process
+			if (fixedCnt < 0)
+				fixedCnt = 0;
+
+			String msg = String.format(getResources().getString(R.string.fixed), fixedCnt, before);
+			showError(msg);
+		}
+
+		protected void onProgressUpdate(Integer... values) {
+		//	showError("Fixed " + values[0] + " of " + bank.getFrackedCoinsLength());
+		}
+	}
+
+	class ImportTask extends AsyncTask<String, Integer, String> {
                 protected String doInBackground(String... params) {
 			bank.initReport();
 			for (int i = 0; i < bank.getLoadedIncomeLength(); i++) {
@@ -825,21 +868,6 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 				bank.importLoadedItem(i);
 			}
 
-			if (isCancelled())
-				return "CANCELLED";
-
-		/*
-			//setState(STATE_FIX);
-                        bank.loadFracked();
-
-                        for (int i = 0; i < bank.getFrackedCoinsLength(); i++) {
-                                if (isCancelled())
-                                        return "CANCELLED";
-
-                                publishProgress(i);
-                                bank.fixFracked(i);
-			}
-		*/
                         return "OK";
                 }
 
@@ -874,6 +902,14 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 			setDots();
                 }
 
+	}
+
+	private void doFixFracked() {
+		if (isFixing)
+			return;
+
+		ffTask = new FixFrackedTask();
+		ffTask.execute();
 	}
 
 	private void doImport() {

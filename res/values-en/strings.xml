@@ -33,5 +33,9 @@
   <string name="exportok">Coins have been exported successfully\nYou can find them on your primary storage  at:\n%1$s</string>
   <string name="exportfailed">Failed to export %1$d coins</string>
   <string name="fixfracked">Fixing fracked coins</string>
-   <string name="exportcoins">Export Coins</string>
+  <string name="exportcoins">Export Coins</string>
+  <string name="fixing">We are fixing coins now. Please, try again later</string>
+  <string name="fixstart">Starting to fix %1$d CloudCoins</string>
+  <string name="fixed">Fixed %1$d of %2$d CloudCoins</string>
+
 </resources>

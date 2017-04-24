@@ -63,4 +63,8 @@
  <string name="cancel">Отмена</string>
  <string name="awesome">Отлично</string>
  <string name="tcimported">Всего перемещено в Банк</string>
+ <string name="fixing">Мы чиним монеты. Пожалуйста, попробуйте позже</string>
+ <string name="fixstart">Начинаем починку %1$d монет</string>
+ <string name="fixed">Починено %1$d из %2$d монет</string>
+
 </resources>
