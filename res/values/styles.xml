@@ -8,6 +8,10 @@
     <item name="android:expandableListViewStyle">@style/TransparentExpandableListView</item>
   </style>
 
+  <style name="dialogwidth">
+    <item name="android:layout_width">match_parent</item>
+  </style>
+
   <style name="TransparentListView" parent="@android:style/Widget.ListView">
     <item name="android:cacheColorHint">@android:color/transparent</item>
   </style>

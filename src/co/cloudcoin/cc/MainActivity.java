@@ -253,7 +253,34 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 
 	public void onResume() {
 		super.onResume();
+
+		updateImportString();
 		doFixFracked();
+	}
+
+	public void updateImportString() {
+		String importDir;
+		String savedImportDir = mSettings.getString(APP_PREFERENCES_IMPORTDIR, "");
+
+		if (savedImportDir == "") {
+			importDir = bank.getDefaultRelativeImportDirPath();
+			if (importDir == null) 
+				return;
+		} else {
+			importDir = savedImportDir;
+			bank.setImportDirPath(importDir);
+		}
+
+		if (!bank.examineImportDir()) 
+			return;
+
+		TextView ltv = (TextView) findViewById(R.id.icoins);
+
+		int totalIncomeLength = bank.getLoadedIncomeLength();
+                if (totalIncomeLength == 0) 
+			ltv.setVisibility(View.GONE);
+		else 
+			ltv.setVisibility(View.VISIBLE);
 	}
 
 	public void onDestroy() {
@@ -539,6 +566,14 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 			failed = bank.getImportStats(Bank.STAT_FAILED);
 
 			TextView ttv;
+
+
+			ttv = (TextView) dialog.findViewById(R.id.closebuttontext);
+			if (failed > 0 || toBank == 0)
+				ttv.setText(R.string.back);
+			else
+				ttv.setText(R.string.awesome);
+			
 
 			ttv = (TextView) dialog.findViewById(R.id.imptotal);
 			ttv.setText("" + toBankValue);
@@ -830,6 +865,10 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
                         bank.loadFracked();
 
 			before = bank.getFrackedCoinsLength();
+
+			if (before == 0)
+				return;
+
 			String msg = String.format(getResources().getString(R.string.fixstart), before);
 			showError(msg);
 		}
@@ -837,10 +876,11 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 		protected void onPostExecute(String result) {
 			int fixedCnt;
 
+			isFixing = false;
+
 			if (before == 0)
 				return;
 
-			isFixing = false;
 			after = bank.getFrackedCoinsLength();
 			fixedCnt = before - after;
 

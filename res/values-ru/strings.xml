@@ -66,5 +66,8 @@
  <string name="fixing">Мы чиним монеты. Пожалуйста, попробуйте позже</string>
  <string name="fixstart">Начинаем починку %1$d монет</string>
  <string name="fixed">Починено %1$d из %2$d монет</string>
+ <string name="back">Назад</string>
+ <string name="icoins">У вас есть неимпортированные монеты</string>
+
 
 </resources>

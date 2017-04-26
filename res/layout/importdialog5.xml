@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    style="@style/dialogwidth"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/dialogbg"
@@ -138,13 +138,13 @@
 		android:clickable="true"
 	>
 		<TextView
+			android:id="@+id/closebuttontext"
 			android:layout_marginTop="12dp"
 			android:layout_marginBottom="12dp"
         		android:layout_height="wrap_content"
 		        android:layout_width="wrap_content"
         		android:gravity="center|top"
 	        	android:layout_gravity="center|top"
-	        	android:text="@string/awesome"
 		        android:textColor="#777777"
         		android:textSize="12dp"
 		/>

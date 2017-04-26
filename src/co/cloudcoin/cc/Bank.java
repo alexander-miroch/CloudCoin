@@ -195,7 +195,6 @@ public class Bank {
 		int fileType;
 		ArrayList<IncomeFile> fileArray = new ArrayList<IncomeFile>();
 
-		Log.v("ZZZ", "p="+path);
 		try {
 			File f = new File(path);
 			File[] files = f.listFiles();

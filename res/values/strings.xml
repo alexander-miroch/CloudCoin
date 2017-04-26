@@ -74,4 +74,6 @@
 	<string name="fixing">We are fixing coins now. Please, try again later</string>
 	<string name="fixstart">Starting to fix %1$d CloudCoins</string>
 	<string name="fixed">Fixed %1$d of %2$d CloudCoins</string>
+	<string name="back">Back</string>
+	<string name="icoins">You have coins waiting to be imported</string>
 </resources>
