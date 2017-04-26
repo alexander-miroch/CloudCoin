@@ -44,7 +44,9 @@ class DetectionAgent {
 		this.fullURL = "https://RAIDA" + this.RAIDANumber + ".cloudcoin.global/service/";
 
 		// set both
-		this.readTimeout = timeout;
+
+		// TODO: remove +2 seconds. Now it is a workaround for slow RAIDAs
+		this.readTimeout = timeout + 2;
 		this.connectionTimeout = timeout;
 	}
 
