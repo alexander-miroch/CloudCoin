@@ -47,7 +47,7 @@
  <string name="filespicked">Выбрано файлов</string>
  <string name="toomanyfiles">Слишком много файлов</string>
  <string name="importfiles">Будет импортировано %1$d файл(ов)</string>
- <string name="acc">Аутентичные монеты</string>
+ <string name="acc">Всего аутентичных монет: </string>
  <string name="close">Закрыть</string>
  <string name="exportcoins">Экспорт монет</string>
  <string name="importcoins">Импорт монет</string>

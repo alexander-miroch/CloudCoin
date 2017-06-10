@@ -55,7 +55,7 @@
 	<string name="filespicked">Files Picked</string>
 	<string name="toomanyfiles">Too many files</string>
 	<string name="importfiles">We are going to import %1$d file(s)</string>
-	<string name="acc">Authentic CloudCoins</string>
+	<string name="acc">Total Authentic CloudCoins: </string>
 	<string name="close">Close</string>
 	<string name="exportcoins">Export Coins</string>
 	<string name="importcoins">Import Coins</string>

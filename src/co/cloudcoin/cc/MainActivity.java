@@ -737,17 +737,29 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
                 stats[IDX_FRACTURED] = bank.countCoins("fracked");
 
                 int j;
+		int totalCnt = 0;
+		int tval;
+
                 for (int i = 0; i < size; i++) {
-                        if (i == 0)
+                        if (i == 0) {
                                 j = size - 1;
-                        else
+				tval = 0;
+			} else {
                                 j = i - 1;
+				tval = Bank.denominations[i - 1];
+			}
 
 			int authCount = stats[IDX_BANK][i] + stats[IDX_FRACTURED][i];
+
+			totalCnt += tval * authCount;
 
 			ids[IDX_BANK][j].setText("" + authCount);
                 }
 
+		TextView tcv = (TextView) dialog.findViewById(R.id.totalcoinstxt);
+		String msg = getResources().getString(R.string.acc);
+		msg += " " + Integer.toString(totalCnt);
+		tcv.setText(msg);
 
 		dialog.show();
 	}
