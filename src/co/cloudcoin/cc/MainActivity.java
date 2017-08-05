@@ -248,7 +248,9 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 
 	public void onPause() {
 		super.onPause();
-		
+
+		if (iTask != null)
+			iTask.cancel(true);
 	}
 
 	public void onResume() {

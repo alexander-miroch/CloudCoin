@@ -226,6 +226,8 @@ public class Bank {
 		String extension;
 		int fileType;
 
+		loadedIncome = new ArrayList<IncomeFile>();
+
 		for (String file : files) {
 			File inFile = new File(file);
 			try {  
@@ -252,6 +254,8 @@ public class Bank {
 
 		if (this.importDirPath == null)
 			return false;
+
+		loadedIncome = new ArrayList<IncomeFile>();
 
 		try {
 			File f = new File(this.importDirPath);
