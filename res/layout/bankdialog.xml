@@ -1,98 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/dialogwidth"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="@drawable/dialogbg"
-    android:layout_marginLeft="32dp"
-    android:layout_marginRight="32dp"
-    android:layout_marginBottom="32dp"
-    android:layout_marginTop="32dp"
->
+	style="@style/dialogwidth"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+	android:background="@drawable/dialogbg"
+	android:layout_marginLeft="32dp"
+	android:layout_marginRight="32dp"
+	android:layout_marginBottom="32dp"
+	android:layout_marginTop="32dp"
+	android:paddingLeft="20dp"
+	android:paddingRight="20dp"
+	>
 
-<TextView
-	android:layout_height="wrap_content"
-	android:layout_width="wrap_content"
-	android:gravity="center"
-	android:layout_gravity="center"
-	android:text="@string/sbank"
-	android:textColor="#000000"
-	android:textSize="16dp"
-	android:layout_marginTop="10dp"
-/>
-
-<TextView
-        android:id="@+id/totalcoinstxt"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:text="@string/acc"
-        android:textColor="#777777"
-        android:textSize="12dp"
-	android:layout_marginTop="14dp"
-/>
-
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/holder"
->
-
- 	<LinearLayout style="@style/LayoutWrapper" android:id="@+id/blayoutmain"   >
-                <LinearLayout android:id="@+id/blayoutmain1" style="@style/InvExt">
-                        <TextView style="@style/InvText0" android:id="@+id/bs1"  />
-                        <TextView android:id="@+id/bst1" android:text="1s" style="@style/InvText1" />
-                </LinearLayout>
-                <LinearLayout android:id="@+id/blayoutmain5" style="@style/InvExt">
-                        <TextView style="@style/InvText0" android:id="@+id/bs5"  />
-                        <TextView android:id="@+id/bst5" android:text="5s" style="@style/InvText1" />
-                </LinearLayout>
-                <LinearLayout android:id="@+id/blayoutmain25" style="@style/InvExt">
-                        <TextView style="@style/InvText0" android:id="@+id/bs25" />
-                        <TextView android:id="@+id/bst25" android:text="25s" style="@style/InvText1" />
-                </LinearLayout>
-                <LinearLayout android:id="@+id/blayoutmain100" style="@style/InvExt">
-                        <TextView style="@style/InvText0" android:id="@+id/bs100"  />
-                        <TextView android:id="@+id/bst100" android:text="100s" style="@style/InvText1" />
-                </LinearLayout>
-                <LinearLayout android:id="@+id/blayoutmain250" style="@style/InvExt">
-                        <TextView style="@style/InvText0" android:id="@+id/bs250"  />
-                        <TextView android:id="@+id/bst250" android:text="250s" style="@style/InvText1" />
-                </LinearLayout>
-                <LinearLayout android:id="@+id/blayoutmainall" style="@style/InvExt" android:visibility="gone">
-                        <TextView style="@style/InvText0" android:id="@+id/bsall"  />
-                        <TextView android:id="@+id/bstall" android:text="@string/total" style="@style/InvText1" />
-                </LinearLayout>
-  
-        </LinearLayout>
-
-
-
-</LinearLayout>
-
-<LinearLayout
-	android:id="@+id/closebutton"
-	android:layout_width="fill_parent"
-	android:layout_height="wrap_content"
-	android:layout_marginTop="14dp"
-	android:clickable="true"
-       	android:gravity="center"
-	android:background="@drawable/border"
->
 	<TextView
-		android:layout_marginTop="12dp"
-		android:layout_marginBottom="12dp"
-        	android:layout_height="wrap_content"
-	        android:layout_width="wrap_content"
-        	android:gravity="center|top"
-	        android:layout_gravity="center|top"
-        	android:text="@string/close"
-	        android:textColor="#777777"
-        	android:textSize="12dp"
-	/>
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:gravity="center"
+		android:layout_gravity="center"
+		android:text="@string/sbank"
+		android:textColor="#000000"
+		android:textSize="16dp"
+		android:layout_marginTop="10dp"
+		/>
 
-</LinearLayout>
+	<TextView
+		android:id="@+id/totalcoinstxt"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:gravity="center"
+		android:layout_gravity="center"
+		android:text="@string/acc"
+		android:textColor="#777777"
+		android:textSize="12dp"
+		android:layout_marginTop="14dp"
+		/>
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/holder"
+		>
+
+		<LinearLayout style="@style/LayoutWrapper" android:id="@+id/blayoutmain"   >
+			<LinearLayout android:id="@+id/blayoutmain1" style="@style/InvExt">
+				<TextView style="@style/InvText0" android:id="@+id/bs1"  />
+				<TextView android:id="@+id/bst1" android:text="1s" style="@style/InvText1" />
+			</LinearLayout>
+			<LinearLayout android:id="@+id/blayoutmain5" style="@style/InvExt">
+				<TextView style="@style/InvText0" android:id="@+id/bs5"  />
+				<TextView android:id="@+id/bst5" android:text="5s" style="@style/InvText1" />
+			</LinearLayout>
+			<LinearLayout android:id="@+id/blayoutmain25" style="@style/InvExt">
+				<TextView style="@style/InvText0" android:id="@+id/bs25" />
+				<TextView android:id="@+id/bst25" android:text="25s" style="@style/InvText1" />
+			</LinearLayout>
+			<LinearLayout android:id="@+id/blayoutmain100" style="@style/InvExt">
+				<TextView style="@style/InvText0" android:id="@+id/bs100"  />
+				<TextView android:id="@+id/bst100" android:text="100s" style="@style/InvText1" />
+			</LinearLayout>
+			<LinearLayout android:id="@+id/blayoutmain250" style="@style/InvExt">
+				<TextView style="@style/InvText0" android:id="@+id/bs250"  />
+				<TextView android:id="@+id/bst250" android:text="250s" style="@style/InvText1" />
+			</LinearLayout>
+			<LinearLayout android:id="@+id/blayoutmainall" style="@style/InvExt" android:visibility="gone">
+				<TextView style="@style/InvText0" android:id="@+id/bsall"  />
+				<TextView android:id="@+id/bstall" android:text="@string/total" style="@style/InvText1" />
+			</LinearLayout>
+
+		</LinearLayout>
+
+
+
+
+	</LinearLayout>
+	<TextView
+		android:id="@+id/abc"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:gravity="center"
+		android:layout_gravity="center"
+		android:text="@string/fracked"
+		android:textColor="#777777"
+		android:textSize="12dp"
+		android:layout_marginTop="14dp"
+		/>
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/holder2"
+		>
+
+		<LinearLayout style="@style/LayoutWrapper" android:id="@+id/blayoutmain2"   >
+			<LinearLayout android:id="@+id/blayoutmain3" style="@style/InvExt">
+				<TextView style="@style/InvText0" android:id="@+id/bs11" android:text="0" />
+				<TextView android:id="@+id/bst11" android:text="1s" style="@style/InvText1" />
+			</LinearLayout>
+			<LinearLayout android:id="@+id/blayoutmain51" style="@style/InvExt">
+				<TextView style="@style/InvText0" android:id="@+id/bs51" android:text="0" />
+				<TextView android:id="@+id/bst51" android:text="5s" style="@style/InvText1" />
+			</LinearLayout>
+			<LinearLayout android:id="@+id/blayoutmain251" style="@style/InvExt">
+				<TextView style="@style/InvText0" android:id="@+id/bs251" android:text="0" />
+				<TextView android:id="@+id/bst251" android:text="25s" style="@style/InvText1" />
+			</LinearLayout>
+			<LinearLayout android:id="@+id/blayoutmain1001" style="@style/InvExt">
+				<TextView style="@style/InvText0" android:id="@+id/bs1001"  android:text="0"/>
+				<TextView android:id="@+id/bst1001" android:text="100s" style="@style/InvText1" />
+			</LinearLayout>
+			<LinearLayout android:id="@+id/blayoutmain2501" style="@style/InvExt">
+				<TextView style="@style/InvText0" android:id="@+id/bs2501"  android:text="0"/>
+				<TextView android:id="@+id/bst2501" android:text="250s" style="@style/InvText1" />
+			</LinearLayout>
+			<LinearLayout android:id="@+id/blayoutmainall1" style="@style/InvExt" android:visibility="gone">
+				<TextView style="@style/InvText0" android:id="@+id/bsall1"  />
+				<TextView android:id="@+id/bstall1" android:text="@string/total" style="@style/InvText1" />
+			</LinearLayout>
+
+		</LinearLayout>
+
+
+
+
+	</LinearLayout>
+	<Button
+		android:textColor="#ffffff"
+		android:background="@drawable/layout_bg"
+		android:layout_gravity="center_horizontal"
+		android:text="@string/fixfracked2"
+		android:id="@+id/fixFracked"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+	<LinearLayout
+		android:id="@+id/mindlayout"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="14dp"
+		android:clickable="true"
+		android:gravity="center"
+		android:orientation="horizontal"
+		android:background="@drawable/border"
+		android:paddingTop="10dp"
+		>
+		<Button
+			android:textSize="12sp"
+			android:padding="10dp"
+			android:textColor="#ffffff"
+			android:background="@drawable/layout_bg"
+			android:layout_gravity="center_horizontal"
+			android:text="@string/movetomind"
+			android:id="@+id/movetomind"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+		<Button
+			android:layout_marginLeft="10dp"
+			android:textSize="12sp"
+			android:padding="10dp"
+			android:textColor="#ffffff"
+			android:background="@drawable/layout_bg"
+			android:layout_gravity="center_horizontal"
+			android:text="@string/movefrommind"
+			android:id="@+id/movefrommind"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+
+	</LinearLayout>
+	<TextView
+		android:id="@+id/abc2"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:gravity="center"
+		android:layout_gravity="center"
+		android:text="@string/mindinventory"
+		android:textColor="#777777"
+		android:textSize="12dp"
+		android:layout_marginTop="14dp"
+		/>
+	<TextView style="@style/InvText0" android:id="@+id/mindinventory" android:text="0" />
+	<TextView
+		android:layout_gravity="center_horizontal"
+		android:text="@string/authcoins"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+	<LinearLayout
+		android:id="@+id/closebutton"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="14dp"
+		android:clickable="true"
+		android:gravity="center"
+		android:background="@drawable/border"
+		>
+		<TextView
+			android:layout_marginTop="12dp"
+			android:layout_marginBottom="12dp"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:gravity="center|top"
+			android:layout_gravity="center|top"
+			android:text="@string/close"
+			android:textColor="#777777"
+			android:textSize="12dp"
+			/>
+	</LinearLayout>
 
 
 </LinearLayout>
