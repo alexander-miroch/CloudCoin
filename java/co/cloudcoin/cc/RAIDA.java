@@ -37,6 +37,7 @@ import android.os.Bundle;
 
 import android.widget.TextView;
 import 	android.content.Context;
+import android.widget.Toast;
 
 public class RAIDA {
 
@@ -341,7 +342,7 @@ public class RAIDA {
 		ccIn.calcExpirationDate();
 		ccIn.gradeStatus();
 
-
+		Toast.makeText(ctx, "Coins moved to mind successfully!", Toast.LENGTH_SHORT).show();
 
 	}
 

@@ -69,6 +69,9 @@ import android.os.Message;
 import java.util.Date;
 import java.util.Calendar;
 
+import co.cloudcoin.cc.utils.AndroidUtils;
+import co.cloudcoin.cc.utils.Logger;
+
 public class MainActivity extends Activity implements NumberPicker.OnValueChangeListener, OnClickListener {
 
 	TextView tv;
@@ -188,9 +191,10 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 			s = getResources().getString(R.string.coin) + " " + coinActive + "/" + coinTotal + "\n";
 		}
 
+		if(pb!=null)
 		pb.setProgress(raidaStatus);
-
-		subTv.setText(s);
+		if(subTv !=null)
+			subTv.setText(s);
         }
 
 	public void init() {
@@ -905,11 +909,16 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 
 			String[] ans = new String[25];
 
-
+			int startIndex = 0;
+			int endIndex=31 ;
 			for(int i=0;i<25 ;i+=1) {
-				ans[i] = finalString.substring(i,(i+1)*32-1);
-				//Log.d("ans",ans[i]);
+
+				ans[i] = finalString.substring(startIndex,endIndex+1);
+				startIndex +=32;
+				endIndex +=32;
+				Logger.d("ans-",ans[i]);
 			}
+			ans  = AndroidUtils.SplitByNumber(finalString,32);
 
 			return ans;
 			//userNameLength =

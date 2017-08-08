@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.util.ArrayList;
@@ -37,6 +38,10 @@ import java.util.Random;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+
+import com.google.gson.Gson;
+
+import co.cloudcoin.cc.utils.AndroidUtils;
 
 
 public class Bank {
@@ -84,6 +89,7 @@ public class Bank {
 	ArrayList<String[]> report;
 
 	private ArrayList<String> exportedFilenames; 
+	private ArrayList<String> mindFilenames;
 
 	public Bank(Context ctx) {
 
@@ -97,6 +103,9 @@ public class Bank {
 		this.isCancelled = false;
 
 		this.exportedFilenames = new ArrayList<String>();
+		this.mindFilenames = new ArrayList<String>();
+
+
 	}
 
 	public void resetImportStats() {
@@ -711,27 +720,14 @@ public class Bank {
 						CloudCoin cloudCoin = new CloudCoin(fileToExport);
 						cloudCoin.pans = newpans;
 						mindCoins.add(cloudCoin);
-						raida.detectCoin(cloudCoin);
-						//tJ = CloudCoin.loadJSON(fileToExport.fileName);
-						//if (tJ == null) {
-						//	Log.e(TAG, "Failed to export coin: " + bankFiles.get(i).fileName);
-						//	failed[j]++;
-						//} else {
-						//	JSONObject o = new JSONObject(tJ);
-						//	JSONArray jArray = o.getJSONArray("cloudcoin");
-						//	json += jArray.getJSONObject(0).toString();
-						//}
+						raida.moveCoinToMind(cloudCoin);
 
-						//coinsToDelete.add(fileToExport.fileName);
+						coinsToDelete.add(fileToExport.fileName);
 						c++;
 					} catch (Exception e) {
 						Log.e(TAG, "Invalid json " + bankFiles.get(i).fileName);
 						failed[j]++;
-					} /*catch (Exception e) {
-						Log.e(TAG, "Failed to export coin: " + bankFiles.get(i).fileName);
-						failed[j]++;
 					}
-*/
 					values[j]--;
 					break;
 				}
@@ -740,49 +736,20 @@ public class Bank {
 
 		Log.e("Cloudcoins","Coins to be moved to mind-"+ mindCoins.size());
 
-		json += "]}";
 
-		try {
-			JSONObject o = new JSONObject(json);
-		} catch (JSONException e) {
-			Log.e(TAG, "Invalid JSON was created");
-			failed[0] = -1;
-			return failed;
-		}
+		json = new Gson().toJson(mindCoins).toString();
+
+		co.cloudcoin.cc.utils.Logger.d(json);
 
 		if (tag.isEmpty()) {
 			Random rnd = new Random();
 			tag = "" + rnd.nextInt(999);
 		}
 
-		String fileName = exportDirPath + "/" + totalSaved + ".CloudCoins." + tag + ".stack";
-		BufferedWriter writer = null;
-		try {
-			if (ifFileExists(fileName)) {
-				// no overwriting
-				Log.v(TAG, "Filename " + fileName + " already exists");
-				failed[0] = -1;
-				return failed;
-			}
+		String fileName = mindDirPath + "/" + totalSaved + ".CloudCoins." + tag + ".mind";
+		AndroidUtils.WriteToFile(json,fileName,ctx);
 
-			writer = new BufferedWriter(new FileWriter(fileName));
-			writer.write(json);
-		} catch (IOException e){
-			Log.e(TAG, "Failed to save file " + fileName);
-			failed[0] = -1;
-			return failed;
-		} finally {
-			try{
-				if (writer != null)
-					writer.close();
-			} catch (IOException e){
-				Log.e(TAG, "Failed to close BufferedWriter");
-				failed[0] = -1;
-				return failed;
-			}
-		}
-
-		exportedFilenames.add(fileName);
+		mindFilenames.add(fileName);
 
 		for (String ctd : coinsToDelete) {
 			try {
