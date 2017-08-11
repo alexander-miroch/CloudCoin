@@ -1,5 +1,8 @@
 package co.cloudcoin.cc;
 
+import android.content.ContentResolver;
+import android.database.Cursor;
+import android.provider.MediaStore;
 import android.widget.ImageButton;
 
 import android.content.res.Resources;
@@ -27,6 +30,10 @@ import android.view.Display;
 import android.util.DisplayMetrics;
 
 import android.view.MotionEvent;
+
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.Thread;
 import android.os.Handler;
 import java.lang.Runnable;
@@ -196,7 +203,7 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 		});
 
 		myThread.start();
-
+		parseViewIntent();
 	}
 
 	Handler getHandler() {
@@ -392,6 +399,102 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 			}
 		}
 
+	}
+
+	private void InputStreamToFile(InputStream in, String file) {
+		try {
+			OutputStream out = new FileOutputStream(new File(file));
+
+			int size = 0;
+			byte[] buffer = new byte[1024];
+
+			while ((size = in.read(buffer)) != -1) {
+				out.write(buffer, 0, size);
+			}
+
+			out.close();
+		}
+		catch (Exception e) {
+			Log.e("MainActivity", "InputStreamToFile exception: " + e.getMessage());
+		}
+	}
+	private String getContentName(ContentResolver resolver, Uri uri){
+		Cursor cursor = resolver.query(uri, null, null, null, null);
+		cursor.moveToFirst();
+		int nameIndex = cursor.getColumnIndex(MediaStore.MediaColumns.DISPLAY_NAME);
+		if (nameIndex >= 0) {
+			return cursor.getString(nameIndex);
+		} else {
+			return null;
+		}
+	}
+	public void parseViewIntent() {
+		Intent intent = getIntent();
+		String action = intent.getAction();
+
+		String savedImportDir = mSettings.getString(APP_PREFERENCES_IMPORTDIR, "");
+		String importDir = "" ;
+		if (savedImportDir == "") {
+			importDir = bank.getDefaultRelativeImportDirPath();
+			if (importDir == null) {
+				Toast.makeText(this,R.string.errmnt,Toast.LENGTH_SHORT).show();
+
+				return;
+			}
+		} else {
+			importDir = savedImportDir;
+			bank.setImportDirPath(importDir);
+		}
+
+		if (!bank.examineImportDir()) {
+			Toast.makeText(this,R.string.errimport,Toast.LENGTH_SHORT).show();
+			return;
+		}
+
+		if (action.compareTo(Intent.ACTION_VIEW) == 0) {
+			String scheme = intent.getScheme();
+			ContentResolver resolver = getContentResolver();
+			if (scheme.compareTo(ContentResolver.SCHEME_CONTENT) == 0) {
+				Uri uri = intent.getData();
+
+				String name = getContentName(resolver, uri);
+
+				Log.v("tag" , "Content intent detected: " + action + " : " + intent.getDataString() + " : " + intent.getType() + " : " + name);
+				try {
+					InputStream input = resolver.openInputStream(uri);
+					String importfilepath =  bank.getImportDirPath()+ "/"+ name;
+					InputStreamToFile(input, importfilepath);
+				}
+				catch (Exception e) {
+					Toast.makeText(this, "Error occured while opening the file", Toast.LENGTH_SHORT).show();
+				}
+				showImportScreen();
+
+			}
+			else if (scheme.compareTo(ContentResolver.SCHEME_FILE) == 0) {
+				Uri uri = intent.getData();
+				String name = uri.getLastPathSegment();
+
+				Log.v("tag" , "File intent detected: " + action + " : " + intent.getDataString() + " : " + intent.getType() + " : " + name);
+
+				try {
+					InputStream input = resolver.openInputStream(uri);
+					String importfilepath =  bank.getImportDirPath()+ "/"+ name;
+					InputStreamToFile(input, importfilepath);
+				}
+				catch (Exception e) {
+					Toast.makeText(this, "Error occured while opening the file", Toast.LENGTH_SHORT).show();
+				}
+				showImportScreen();
+
+			}
+			else if (scheme.compareTo("http") == 0) {
+				// TODO Import from HTTP!
+			}
+			else if (scheme.compareTo("ftp") == 0) {
+				// TODO Import from FTP!
+			}
+		}
 	}
 
 	public void doSendEmail() {
