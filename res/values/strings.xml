@@ -76,4 +76,6 @@
 	<string name="fixed">Fixed %1$d of %2$d CloudCoins</string>
 	<string name="back">Back</string>
 	<string name="icoins">You have coins waiting to be imported</string>
+	<string name="suspectcoins">We found suspect coins in the Bank. We will validate them now</string>
+	<string name="warning">Warning!</string>
 </resources>

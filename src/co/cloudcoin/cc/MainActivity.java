@@ -123,11 +123,14 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 	final static int REQUEST_CODE_IMPORT_DIR = 1;
 	final static int COINS_CNT = 1;
 
+	boolean isImportDialog;
+
 	TextView subTv;
 
         TextView[][] ids;
         int[][] stats;
         int size;
+	int lastProgress;
 
 	NumberPicker[] nps;
 	TextView[] tvs;
@@ -154,6 +157,8 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 
 	Handler mHandler;
 	boolean isFixing = false;
+
+	boolean isImportSuspect = false;
 
 	public static final String APP_PREFERENCES_IMPORTDIR = "pref_importdir";
 
@@ -204,6 +209,8 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 
 		myThread.start();
 		parseViewIntent();
+
+		isImportDialog = false;
 	}
 
 	Handler getHandler() {
@@ -253,11 +260,20 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 		super.onBackPressed();
 	}
 
+	public void onStart() {
+		super.onStart();
+	}
+
+	public void onStop() {
+		super.onStop();
+	}
+
+
 	public void onPause() {
 		super.onPause();
 
-		if (iTask != null)
-			iTask.cancel(true);
+	//	if (iTask != null)
+	//		iTask.cancel(true);
 	}
 
 	public void onResume() {
@@ -316,6 +332,8 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 
 
 	private void initDialog(int layout) {
+		if (isImportDialog)
+			return;
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(layout);
 		dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -469,6 +487,7 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 					Toast.makeText(this, "Error occured while opening the file", Toast.LENGTH_SHORT).show();
 				}
 				showImportScreen();
+				isImportDialog = false;
 
 			}
 			else if (scheme.compareTo(ContentResolver.SCHEME_FILE) == 0) {
@@ -486,6 +505,7 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 					Toast.makeText(this, "Error occured while opening the file", Toast.LENGTH_SHORT).show();
 				}
 				showImportScreen();
+				isImportDialog = false;
 
 			}
 			else if (scheme.compareTo("http") == 0) {
@@ -639,7 +659,9 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 		String result;
                 String importDir = "";
 
-		dialog = new Dialog(this);
+		if (!isImportDialog)
+			dialog = new Dialog(this);
+
 
 		if (!isOnline()) {
 			initDialog(R.layout.importdialog2);
@@ -649,6 +671,13 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 
 		if (importState == IMPORT_STATE_IMPORT) {
 			initDialog(R.layout.importdialog4);
+			tv = (TextView) dialog.findViewById(R.id.infotext);
+			tv.setText(getStatusString(lastProgress));
+
+			subTv = (TextView) dialog.findViewById(R.id.infotextsub);
+
+			pb = (ProgressBar) dialog.findViewById(R.id.firstBar);
+			pb.setMax(RAIDA.TOTAL_RAIDA_COUNT);
 			dialog.show();
 			return;
 		}
@@ -689,6 +718,22 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 			ttv = (TextView) dialog.findViewById(R.id.failed);
 			ttv.setText("" + failed);
 
+			try {
+				dialog.show();
+			} catch (Exception e) {
+				Log.v("CLOUDCOIN", "Activity is gone. No result will be shown");
+			}
+			return;
+		}
+
+		if (bank.getSuspectSize() > 0) {
+			initDialog(R.layout.importdialog6);
+			LinearLayout goButton = (LinearLayout) dialog.findViewById(R.id.gobutton);
+			goButton.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					doImportSuspect();
+				}
+			});
 			dialog.show();
 			return;
 		}
@@ -703,6 +748,8 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 		});
 
 		tv = (TextView) dialog.findViewById(R.id.infotext);
+
+
 
 		if (files != null && files.size() > 0) {
 			bank.loadIncomeFromFiles(files);
@@ -766,6 +813,7 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 	}
 
 	public void showExportScreen() {
+		isImportDialog = false;
 		dialog = new Dialog(this);
 
 		int i, resId;
@@ -826,6 +874,7 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 	}
 
 	public void showBankScreen() {
+		isImportDialog = false;
 		dialog = new Dialog(this);
 
 		initDialog(R.layout.bankdialog);
@@ -907,6 +956,7 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 	                }
 
 			dialog.dismiss();
+			isImportDialog = false;
 			showImportScreen();
 			return;
 		}
@@ -1017,12 +1067,23 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 	class ImportTask extends AsyncTask<String, Integer, String> {
                 protected String doInBackground(String... params) {
 			bank.initReport();
-			for (int i = 0; i < bank.getLoadedIncomeLength(); i++) {
-				if (isCancelled())
-					return "CANCELLED";
+			bank.resetImportStats();
+
+			if (params[0] == "import") {
+				for (int i = 0; i < bank.getLoadedIncomeLength(); i++) {
+					if (isCancelled())
+						return "CANCELLED";
 	
-				publishProgress(i);
-				bank.importLoadedItem(i);
+					publishProgress(i);
+					bank.importLoadedItem(i);
+				}
+			} else if (params[0] == "suspect") {
+				try {
+					bank.detectAuthenticity(null);
+				} catch (Exception e) {
+					Log.v("CLOUDCOIN", "Failed to detect suspect coins");
+				}
+
 			}
 
                         return "OK";
@@ -1032,6 +1093,7 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 			setImportState(IMPORT_STATE_DONE);
 			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 			dialog.dismiss();
+			isImportDialog = false;
 			showImportScreen();
 		}
 
@@ -1039,19 +1101,16 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 			lockOrientation();
                         setImportState(IMPORT_STATE_IMPORT);
 			dialog.dismiss();
+			isImportDialog = false;
+			lastProgress = 0;
 			showImportScreen();
 
-			tv = (TextView) dialog.findViewById(R.id.infotext);
-			tv.setText(getStatusString(0));
-
-			subTv = (TextView) dialog.findViewById(R.id.infotextsub);
-
-			pb = (ProgressBar) dialog.findViewById(R.id.firstBar);
-			pb.setMax(RAIDA.TOTAL_RAIDA_COUNT);
 		}
 
 		protected void onProgressUpdate(Integer... values) {
 			tv.setText(getStatusString(values[0]));
+
+			lastProgress = values[0];
 
 			raidaStatus = 0;
 			coinActive = 0;
@@ -1069,9 +1128,16 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 		ffTask.execute();
 	}
 
-	private void doImport() {
+	private void doImportSuspect() {
+		isImportSuspect = true;
 		iTask = new ImportTask();
-		iTask.execute();
+		iTask.execute("suspect");
+	}
+
+	private void doImport() {
+		isImportSuspect = false;
+		iTask = new ImportTask();
+		iTask.execute("import");
 	}
 
 	public void setImportState(int newState) {
@@ -1084,6 +1150,9 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 
 	private String getStatusString(int progressCoins) {
                 String statusString;
+
+		if (isImportSuspect)
+			return "";
 
 		int totalIncomeLength = bank.getLoadedIncomeLength();
 		int importedIncomeLength = progressCoins + 1;

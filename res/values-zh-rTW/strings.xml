@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">雲幣聯盟</string>
+  <string name="app_name0">口袋銀行</string>
+  <string name="app_name1">含 RAIDA 線上鑑定雲幣</string>
+  <string name="tadd">雲幣轉入</string>
+  <string name="tbank">銀行</string>
+  <string name="tbankinventory">銀行帳目</string>
+  <string name="tspend">雲幣轉出</string>
+  <string name="loading">載入中</string>
+  <string name="importtag">轉入標記</string>
+  <string name="exporttag">轉出標記</string>
+  <string name="url">CloudCoinConsortium.com</string>
+  <string name="bank">銀行</string>
+  <string name="ok">OK</string>
+  <string name="total">總計</string>
+  <string name="sbank">銀行</string>
+  <string name="scounterfeit">偽造</string>
+  <string name="sfractured">損壞</string>
+  <string name="errmnt">轉入的目錄 (Import/) 不存在. 請確認軟體已正確安裝在內部儲存裝置上</string>
+  <string name="errimport">搜尋轉入目錄 (Import/) 時發生錯誤</string>
+  <string name="erremptyimport">在您的 income 資料夾找不到雲幣. 請將您的雲幣(.jpg 或 .stack) 儲存至 income 資料夾並且再試一次. 您的 income 資料夾在內部儲存裝置的 :\n\n%1$s</string>
+  <string name="importwarn">轉入您的 Import 資料夾底下所有的雲幣. 請將雲幣(.jpg 與 .stack) 存放至內部儲存裝置的:\n\n%1$s\n\n要轉入的雲幣是 %2$d 個檔案. 按 OK 繼續.</string>
+  <string name="movedtobank">合計轉入: %1$d 雲幣</string>
+  <string name="importresults">轉入結果:</string>
+  <string name="importresultsauth">鑑定正確且轉存至銀行: </string>
+  <string name="importresultstrash">偽造的雲幣或驗證失敗並且移至垃圾桶目錄 (Trash): </string>
+  <string name="trashnote">請檢查您的垃圾桶目錄 (Trash)</string>
+  <string name="authstring">正在驗證 %1$d/%2$d 雲幣檔</string>
+  <string name="authfrackedstring">正在修復 %1$d/%2$d 損壞的雲幣檔</string>
+  <string name="totaltoexport">合計轉出: %1$d 雲幣</string>
+  <string name="globalexporterror">全域錯誤. 雲幣轉出失敗</string>
+  <string name="exportok">雲幣轉出完成\n您可以在內部儲存裝置:\n%1$s 找到它們.</string>
+  <string name="exportfailed">轉出 %1$d 個雲幣失敗</string>
+  <string name="fixfracked">修復損壞的雲幣</string>
+</resources>

@@ -68,6 +68,7 @@
  <string name="fixed">Починено %1$d из %2$d монет</string>
  <string name="back">Назад</string>
  <string name="icoins">У вас есть неимпортированные монеты</string>
-
+ <string name="suspectcoins">В банке найдены подозрительные монеты. Мы импортируем их </string>
+ <string name="warning">Внимание!</string>
 
 </resources>

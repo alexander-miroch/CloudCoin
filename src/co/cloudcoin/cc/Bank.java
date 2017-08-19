@@ -673,6 +673,12 @@ public class Bank {
 		return failed;
 	}
 
+	public int getSuspectSize() {
+		ArrayList<IncomeFile> incomeFiles = selectAllFileNamesFolder(bankDirPath, "suspect");
+
+		return incomeFiles.size();
+	}
+
 	public void detectAuthenticity(String importedfileName) throws Exception {
 		CloudCoin cc;
 		ArrayList<IncomeFile> incomeFiles = selectAllFileNamesFolder(bankDirPath, "suspect");
@@ -702,7 +708,8 @@ public class Bank {
 
 					importStats[STAT_AUTHENTIC]++;
 					importStats[STAT_VALUE_MOVED_TO_BANK] += cc.getDenomination();
-					moveFileToImported(importedfileName);
+					if (importedfileName != null)
+						moveFileToImported(importedfileName);
 					addCoinToReport(cc, "authentic");
 					deleteCoin(incomeFiles.get(i).fileName);
 				} else if (cc.extension.equals("fracked")) {
@@ -711,13 +718,15 @@ public class Bank {
 					//importStats[STAT_FRACTURED]++;
 					importStats[STAT_AUTHENTIC]++;
 					importStats[STAT_VALUE_MOVED_TO_BANK] += cc.getDenomination();
-					moveFileToImported(importedfileName);
+					if (importedfileName != null)
+						moveFileToImported(importedfileName);
 					addCoinToReport(cc, "fracked");
 					deleteCoin(incomeFiles.get(i).fileName);
 				} else if (cc.extension.equals("counterfeit")) {
 					//importStats[STAT_COUNTERFEIT]++;
 					importStats[STAT_FAILED]++;
-					moveFileToTrash(importedfileName, "The coin is counterfeit. Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
+					if (importedfileName != null)
+						moveFileToTrash(importedfileName, "The coin is counterfeit. Passed: " + cc.gradeStatus[0] + "; Failed: " + cc.gradeStatus[1] + "; Other: " + cc.gradeStatus[2]);
 					addCoinToReport(cc, "counterfeit");
 					deleteCoin(incomeFiles.get(i).fileName);
 				} else {
