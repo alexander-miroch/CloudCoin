@@ -545,7 +545,7 @@ class CloudCoin {
 
 		if (other > (raidaCnt / 2) - 1) {
 			extension = "suspect";
-		} else if (failed > passed) {
+		} else if (failed > passed || failed > 5) {
 			extension = "counterfeit";
 		} else if (failed > 0) {
 			extension = "fracked";
