@@ -21,16 +21,16 @@
   <string name="errimport">Fehler beim Suche in Ihrem Import-Verzeichnis</string>
   <string name="erremptyimport">Es gab keine CloudCoins in Ihrem Ordner "Einkommen" gefunden. Bitte legen Sie Ihre CloudCoins (.jpg oder .stack) Dateien in Ihrem Ordner "Einkommen" und versuchen Sie es erneut. Ihr Einkommen-Ordner finden Sie auf Ihrem primären Speicher-at:\n\n%1$s</string>
   <string name="importwarn">Import importiert alle CloudCoin Dateien aus Ihrem Ordner "Import". Bitte legen Sie alle CloudCoin Dateien (.jpg und .stack) in den Import-Ordner befindet sich auf Ihrem Primärspeicher at:\n\n%1$s\n\nWe are gonna importieren %2$d Datei(en). Tippen Sie auf OK, um fortzufahren</string>
-  <string name="movedtobank">Insgesamt wechselte zur Bank: "% 1" $d Münzen</string>
+  <string name="movedtobank">Insgesamt wechselte zur Bank: %1$d Münzen</string>
   <string name="importresults">Ergebnisse der Import:</string>
   <string name="importresultsauth">Authentische und zog an die bank: </string>
   <string name="importresultstrash">Fälschung oder nicht und in Papierkorb verschoben: </string>
   <string name="trashnote">Bitte überprüfen Sie Ihre CloudCoin Trash\nof eine Notiz über die Geschehnisse</string>
-  <string name="authstring">Authentifizierung von "% 1" $d $d %2 Dateien CloudCoin</string>
-  <string name="authfrackedstring">Befestigung "% 1" $d $d %2 Fracking Münzen</string>
-  <string name="totaltoexport">Insgesamt bis zu exportieren: "% 1" $d CloudCoins</string>
+  <string name="authstring">Authentifizierung von %1$d %2$d Dateien CloudCoin</string>
+  <string name="authfrackedstring">Befestigung %1$d %2$d Fracking Münzen</string>
+  <string name="totaltoexport">Insgesamt bis zu exportieren: %1$d CloudCoins</string>
   <string name="globalexporterror">Globaler Fehler. Münzen wurden nicht exportiert</string>
   <string name="exportok">Münzen wurden exportiert Successfully\nYou finden sie auf Ihrem primären Speicher-at:\n%1$s</string>
-  <string name="exportfailed">Fehler beim Exportieren "% 1" $d Münzen</string>
+  <string name="exportfailed">Fehler beim Exportieren %1$d Münzen</string>
   <string name="fixfracked">Befestigung von Fracking-Münzen</string>
 </resources>
