@@ -78,4 +78,5 @@
 	<string name="icoins">You have coins waiting to be imported</string>
 	<string name="suspectcoins">We found suspect coins in the Bank. We will validate them now</string>
 	<string name="warning">Warning!</string>
+	<string name="exportnotice">When you export your CloudCoins. They will be placed in the Export folder located at %1$s. If you email your CloudCoins, they will be removed from the export folder and sent via email. If you interrupt the email process, you can find your CloudCoin in this export folder. You can use the import file picker to import them back into your bank.</string>
 </resources>

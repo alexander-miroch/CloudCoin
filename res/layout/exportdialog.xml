@@ -305,6 +305,13 @@
 			android:textSize="14dp"
 		/>
 
+		<TextView style="@style/InvText3" 
+			android:id="@+id/en" 
+			android:textSize="9dp"
+		/>
+
+		
+
 	</LinearLayout>
 
 

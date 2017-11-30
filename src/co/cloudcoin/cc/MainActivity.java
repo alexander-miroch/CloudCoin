@@ -870,6 +870,11 @@ public class MainActivity extends Activity implements NumberPicker.OnValueChange
 			}
 		});
 
+		String msg = String.format(getResources().getString(R.string.exportnotice), bank.getRelativeExportDirPath());
+
+		TextView eNotice = (TextView) dialog.findViewById(R.id.en);
+		eNotice.setText(msg);
+
 		dialog.show();
 	}
 
